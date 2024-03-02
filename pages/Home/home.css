@@ -1,0 +1,14 @@
+header{
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid gray;
+    justify-content: space-between;
+}
+
+.nav-bar{
+    margin: 24px;
+}
+
+.nav-bar a {
+    margin: 24px;
+}
