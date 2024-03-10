@@ -1,13 +1,20 @@
 /* Text colors */
-.text-warning{
+.text-warning {
     color: #ede861 !important;
 }
+
 .text-muted {
     color: #bcbcbc !important;
 }
+
+.text-brand {
+    color: #4a79b6 !important;
+}
+
 .text-success {
     color: #59ab6e !important;
 }
+
 .text-light {
     color: #cfd6e1 !important;
 }
@@ -16,12 +23,15 @@
 .bg-dark {
     background-color: #212934 !important;
 }
-.bg-light { 
+
+.bg-light {
     background-color: #e9eef5 !important;
 }
-.bg-black { 
+
+.bg-black {
     background-color: #1d242d !important;
 }
-.bg-success { 
+
+.bg-success {
     background-color: #59ab6e !important;
 }

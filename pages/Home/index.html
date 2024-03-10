@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>SkyEdge</title>
 
@@ -12,46 +13,79 @@
     <!-- CSS -->
     <link rel="stylesheet" href="home.css">
     <link rel="stylesheet" href="/assets/css/colors.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 </head>
 
 <body>
 
     <!-- Nav Top -->
-    <nav class="navbar navbar-expand-lg bg-dark">
+    <nav class="navbar navbar-expand-lg bg-dark navbar-light d-lg-block" style="min-height: 40px;">
         <div class="container text-light">
-            <div>
-                <i></i>
-                <a class="text-light" href="">hanu@gmail.com</a>
-                <i></i>
-                <a class="text-light" href="">032-323-3232</a>
+            <div class="w-100 d-flex justify-content-between">
+                <div>
+                    <i class="fa-solid fa-envelope"></i>
+                    <a class="navbar-sm-brand text-light text-decoration-none"
+                        href="mailto:hanu@gmail.com">hanu@gmail.com</a>
+                    <i class="fa-solid fa-phone"></i>
+                    <a class="navbar-sm-brand text-light text-decoration-none" href="tel:032-323-3232">032-323-3232</a>
+                </div>
+
+                <div>
+                    <a href="https://www.facebook.com/" class="text-light" target="_blank" rel="sponsored">
+                        <i class="fab fa-facebook-f fa-sm fa-fw me-2"></i>
+                    </a>
+                    <a href="https://www.instagram.com/" class="text-light" target="_blank">
+                        <i class="fab fa-instagram fa-sm fa-fw me-2"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/" class="text-light" target="_blank">
+                        <i class="fab fa-linkedin fa-sm fa-fw me-2"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </nav>
+
     <!-- Header -->
-    <header>
-        <div class="logo">
-            <img src="/assets/favicon.ico" alt="skyedge-logo" style="width: 24%;">
-            <h3>SkyEdge</h3>
+    <nav class="navbar navbar-expand-lg navbar-light shadow header">
+        <div class="header">
+
+            <a class="navbar-brand logo text-brand" href="../Home/index.html">
+                <img src="/assets/favicon.ico" alt="skyedge-logo" style="width: 24%;">
+                <h3>SkyEdge</h3>
+            </a>
+
+            <div class="nav-bar">
+                <div class="flex-fill">
+                    <ul class="nav navbar-nav d-flex justify-content-between">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="../Home/index.html">Home</a>
+                        </li>
+
+                        <li>
+                            <a href="">Shop</a>
+                        </li>
+
+                        <li>
+                            <a href="">Review</a>
+                        </li>
+
+                        <li>
+                            <a href="../AboutUs/about-us.html">About Us</a>
+                        </li>
+                        <li>
+                            <a href="">Contact Us</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <input type="search" name="Searching" id="">
+            <i class="fa-solid fa-magnifying-glass"></i>
         </div>
+    </nav>
 
-        <nav class="nav-bar">
-            <li class="nav-item">
-                <a class="nav-link active" href="../Home/home.html">Home</a>
-            </li>
-
-            <li>
-                <a href="">Shop</a>
-            </li>
-            <a href="">Review</a>
-            <a href="../AboutUs/about-us.html">About Us</a>
-            <a href="">Contact Us</a>
-        </nav>
-
-        <input type="search" name="Searching" id="">
-        <i class="fa-solid fa-magnifying-glass"></i>
-    </header>
-
+    <!-- Main -->
     <div class="container">
 
     </div>
@@ -83,7 +117,7 @@
                 <div>
 
                 </div>
-                
+
                 <!-- Futher infor -->
                 <div>
 
@@ -103,12 +137,13 @@
                 <!-- Email subscriber -->
                 <nav class="navbar">
                     <div class="container-fluid">
-                      <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Enter your email" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Subscribe</button>
-                      </form>
+                        <form class="d-flex" role="search">
+                            <input class="form-control me-2" type="search" placeholder="Enter your email"
+                                aria-label="Search">
+                            <button class="btn btn-outline-success" type="submit">Subscribe</button>
+                        </form>
                     </div>
-                  </nav>
+                </nav>
             </div>
         </div>
 
@@ -127,4 +162,5 @@
     <script src="home.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
