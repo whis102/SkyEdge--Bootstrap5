@@ -81,8 +81,22 @@
                 </div>
             </div>
 
-            <input type="search" name="Searching" id="">
-            <i class="fa-solid fa-magnifying-glass"></i>
+            <div class="icon">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <i class="fa-solid fa-cart-shopping"></i>
+
+                <div class="dropdown">
+                    <a href="#" class="dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa-solid fa-user"></i>
+                    </a>
+                
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <li><a class="dropdown-item" href="#">Settings</a></li>
+                        <li><a class="dropdown-item" href="../Login/login.html">Log out</a></li>
+                    </ul>
+                </div>
+                
+            </div>
         </div>
     </nav>
 
@@ -139,7 +153,7 @@
                 <nav class="navbar">
                     <div class="container-fluid col-auto">
                         <form class="d-flex" role="search">
-                            <input class="form-control me-2" type="search" placeholder="Enter your email"
+                            <input class="form-control me-2" type="email" placeholder="Enter your email"
                                 aria-label="Search">
                             <button class="btn btn-outline-success" type="submit">Subscribe</button>
                         </form>
