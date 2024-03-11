@@ -21,21 +21,22 @@
 <body>
 
     <!-- Nav Top -->
-    <nav class="navbar navbar-expand-lg bg-dark navbar-light d-lg-block" style="min-height: 40px;">
+    <nav class="navbar navbar-expand-lg bg-dark navbar-light d-none d-lg-block" style="min-height: 40px;">
         <div class="container text-light">
             <div class="w-100 d-flex justify-content-between">
 
-                <!-- Contact Nav Top -->
+                <!-- Start Contact Nav Top -->
                 <div>
                     <i class="fa-solid fa-envelope"></i>
                     <a class="navbar-sm-brand text-light text-decoration-none"
                         href="mailto:hanu@gmail.com">hanu@gmail.com</a>
+
                     <i class="fa-solid fa-phone"></i>
                     <a class="navbar-sm-brand text-light text-decoration-none" href="tel:032-323-3232">032-323-3232</a>
                 </div>
                 <!-- End Contact Nav Top -->
 
-                <!-- Icon Nav Top -->
+                <!-- Start Icon Nav Top -->
                 <div>
                     <!-- Facebook Icon -->
                     <a href="https://www.facebook.com/" class="text-light" target="_blank" rel="sponsored">
@@ -61,7 +62,7 @@
     <nav class="navbar navbar-expand-lg navbar-light shadow">
         <div class="container d-flex justify-content-between align-items-center">
 
-            <a class="navbar-brand logo text-brand" href="../Home/index.html">
+            <a class="navbar-brand logo text-brand align-self-center" href="../Home/index.html">
                 <img src="/assets/favicon.ico" alt="skyedge-logo" style="width: 24%;">
                 <h3>SkyEdge</h3>
             </a>
@@ -90,43 +91,105 @@
                         </li>
                     </ul>
                 </div>
-            </div>
-
-            <!-- Header Icon -->
-            <div class="navbar align-self-center d-flex">
-                <a class="nav-icon position-relative text-decoration-none" href="#">
-                    <i class="fa-solid fa-magnifying-glass text-dark"></i>
-                </a>
-
-                <a href="#">
-                    <i class="fa-solid fa-cart-shopping text-dark"></i>
-                    <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">7</span>
-                </a>
-
-                <div class="dropdown">
-                    <a href="#" class="dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fa-solid fa-user text-dark"></i>
+                
+                <!-- Header Icon -->
+                <div class="navbar align-self-center d-flex">
+                    <a class="nav-icon position-relative text-decoration-none" href="#">
+                        <i class="fa-solid fa-magnifying-glass text-dark"></i>
                     </a>
-                
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <li><a class="dropdown-item" href="#">Settings</a></li>
-                        <li><a class="dropdown-item" href="../Login/login.html">Log out</a></li>
-                    </ul>
+    
+                    <a class="nav-icon position-relative text-decoration-none" href="#">
+                        <i class="fa-solid fa-cart-shopping text-dark"></i>
+                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">7</span>
+                    </a>
+    
+                    <div class="dropdown">
+                        <a href="#" class="dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-user text-dark"></i>
+                        </a>
+                    
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <li><a class="dropdown-item" href="#">Settings</a></li>
+                            <li><a class="dropdown-item" href="../Login/login.html">Log out</a></li>
+                        </ul>
+                    </div>
                 </div>
-                
+                <!-- Close Header Icon -->
             </div>
-            <!-- Close Header Icon -->
+
         </div>
     </nav>
 
-    <!-- Main -->
-    <div class="container">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, ad. Quisquam voluptate deserunt reprehenderit expedita molestias beatae illum commodi cumque laudantium tenetur repellendus enim id, alias nostrum ducimus veritatis sed!</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, ad. Quisquam voluptate deserunt reprehenderit expedita molestias beatae illum commodi cumque laudantium tenetur repellendus enim id, alias nostrum ducimus veritatis sed!</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, ad. Quisquam voluptate deserunt reprehenderit expedita molestias beatae illum commodi cumque laudantium tenetur repellendus enim id, alias nostrum ducimus veritatis sed!</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, ad. Quisquam voluptate deserunt reprehenderit expedita molestias beatae illum commodi cumque laudantium tenetur repellendus enim id, alias nostrum ducimus veritatis sed!</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, ad. Quisquam voluptate deserunt reprehenderit expedita molestias beatae illum commodi cumque laudantium tenetur repellendus enim id, alias nostrum ducimus veritatis sed!</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, ad. Quisquam voluptate deserunt reprehenderit expedita molestias beatae illum commodi cumque laudantium tenetur repellendus enim id, alias nostrum ducimus veritatis sed!</p>
+    <!-- Start Banner -->
+    <div id="banner-carousel" class="carousel slide" data-bs-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="0" class="active"></li>
+            <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="1"></li>
+            <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="container">
+                    <div class="row p-5">
+                        <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+                            <img class="img-fluid" src="./assets/img/banner_img_01.jpg" alt="">
+                        </div>
+                        <div class="col-lg-6 mb-0 d-flex align-items-center">
+                            <div class="text-align-left align-self-center">
+                                <h1>SkyEdge</h1>
+                                <h3>Just an amateur website made by students</h3>
+                                <p>
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae culpa deleniti inventore consequuntur illum sed odio nam? Beatae, voluptatibus iusto ab fuga labore illum sint exercitationem? Ipsa doloribus cupiditate dolorem.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-item">
+                <div class="container">
+                    <div class="row p-5">
+                        <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+                            <img class="img-fluid" src="./assets/img/banner_img_02.jpg" alt="">
+                        </div>
+                        <div class="col-lg-6 mb-0 d-flex align-items-center">
+                            <div class="text-align-left">
+                                <h1 class="h1">SkyEdge</h1>
+                                <h3 class="h2">ABC</h3>
+                                <p>
+                                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Numquam, minus reiciendis laudantium, voluptatibus autem adipisci accusamus eveniet, cum aspernatur corporis explicabo! Quasi reprehenderit similique voluptatum, quam eaque fugiat facilis mollitia.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="container">
+                    <div class="row p-5">
+                        <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+                            <img class="img-fluid" src="./assets/img/banner_img_03.jpg" alt="">
+                        </div>
+                        <div class="col-lg-6 mb-0 d-flex align-items-center">
+                            <div class="text-align-left">
+                                <h1 class="h1">SkyEdge</h1>
+                                <h3 class="h2">ABC</h3>
+                                <p>
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum modi unde, quae quaerat eos commodi cupiditate nam est aperiam ut ducimus, quas consequuntur mollitia reiciendis totam enim ex voluptate laboriosam?
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev text-decoration-none w-auto ps-3" href="#template-mo-zay-hero-carousel" role="button" data-bs-slide="prev">
+            <i class="fas fa-chevron-left"></i>
+        </a>
+        <a class="carousel-control-next text-decoration-none w-auto pe-3" href="#template-mo-zay-hero-carousel" role="button" data-bs-slide="next">
+            <i class="fas fa-chevron-right"></i>
+        </a>
     </div>
 
     <!-- Footer -->
@@ -156,13 +219,29 @@
                 </div>
 
                 <!-- Product -->
-                <div>
-
+                <div class="col-md-4 pt-5">
+                    <h2 class="h2 text-light border-bottom pb-3 border-light">Products</h2>
+                    <ul class="list-unstyled text-light footer-link-list">
+                        <li><a class="text-decoration-none" href="#">Luxury</a></li>
+                        <li><a class="text-decoration-none" href="#">Sport</a></li>
+                        <li><a class="text-decoration-none" href="#">Men's Glass</a></li>
+                        <li><a class="text-decoration-none" href="#">Women's Glass</a></li>
+                        <li><a class="text-decoration-none" href="#">Popular</a></li>
+                        <li><a class="text-decoration-none" href="#">Gym</a></li>
+                        <li><a class="text-decoration-none" href="#">Sport</a></li>
+                    </ul>
                 </div>
 
                 <!-- Futher infor -->
-                <div>
-
+                <div class="col-md-4 pt-5">
+                    <h2 class="h2 text-light border-bottom pb-3 border-light">Further Info</h2>
+                    <ul class="list-unstyled text-light footer-link-list">
+                        <li><a class="text-decoration-none" href="#">Home</a></li>
+                        <li><a class="text-decoration-none" href="#">About Us</a></li>
+                        <li><a class="text-decoration-none" href="#">Shop Locations</a></li>
+                        <li><a class="text-decoration-none" href="#">FAQs</a></li>
+                        <li><a class="text-decoration-none" href="#">Contact</a></li>
+                    </ul>
                 </div>
             </div>
 
