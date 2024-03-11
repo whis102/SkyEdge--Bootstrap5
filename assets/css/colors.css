@@ -35,3 +35,7 @@
 .bg-success {
     background-color: #59ab6e !important;
 }
+
+.bg-footer{
+    background-color: rgb(110, 170, 243);
+}
