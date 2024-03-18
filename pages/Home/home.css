@@ -17,6 +17,12 @@
     background: #efefef !important;
 }
 
+#template-mo-zay-hero-carousel .carousel-control-next i,
+#template-mo-zay-hero-carousel .carousel-control-prev i {
+  color: #59ab6e !important;
+  font-size: 2.8em !important;
+}
+
 /* Footer*/
 .btn {
     color: white;
