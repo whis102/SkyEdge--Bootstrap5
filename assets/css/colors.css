@@ -19,6 +19,10 @@
     color: #cfd6e1 !important;
 }
 
+footer a {
+    color: #dcdde1;
+}
+
 /* Background colors */
 .bg-dark {
     background-color: #212934 !important;
