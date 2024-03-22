@@ -10,6 +10,7 @@
     <link rel="shortcut icon" href="./assets/favicon.png" type="image/x-icon">
         
     <!-- CSS -->
+    <link rel="stylesheet" href="./displays/MainDisplay/main.css">
     <link rel="stylesheet" href="./pages/Home/home.css">
     <link rel="stylesheet" href="./assets/css/typo.css">
     <link rel="stylesheet" href="./assets/css/colors.css">
@@ -106,16 +107,19 @@
                     <a class="nav-icon text-decoration-none" href="#">
                         <i class="fa-solid fa-magnifying-glass text-dark"></i>
                     </a>
-    
+                
                     <a class="nav-icon text-decoration-none" href="#">
                         <i class="fa-solid fa-cart-shopping text-dark"></i>
                     </a>
-
+                
+                    <a class="nav-icon text-decoration-none" data-bs-toggle="dropdown" href="#">
+                        <i class="fa-solid fa-user text-dark"></i>
+                    </a>
+                
                     <div class="dropdown">
                         <button class="btn btn-link dropdown-toggle text-decoration-none text-dark" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fa-solid fa-user text-dark"></i>
                         </button>
-
+            
                         <ul class="dropdown-menu" aria-labelledby="userDropdown">
                             <li><a class="dropdown-item" href="#">Settings</a></li>
                             <li><a class="dropdown-item" href="../Login/login.html">Log out</a></li>
@@ -126,7 +130,7 @@
             </div>
         </div>
     </nav>
-    <!-- Close Header Icon -->
+    <!-- Close Header-->
 
     <!-- Start Banner -->
     <div id="banner-carousel" class="carousel slide" data-bs-ride="carousel">

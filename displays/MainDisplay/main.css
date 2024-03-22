@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+
+* {
+    font-family: 'Quicksand';
+}
+
+/* Nav Top */
+#nav-top * {
+    font-size: 14px !important;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+
+#nav-menu a { 
+  color: #212934;
+}
+#nav-menu a:hover { 
+  color: #69bb7e;
+}
+
+#nav-menu .navbar .nav-icon { 
+  margin-right: 20px;
+}
+
+#nav-menu .navbar {
+  min-height: 75px;
+}
+
+/* Footer*/
+.btn {
+    color: white;
+}
+
+footer a { color: #dcdde1;}
+footer a:hover { color: #68bb7d;}
+footer ul.footer-link-list li {
+    padding-top: 10px;
+}
+
+footer ul.footer-icons li {
+  width: 2.6em;
+  height: 2.6em;
+  line-height: 2.6em;
+}
+footer ul.footer-icons li:hover {
+  background-color: #cfd6e1;
+  transition: .5s;
+}
+footer ul.footer-icons li:hover i {
+  color: #212934;
+  transition: .5s;
+}
+footer .border-light { 
+    border-color: #2d343f !important;
+}

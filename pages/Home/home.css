@@ -1,38 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
-
-
-* {
-    font-family: 'Quicksand';
-}
-
-/* Nav Top */
-#nav-top * {
-    font-size: 14px !important;
-}
-
-.logo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-}
-
-#nav-menu a { 
-  color: #212934;
-}
-#nav-menu a:hover { 
-  color: #69bb7e;
-}
-
-#nav-menu .navbar .nav-icon { 
-  margin-right: 20px;
-}
-
-/* Header Icon */
-.mr-icon {
-  margin: 4px;
-}
-
 /* Banner */
 #banner-carousel .carousel-indicators button {
     margin-top: -50px;
@@ -45,30 +10,27 @@
   font-size: 2.8em !important;
 }
 
-/* Footer*/
-.btn {
-    color: white;
+/*// Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) {
+  #nav-menu .navbar-nav {
+    max-width: 450px;
+  }
+ }
+
+/* Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) {
+  #nav-menu .navbar-nav {
+    max-width: 550px;
+  }
+  #banner-carousel .carousel-item {
+    min-height: 30rem !important;
+  }
+  .product-wap .h3, .product-wap li, .product-wap i, .product-wap p {font-size: 18px !important;}
+  .product-wap .product-color-dot {
+    width: 12px;
+    height: 12px;
+  }
 }
 
-footer a { color: #dcdde1;}
-footer a:hover { color: #68bb7d;}
-footer ul.footer-link-list li {
-    padding-top: 10px;
-}
-
-footer ul.footer-icons li {
-  width: 2.6em;
-  height: 2.6em;
-  line-height: 2.6em;
-}
-footer ul.footer-icons li:hover {
-  background-color: #cfd6e1;
-  transition: .5s;
-}
-footer ul.footer-icons li:hover i {
-  color: #212934;
-  transition: .5s;
-}
-footer .border-light { 
-    border-color: #2d343f !important;
-}
+/* Extra large devices (large desktops, 1200px and up)*/
+@media (min-width: 1200px) {}
