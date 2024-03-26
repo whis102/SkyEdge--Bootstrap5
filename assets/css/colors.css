@@ -39,3 +39,6 @@ footer a {
 .bg-footer{
     background-color: rgb(110, 170, 243);
 }
+
+/* Buttons */
+.btn { color: white; }
