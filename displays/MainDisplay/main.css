@@ -28,7 +28,7 @@
 
 /* Footer*/
 .btn { color: white; }
-
+.foot-title { padding: 10px;}
 footer a { color: #dcdde1;}
 footer a:hover { color: #68bb7d;}
 footer ul.footer-link-list li { padding-top: 10px; }
