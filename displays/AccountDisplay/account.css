@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+
+.heading{
+/* Welcome back! */
+
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+color: #366882;
+text-align: center;
+}
+
+.custom-btn-width {
+    width: 200px; /* Adjust width as needed */
+  }
+
+.custom-form {
+    max-width: 300px; /* Adjust max-width as needed */
+}
+.custom-form .form-label, .custom-form .form-control {
+    font-size: 0.9rem; /* Adjust font size as needed */
+    border-radius: 10px;
+}
+
+.img-fluid{
+    height: auto;
+    width: 100%;
+    max-width: 100%;
+}
+
+.form-container {
+    margin-left: 20%; /* Adjust margin as needed */
+    max-width: max-content;
+    width: 100%;
+}
+
+h6{
+    /* Please enter your details. */
+text-align: center;
+font-family: 'Inter';
+font-style: normal;
+color: #666666;
+}
+
+.chk-box{
+    /* Keep me logged in */
+font-family: 'Inter';
+font-style: normal;
+font-weight: 500;
+line-height: 29px;
+/* identical to box height */
+
+color: #666666;
+
+
+}
+
+.psw-link{
+    /* Forgot password */
+font-family: 'Inter';
+font-style: normal;
+font-weight: 500;
+line-height: 29px;
+/* identical to box height */
+
+color: #666666;
+
+
+}
+.label-font{
+font-family: 'Inter';
+font-style: normal;
+font-weight: 700;
+line-height: 34px;
+
+color: #666666;
+
+
+}
+
+.form-control{
+
+/* Rectangle 110 */
+background: #D9D9D9;
+border-radius: 30px;
+font-size: 0.9rem;
+width: 320px;
+height: 50px;
+
+}
+
+.logo {
+    width: 60px; /* Adjust width as needed */
+    height: auto; /* Maintain aspect ratio */
+    margin-top: 30px;
+    margin-left: 30px;
+    padding-bottom: 5px;
+
+}
+.mt-3{
+/* Don’t have an account ? */
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 500;
+line-height: 29px;
+/* identical to box height */
+
+color: #666666;
+}
+
+span.logo-name{
+/* SkyEdge */
+margin-top: 400px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 25px;
+line-height: 58px;
+
+color: #00DB6D;
+text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+a{
+    text-decoration: none;
+}
+
