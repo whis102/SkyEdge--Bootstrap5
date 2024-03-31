@@ -1,0 +1,28 @@
+.card-img-top.img {
+    width: 100%; /* Make the image fill the width of its container */
+    height: auto; /* Maintain the aspect ratio */
+    object-fit: cover; /* Scale the image while preserving its aspect ratio */
+}
+
+.card .img-overlay .card-btn {
+    /* background: rgba(0, 0, 0, .2); */
+    visibility: hidden;
+    opacity: 0;
+    transition: .3s;
+
+}
+
+
+
+.card .img-overlay:hover .card-btn {
+    visibility: visible;
+    opacity: 1;
+}
+
+
+.img-overlay .card-btn {
+    position: absolute;
+    bottom: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+}
