@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="shortcut icon" href="./assets/favicon.png" type="image/x-icon">
-        
+
     <!-- CSS -->
     <link rel="stylesheet" href="./displays/MainDisplay/main.css">
     <link rel="stylesheet" href="./pages/ContactUs/contact-us.css">
@@ -27,8 +27,7 @@
 
                 <!-- Nav Top Contact -->
                 <div>
-                    <a class="navbar-sm-brand text-light text-decoration-none"
-                        href="mailto:hanu@gmail.com">
+                    <a class="navbar-sm-brand text-light text-decoration-none" href="mailto:hanu@gmail.com">
                         <i class="fa-solid fa-envelope"></i>
                         hanu@gmail.com
                     </a>
@@ -77,7 +76,8 @@
             <!-- Brand -->
 
             <!-- Menubar -->
-            <div id="nav-menu" class="align-self-center collapse navbar-collapse flex-fill d-lg-flex justify-content-lg-between">
+            <div id="nav-menu"
+                class="align-self-center collapse navbar-collapse flex-fill d-lg-flex justify-content-lg-between">
                 <div class="flex-fill">
                     <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
                         <li class="nav-item">
@@ -85,7 +85,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="">Shop</a>
+                            <a class="nav-link" href="shop.html">Shop</a>
                         </li>
 
                         <li class="nav-item">
@@ -111,7 +111,8 @@
                         <i class="fa-solid fa-cart-shopping text-dark"></i>
                     </a>
                     <div id="dropdown" class="dropdown">
-                        <a class="nav-icon d-flex align-items-center text-decoration-none" data-bs-toggle="dropdown" href="#">
+                        <a class="nav-icon d-flex align-items-center text-decoration-none" data-bs-toggle="dropdown"
+                            href="#">
                             <i class="fa-solid fa-user text-dark"></i>
                             <span class="dropdown-toggle ms-2"></span>
                         </a>
@@ -133,46 +134,60 @@
             <div class="col-md-6 m-auto text-center">
                 <h1 class="h1">Contact Us</h1>
                 <p>
-                    Proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    Lorem ipsum dolor sit amet.
+                    Get in touch with SkyEdge, your premier destination for cutting-edge fashion eyewear. Have
+                    questions, feedback, or need assistance? Reach out to our dedicated team for personalized support.
+                    Elevate your style with SkyEdge – where fashion meets clarity.
                 </p>
             </div>
         </div>
-    <!-- Start Contact -->
-    <div class="container py-5">
-        <div class="row py-5">
-            <form class="col-md-9 m-auto" method="post" role="form">
-                <div class="row">
-                    <div class="form-group col-md-6 mb-3">
-                        <label for="inputemail">Email</label>
-                        <input type="email" class="form-control mt-1" id="email" name="email" placeholder="Your email">
+        <!-- Start Contact -->
+        <div class="container py-5">
+            <div class="row py-5">
+                <form class="col-md-9 m-auto" method="post" role="form">
+                    <div class="row">
+                        <div class="form-group col-md-6 mb-3">
+                            <label for="inputemail">Email</label>
+                            <input type="email" class="form-control mt-1" id="email" name="email"
+                                placeholder="Enter your email">
+                        </div>
+                        <div class="form-group col-md-6 mb-3">
+                            <label for="inputordercode">Order Code <label class="light">(optional)</label> </label>
+                            <input type="text" class="form-control mt-1" id="order-code" name="order code"
+                                placeholder="Enter your order code">
+                        </div>
                     </div>
-                    <div class="form-group col-md-6 mb-3">
-                        <label for="inputordercode">Order Code <label class="light">(optional)</label> </label>
-                        <input type="text" class="form-control mt-1" id="order-code" name="order code" placeholder="Your order code">
+                    <div class="mb-3">
+                        <label for="inputsubject">Subject</label>
+                        <input type="text" class="form-control mt-1" id="subject" name="subject"
+                            placeholder="Enter subject">
                     </div>
-                </div>
-                <div class="mb-3">
-                    <label for="inputsubject">Subject</label>
-                    <input type="text" class="form-control mt-1" id="subject" name="subject" placeholder="Subject">
-                </div>
-                <div class="mb-3">
-                    <label for="inputmessage">Message</label>
-                    <textarea class="form-control mt-1" id="message" name="message" placeholder="Message" rows="8"></textarea>
-                </div>
-                <div class="row">
-                    <div class="col text-end mt-2">
-                        <button type="submit" class="btn btn-outline-success">Let's Talk</button>
+                    <div class="mb-3">
+                        <label for="inputmessage">Message</label>
+                        <textarea class="form-control mt-1" id="message" name="message" placeholder="Type something"
+                            rows="8"></textarea>
                     </div>
-                </div>
-            </form>
+                    <div class="row">
+                        <div class="col text-end mt-2">
+                            <a id="submitButton" class="btn btn-outline-success">Let's talk</a>
+                        </div>
+                        <div id="confirmationModal" class="modal">
+                            <div class="modal-content" style="width: 18rem;">
+                                <p>Are you sure you want to submit?</p>
+                                <a id="confirmButton" class="btn btn-outline-success modalButton">Confirm</a>
+                                <a id="cancelButton" class="btn btn-outline-success modalButton">Cancel</a>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
-    <!-- End Contact -->
+        <!-- End Contact -->
 
     </div>
 
-    
+
     <!-- Start Footer -->
     <footer class="bg-dark">
         <div id="footer" class="container"></div>
