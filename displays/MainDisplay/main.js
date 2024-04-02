@@ -1,7 +1,6 @@
 // Top Nav
 const topNav = document.createElement('div')
-topNav.classList.add('container')
-topNav.classList.add('text-light')
+topNav.classList.add('container', 'text-light')
 
 topNav.innerHTML = `
     <div class="w-100 d-flex justify-content-between">
@@ -42,6 +41,71 @@ topNav.innerHTML = `
     </div>
 `
 document.getElementById('nav-top').appendChild(topNav)
+
+// Header
+const header = document.createElement('div')
+header.classList.add('container', 'd-flex', 'justify-content-between', 'align-items-center')
+
+header.innerHTML = `
+<!-- Brand -->
+<a class="navbar-brand align-self-center logo" href="index.html">
+    <div class="d-flex align-items-center">
+        <img src="./assets/favicon.png" alt="skyedge-logo" style="width: 16%;">
+        <h4 class="ms-3 text-success">SkyEdge</h4>
+    </div>
+</a>
+<!-- Brand -->
+
+<!-- Menubar -->
+<div id="nav-menu" class="align-self-center collapse navbar-collapse flex-fill d-lg-flex justify-content-lg-between">
+    <div class="flex-fill">
+        <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="index.html" aria-current="page">Home</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="shop.html">Shop</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="">Review</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="about-us.html">About</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="contact-us.html">Contact</a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Menu Icon -->
+    <div class="navbar align-items-center d-flex">
+        <a class="nav-icon text-decoration-none" href="#">
+            <i class="fa-solid fa-magnifying-glass text-dark"></i>
+        </a>
+        <a class="nav-icon text-decoration-none" href="#">
+            <i class="fa-solid fa-cart-shopping text-dark"></i>
+        </a>
+        <div id="dropdown" class="dropdown">
+            <a class="nav-icon d-flex align-items-center text-decoration-none" data-bs-toggle="dropdown" href="#">
+                <i class="fa-solid fa-user text-dark"></i>
+                <span class="dropdown-toggle ms-2"></span>
+            </a>
+
+            <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                <li><a class="dropdown-item" href="#">Settings</a></li>
+                <li><a class="dropdown-item" href="login.html">Log out</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+`
+
+document.getElementById('header').appendChild(header)
 
 // Footer
 const footerContainer = document.createElement('div')
