@@ -1,5 +1,49 @@
-// Footer
+// Top Nav
+const topNav = document.createElement('div')
+topNav.classList.add('container')
+topNav.classList.add('text-light')
 
+topNav.innerHTML = `
+    <div class="w-100 d-flex justify-content-between">
+
+        <!-- Nav Top Contact -->
+        <div>
+            <a class="navbar-sm-brand text-light text-decoration-none"
+                href="mailto:hanu@gmail.com">
+                <i class="fa-solid fa-envelope"></i>
+                hanu@gmail.com
+            </a>
+
+            <a class="navbar-sm-brand text-light text-decoration-none" href="tel:032-323-3232">
+                <i class="fa-solid fa-phone"></i>
+                032-323-3232
+            </a>
+        </div>
+        <!-- End Contact Nav Top -->
+
+        <!-- Nav Top Icon-->
+        <div>
+            <!-- Facebook Icon -->
+            <a href="https://www.facebook.com/" class="text-light text-decoration-none" target="_blank">
+                <i class="fab fa-facebook-f fa-sm fa-fw me-2"></i>
+            </a>
+
+            <!-- Instagram Icon -->
+            <a href="https://www.instagram.com/" class="text-light text-decoration-none" target="_blank">
+                <i class="fab fa-instagram fa-sm fa-fw me-2"></i>
+            </a>
+
+            <!-- LinkedIn Icon -->
+            <a href="https://www.linkedin.com/" class="text-light text-decoration-none" target="_blank">
+                <i class="fab fa-linkedin fa-sm fa-fw me-2"></i>
+            </a>
+        </div>
+        <!-- End Icon Nav Top -->
+    </div>
+`
+document.getElementById('nav-top').appendChild(topNav)
+
+// Footer
 const footerContainer = document.createElement('div')
 footerContainer.classList.add('row')
 
