@@ -2,16 +2,15 @@
 
 .heading{
 /* Welcome back! */
-
-font-style: normal;
-font-weight: 500;
-line-height: normal;
-color: #366882;
-text-align: center;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    color: #366882;
+    text-align: center;
 }
 
 .custom-btn-width {
-    width: 200px; /* Adjust width as needed */
+    width: 200px; /* Adjust width as needed */ 
   }
 
 .custom-form {

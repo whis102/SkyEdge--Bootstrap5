@@ -1,0 +1,134 @@
+.super-cart-container {
+    padding: 10px 0;
+}
+
+.cart-header {
+    border-bottom: 1px solid #e5e5e5;
+    margin: auto;
+    max-width: 600px;
+    min-height: 40px;
+    padding: 10px;
+    position: relative;
+}
+
+.cart-header a {
+    color: #323232;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.title {
+    font-size: 18px;
+    font-weight: 600;
+    left: 50%;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    white-space: nowrap;
+    width: fit-content;
+}
+
+.block-info .container {
+    max-width: 600px !important;
+}
+
+.block-info .nav {
+    gap: 20px;
+    align-items: center;
+    background-color: #f4f6f8;
+    left: 0;
+    margin-bottom: 10px;
+    padding: 5px 15px 10px;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+}
+
+.nav, .nav__item {
+    display: flex;
+    justify-content: center;
+}
+
+.block-info .nav-item-active {
+    border-bottom: 3px solid #d70018;
+    color: #d70018;
+    pointer-events: none;
+}
+
+.block-info .nav__item {
+    border-bottom: 3px solid #919eab;
+    color: #919eab;
+    cursor: pointer;
+    flex: 1;
+    font-weight: 600;
+    padding: 5px 0;
+    text-transform: uppercase;
+}
+
+.view-list {
+    background-color: #fff;
+    border: 1px solid rgba(145, 158, 171, .239);
+    border-radius: 10px;
+    padding: 5px 15px 0;
+    width: 100%;
+}
+
+.view-list-wrapper{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.view-list-wrapper .item {
+    display: flex;
+    gap: 15px;
+    overflow: hidden;
+    padding: 12px 0;
+    transition: .2s ease-in-out;
+    width: 100%;
+}
+
+.view-list-wrapper .item-img {
+    height: 100px;
+    width: 100px;
+}
+
+.view-list-wrapper .item-info {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.view-list-wrapper .item-info .item-name {
+    color: #111;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.item-price {
+    align-items: flex-end;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    justify-content: space-between;
+}
+
+.bottom-bar {
+    background-color: #fff;
+    border: 1px solid rgba(145, 158, 171, .239);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    bottom: 0;
+    box-shadow: 0 -4px 20px -1px rgba(40,124,234,.15);
+    max-width: 600px;
+    padding: 10px 10px 20px;
+    position: absolute;
+    right: 50%;
+    transform: translateX(50%);
+    z-index: 20;
+}

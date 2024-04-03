@@ -1,0 +1,37 @@
+.card-img-top.img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.card .img-overlay .card-btn {
+    /* background: rgba(0, 0, 0, .2); */
+    visibility: hidden;
+    opacity: 0;
+    transition: .3s;
+
+}
+
+
+
+.card .img-overlay:hover .card-btn {
+    visibility: visible;
+    opacity: 1;
+}
+
+
+.img-overlay .card-btn {
+    position: absolute;
+    bottom: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.card-btn .btn2 {
+    opacity: 0.7;
+}
+
+.card-btn .btn2:hover{
+    transform: scale(1.1);
+    opacity: 1;
+}
