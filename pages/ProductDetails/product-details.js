@@ -1,16 +1,22 @@
-const products = {
-    data: [
-        {
-            productName: 'ABC',
-            price: '$48.00',
-            image: 'assets/images/product-2.png',
-            star: '3',
-            content: 'Aenean gravida dignissim finibus. Nullam ipsum diam, posuere vitae pharetra sed, commodo ullamcorper.',
-            review: '48',
-        }
-    ]
-}
+var quantity = 1;
+var varValue = document.getElementById("var-value");
 
-for (let i of products.data){
-    // Do something
-}
+document.getElementById("btn-minus").addEventListener("click", function() {
+    if (quantity > 1) {
+        quantity--;
+        varValue.innerText = quantity;
+    }
+});
+
+document.getElementById("btn-plus").addEventListener("click", function() {
+    quantity++;
+    varValue.innerText = quantity;
+});
+
+document.querySelectorAll('.product-overlay a').forEach(function(iconLink) {
+    iconLink.addEventListener('click', function(event) {
+      event.preventDefault(); // Prevent the default anchor tag behavior
+      this.querySelector('i').classList.toggle('fas'); // Toggle the fas class for filled icon
+      this.querySelector('i').classList.toggle('far'); // Toggle the far class for empty icon
+    });
+  });
