@@ -54,7 +54,6 @@ header.innerHTML = `
         <h4 class="ms-3 text-success">SkyEdge</h4>
     </div>
 </a>
-<!-- Brand -->
 
 <!-- Menubar -->
 <div id="nav-menu" class="align-self-center collapse navbar-collapse flex-fill d-lg-flex justify-content-lg-between">
@@ -66,10 +65,6 @@ header.innerHTML = `
 
             <li class="nav-item">
                 <a class="nav-link" href="shop.html">Shop</a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="">Review</a>
             </li>
 
             <li class="nav-item">
@@ -87,8 +82,11 @@ header.innerHTML = `
         <a class="nav-icon text-decoration-none" href="#">
             <i class="fa-solid fa-magnifying-glass text-dark"></i>
         </a>
-        <a class="nav-icon text-decoration-none" href="#">
+        <a class="nav-icon text-decoration-none" href="cart.html">
             <i class="fa-solid fa-cart-shopping text-dark"></i>
+            <span class="position-absolute translate-middle badge rounded-pill bg-danger">
+            0
+            </span>
         </a>
         <div id="dropdown" class="dropdown">
             <a class="nav-icon d-flex align-items-center text-decoration-none" data-bs-toggle="dropdown" href="#">
