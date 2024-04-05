@@ -27,23 +27,14 @@
 
     <!-- Main content -->
     <div class="super-cart-container">
-        <div class="cart-header">
-            <div class="go-back d-flex justify-content-between">
-                <a href="" class="d-flex align-items-center button-back">
-                    <i class="fa-solid fa-arrow-left fa-xl"></i>
-                </a>
-                <p class="title">Your cart</p>
-            </div>
-        </div>
-
         <div class="block-info">
             <div class="container block-box">
-                <div class="nav">
-                    <div class="nav-item-active nav-item">
+                <div class="nav" id="nav-items">
+                    <div class="nav-item-active nav-item" data-target="payment-block">
                         <span>Information</span>
                     </div>
     
-                    <div class="nav-item">
+                    <div class="nav-item" data-target="payment-block">
                         <span>Payment</span>
                     </div>
                 </div>
@@ -54,7 +45,7 @@
                             <img loading="lazy" src="./assets/images/category_img.jpg" class="item-img">
     
                             <div class="item-info">
-                                <p class="item-name">Glass</p>
+                                <p class="item-name">Sunglasses</p>
                                 <div class="item-price">
                                     <p>$48</p>
                                     <p>Quantity:
@@ -66,7 +57,7 @@
                     </div>
                 </div>
 
-                <div class="block-customer">
+                <div class="block-customer" id="payment-block">
                     <p>Customer Information</p>
                     <div class="block-customer-wrapper">
                         <div class="row g-2">
@@ -85,13 +76,27 @@
                             </div>
         
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="floatingInput" placeholder="Type here..">
+                                <input type="number" class="form-control" id="floatingInput" placeholder="Type here..">
                                 <label for="floatingInput">Phone number</label>
                             </div>
         
                             <div class="form-floating mb-3">
                                 <input type="text" class="form-control" id="floatingInput" placeholder="Type here..">
                                 <label for="floatingInput">Address</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="block-payment">
+                    <p>Receiving Information</p>
+                    <div class="block-payment-wrapper">
+                        <div class="block-payment-main">
+                            <div class="payment-main-cod payment-main-item">
+                                <div class="box-select">
+                                    
+                                </div>
+                                <div class="box-select"></div>
                             </div>
                         </div>
                     </div>
@@ -117,15 +122,6 @@
     <!-- <button id="backToTop" class="btn-back-to-top">
         <strong>Up to head</strong>
     </button> -->
-
-    <!-- Start Footer -->
-    <footer class="bg-dark">
-        <div id="footer" class="container"></div>
-
-        <!-- Copyright -->
-        <div id="copyright" class="bg-black copy-right py-3 w-100"></div>
-    </footer>
-    <!-- Close Footer -->
 
     <!-- Scripts -->
     <script src="./pages/Cart/cart.js"></script>
