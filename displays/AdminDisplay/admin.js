@@ -1,35 +1,47 @@
-function loadPage(page) {
+// Kích hoạt sự kiện đóng menu
+const body = document.querySelector("body"),
+    sidebar = body.querySelector(".sidebar"),
+    toggle = body.querySelector(".toggle");
+
+    toggle.addEventListener("click", () =>{
+        sidebar.classList.toggle("close");
+    });
+
+// Kích hoạt sự kiện đóng mở dropdown trên navbar
+function activateEvents() {
+    // Khi click vào dropdown-toggle
+    $(document).on('click', '.dropdown-toggle', function(e) {
+        e.preventDefault();
+        var dropdownMenu = $(this).next('.dropdown-menu');
+        if (dropdownMenu.hasClass('show')) {
+            // Nếu dropdown-menu đã mở, không cần làm gì
+            dropdownMenu.removeClass('show');
+        } else {
+            // Nếu dropdown-menu chưa mở, mở nó và đóng các dropdown-menu khác
+            $('.dropdown-menu').removeClass('show');
+            dropdownMenu.addClass('show');
+        }
+    });
+
+    // Khi click bất kỳ đâu khác, đóng dropdown-menu (nếu có mở)
+    $(document).on('click', function(e) {
+        if (!$(e.target).closest('.dropdown').length) {
+            $('.dropdown-menu').removeClass('show');
+        }
+    });
+}
+// Load trang Dashboard khi bắt đầu
+function loadDashboard() {
+    loadPage('admin-dashboard.html', 'Dashboard');
+}
+// Kích hoạt sự kiện khi trang được load
+function loadPage(page, title) {
     $("#content").load(page, function() {
-        activateDropdownEvents();
+        document.getElementById('page-title').textContent = title;
+        // Kích hoạt sự kiện đóng mở dropdown
+        activateEvents();
     });
 }
-
-function activateDropdownEvents() {
-    let dropdownToggle = document.querySelectorAll('.dropdown-navbar');
-
-    dropdownToggle.forEach(function(toggle) {
-        toggle.addEventListener('click', function(event) {
-            event.preventDefault();
-            let target = document.getElementById(this.getAttribute('data-bs-target'));
-
-            if (target.classList.contains('show')) {
-                target.classList.remove('show');
-            } else {
-                target.classList.add('show');
-            }
-        });
-    });
-
-    let dropdownMenu = document.querySelectorAll('.dropdown-menu');
-
-    dropdownMenu.forEach(function(menu) {
-        menu.addEventListener('shown.bs.dropdown', function() {
-            this.parentNode.querySelector('.dropdown-navbar').classList.add('active');
-        });
-
-        menu.addEventListener('hidden.bs.dropdown', function() {
-            this.parentNode.querySelector('.dropdown-navbar').classList.remove('active');
-        });
-    });
-}
-
+$(document).ready(function() {
+    activateEvents();
+});
