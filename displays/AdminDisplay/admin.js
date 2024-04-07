@@ -109,6 +109,33 @@ function toggleItems(button) {
     }
 }
 
+function toggleButton(checkbox) {
+    var button = checkbox.parentElement.nextElementSibling.querySelector('.viewDetails');
+    if (checkbox.checked) {
+        button.classList.remove('d-none');
+    } else {
+        button.classList.add('d-none');
+    }
+}
+
+function openPopup() {
+    var popup = document.getElementById('popup');
+    popup.style.display = 'flex';
+}
+
+function closePopup() {
+    var popup = document.getElementById('popup');
+    popup.style.display = 'none';
+}
+
+function viewOrderDetails() {
+    var viewButtons = document.getElementById('viewButton');
+    viewButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+            openPopup();
+        });
+    });
+}
 
 
 

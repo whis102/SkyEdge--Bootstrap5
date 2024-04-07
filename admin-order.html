@@ -43,13 +43,13 @@
                 <div class="order rounded-3 p-3 bg-white w-100 mb-2" data-name="new">
                     <div class="d-flex align-items-center mb-2 justify-content-between">
                         <div class="d-flex align-items-center gap-2">
-                            <input class="form-check-input mb-1" type="checkbox" id="check1" name="option1" value="something">
+                            <input class="form-check-input mb-1" type="checkbox" id="check1" name="option1" value="something" onchange="toggleButton(this)">
                             <h5 class="text-secondary mb-0">Order</h5>
                             <h5 class="order-id mb-0">#12345</h5>
                         </div>
                         <div class="d-flex align-items-center gap-3">
                             <span class="fs-4 fw-bold">$99.99</span>
-                            <button class="viewDetails text-white bg-primary rounded-pill border-0 fs-6 px-3 py-2 d-none">View details</button>
+                            <button id="viewButton" class="viewDetails text-white bg-primary rounded-pill border-0 fs-075 px-3 py-2 d-none" onclick="viewOrderDetails(this)">View details</button>
                         </div>
                     </div>
                     <div class="d-flex align-items-center mx-4 mb-2 gap-2">
