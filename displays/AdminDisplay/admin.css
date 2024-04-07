@@ -93,6 +93,11 @@ body {
 .sidebar li{
     height: 60px;
     list-style: none;
+  
+#menu .nav-link {
+    transition: all 0.3s ease;
+    color: #969EA3;
+    border: none;
     display: flex;
     align-items: center;
 }
