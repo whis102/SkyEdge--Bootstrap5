@@ -1,0 +1,280 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+
+* {
+  font-family: Arial, Helvetica, sans-serif, 'Quicksand';
+}
+:root {
+    /* ====== Color ====== */
+    --body-color: #FFFFFF;
+    --menubar-color: #242A2D;
+    --primary-color: #198754;
+    --toggle-color: #DDD;
+    --text-color-light: #969EA3;
+    --primary-color-light: #707070; 
+    --content-color: #F8F9FA; 
+    --text-color: #212529;
+    
+    /* ====== Transition ====== */
+    --tran-02: all 0.2s ease;
+    --tran-03: all 0.3s ease;
+    --tran-04: all 0.4s ease;
+    --tran-05: all 0.5s ease;
+
+}
+
+/* ====== Start Custom ====== */
+.custom-padding {
+    padding: 20px 20px 0 20px;
+}
+.h-1{
+    height: 8px;
+}
+.h-2{
+    height: 16px;
+}
+.h-3{
+    height: 24px;
+}
+.h-4{
+    height: 48px;
+}
+.fs-065{
+    font-size: 0.65rem;
+}
+.fs-075{
+    font-size: 0.75rem;
+}
+.p-2-5{
+    padding: 2px 5px 2px 5px;
+}
+.bg-w {
+    background-color: #DFDFDF; 
+}
+.color-web {
+    color: #198754;
+}
+/* ====== End Custom ====== */
+
+/* ====== Start Reuse ====== */
+.hidden {
+    display: none;
+}
+body {
+    background-color: var(--text-color-light);
+}
+#showMoreItems1 {
+    display: none;
+}
+/* ====== End Reuse ====== */
+
+/* ====== Start Menu ====== */
+.sidebar {
+    width: 250px;
+    background: var(--menubar-color);
+    transition: var(--tran-05);
+    z-index: 100;
+}
+
+/* ====== Start Open and Close Menu ====== */
+.sidebar header .toggle{
+    right: -19px;
+    transform: translateY(-50%);
+    height: 24px;
+    width: 24px;
+    color: var(--menubar-color);
+    background: var(--primary-color);
+    transition: var(--tran-03);
+}
+
+
+.sidebar .image-text {
+    margin-left: 30px;
+}
+.sidebar li{
+    height: 60px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+.sidebar li .icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 60px;
+    font-size: 20px;
+}
+.sidebar li .icon,
+.sidebar li .text{
+    color: var(--text-color-light);
+    transition: var(--tran-02);
+}
+
+.sidebar .text{
+    transition: var(--tran-04);
+    white-space: nowrap;
+    opacity: 1;
+}
+
+.sidebar li a {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: var(--tran-04);
+}
+.sidebar .menu-links,
+.sidebar .menu-links ul {
+    padding: 5px;
+}
+.sidebar li a:hover {
+    border-radius: 6px;
+    background: var(--primary-color);
+}
+.sidebar li a:hover .icon,
+.sidebar li a:hover .text{
+    color: var(--body-color);
+}
+.sidebar .menu-bar{
+    height: calc(100% - 50px);
+}
+.sidebar.close header .toggle {
+    transform: translateY(-50%) rotate(180deg);
+}
+.sidebar.close{
+    width: 120px;
+}
+.sidebar.close .text{
+    opacity: 0;
+}
+.sidebar.close ~ #navbar{
+    left: 120px;
+    width: calc(100% - 120px);
+}
+.sidebar.close ~ #content{
+    left: 120px;
+    width: calc(100% - 120px);
+}
+/* ====== End Open and Close Menu ====== */
+
+/* ====== Start Navbar ====== */
+#navbar {
+    height: 65px;
+    transition: var(--tran-05);
+    width: calc(100% - 250px);
+    position: relative;
+    left: 250px;
+    background: var(--body-color);
+    flex: 0 0 auto;
+}
+
+.navbar .number-notification{
+    padding: 1px 2px 1px 2px;
+    right: 162px
+}
+/* ====== End Navbar ====== */
+
+/* ====== Start Content ====== */
+#content {
+    position: relative;
+    left: 250px;
+    height: 100vh;
+    width: calc(100% - 250px);
+    transition: var(--tran-05);
+}
+/* ====== End Content ====== */
+
+/* ====== Start Dashboard ====== */
+.dashboard-container .card:hover {
+    transform: scale(1.1);
+    background-color: var(--primary-color);
+    color: var(--content-color) !important;
+}
+.dashboard-container .custom-card-content {
+    display: flex;
+    align-items: center;
+}
+.dashboard-container .card-title {
+    margin-right: 10px;
+}
+.icon-container {
+    margin-left: auto;
+}
+.status-btn {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 0.9em;
+    line-height: 1;
+    width: 100%;
+}
+.status-pending {
+    color: #FFFFFF;
+    background-color: #FFC107;
+}
+.status-failed {
+    color: #FFFFFF;
+    background-color: #DC3545;
+}
+.status-success {
+    color: #FFFFFF;
+    background-color: #37fc48;
+}
+.status-completed {
+    color: #FFFFFF;
+    background-color: #03aa4e;
+}
+#recent {
+    padding-top: 50px;
+}
+.user img {
+    margin-right: 5px;
+}
+.admin-name {
+    padding-left: 5px;
+}
+.activity {
+    padding-left: 5px;
+}
+
+
+/* ====== Order ====== */
+.order_list .card.hide{
+    display: none;
+}
+.filter_buttons button.active{
+    border: none;
+    border-bottom: 3px solid #18A1D7;
+}
+.filter_buttons .all-order{
+    background: #18A1D7;
+}
+
+.filter_buttons .new-order{
+    background: #66CA29;
+}
+.filter_buttons .pending-order{
+    background: #EBAD0E;
+}
+.filter_buttons .delivered-order{
+    background: #9747FF;
+}
+/*
+.filter_buttons .new-btn.active{
+    border-radius: 0px;
+    border-bottom: 3px solid #66CA29;
+}
+.filter_buttons .pending-btn.active{
+    border-radius: 0px;
+    border-bottom: 3px solid #EBAD0E;
+}
+.filter_buttons .delivered-btn.active{
+    border-radius: 0px;
+    border-bottom: 3px solid #9747FF;
+}
+/* ====== Subscriber ====== */
+.search-box input:focus {
+        outline: none;
+        box-shadow: none;
+}

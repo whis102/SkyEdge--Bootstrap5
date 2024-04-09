@@ -27,38 +27,29 @@
 
     <!-- Main content -->
     <div class="super-cart-container">
-        <div class="cart-header">
-            <div class="go-back">
-                <a href="" class="d-flex align-items-center button-back">
-                    <i class="fa-solid fa-arrow-left fa-xl"></i>
-                </a>
-                <p class="title">Your cart</p>
-            </div>
-        </div>
-
         <div class="block-info">
             <div class="container block-box">
-                <div class="nav">
-                    <div class="nav-item nav-item-active">
-                        <span>1. Customer Information</span>
+                <div class="nav" id="nav-items">
+                    <div class="nav-item-active nav-item" data-target="payment-block">
+                        <span>Information</span>
                     </div>
     
-                    <div class="nav-item">
-                        <span>2. Payment</span>
+                    <div class="nav-item" data-target="payment-block">
+                        <span>Payment</span>
                     </div>
                 </div>
     
                 <div class="view-list">
                     <div class="view-list-wrapper">
                         <div class="item">
-                            <!-- <img src="./assets/images/category_img.jpg" class="card-img-top img"> -->
+                            <img loading="lazy" src="./assets/images/category_img.jpg" class="item-img">
     
                             <div class="item-info">
-                                <p>Glass</p>
+                                <p class="item-name">Sunglasses</p>
                                 <div class="item-price">
                                     <p>$48</p>
                                     <p>Quantity:
-                                        <span class="text-danger">1</span>
+                                        <span class="text-success">1</span>
                                     </p>
                                 </div>
                             </div>
@@ -66,7 +57,7 @@
                     </div>
                 </div>
 
-                <div class="block-customer">
+                <div class="block-customer" id="payment-block">
                     <p>Customer Information</p>
                     <div class="block-customer-wrapper">
                         <div class="row g-2">
@@ -85,13 +76,27 @@
                             </div>
         
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="floatingInput" placeholder="Type here..">
+                                <input type="number" class="form-control" id="floatingInput" placeholder="Type here..">
                                 <label for="floatingInput">Phone number</label>
                             </div>
         
                             <div class="form-floating mb-3">
                                 <input type="text" class="form-control" id="floatingInput" placeholder="Type here..">
-                                <label for="floatingInput">Adress</label>
+                                <label for="floatingInput">Address</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="block-payment">
+                    <p>Receiving Information</p>
+                    <div class="block-payment-wrapper">
+                        <div class="block-payment-main">
+                            <div class="payment-main-cod payment-main-item">
+                                <div class="box-select">
+                                    
+                                </div>
+                                <div class="box-select"></div>
                             </div>
                         </div>
                     </div>
@@ -100,15 +105,15 @@
 
             <div class="bottom-bar container mt-auto">
                 <div class="total-box d-flex justify-content-between align-items-start">
-                    <p class="title-temp">Temporary Total</p>
+                    <p class="title-temp">Temporary Total:</p>
 
-                    <div class="price d-flex flex-column align-items-">
+                    <div class="price d-flex flex-column align-items-end">
                         <span class="total">$48</span>
                     </div>
                 </div>
 
                 <div class="btn-submit mt-2">
-                    <button class="button-go-next btn btn-danger d-flex flex-column justify content-center align-items-center w100">Continue</button>
+                    <button class="button-go-next btn btn-success d-flex flex-column justify content-center align-items-center w-100">Continue</button>
                 </div>
             </div>
         </div>
@@ -117,15 +122,6 @@
     <!-- <button id="backToTop" class="btn-back-to-top">
         <strong>Up to head</strong>
     </button> -->
-
-    <!-- Start Footer -->
-    <footer class="bg-dark">
-        <div id="footer" class="container"></div>
-
-        <!-- Copyright -->
-        <div id="copyright" class="bg-black copy-right py-3 w-100"></div>
-    </footer>
-    <!-- Close Footer -->
 
     <!-- Scripts -->
     <script src="./pages/Cart/cart.js"></script>
