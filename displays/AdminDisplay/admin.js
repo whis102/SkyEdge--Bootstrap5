@@ -8,6 +8,7 @@ const body = document.querySelector("body"),
         sidebar.classList.toggle("close");
     });
 
+
 // Kích hoạt sự kiện đóng mở dropdown trên navbar
 function activateEvents() {
     // Khi click vào dropdown-toggle
@@ -35,6 +36,14 @@ function activateEvents() {
 function loadDashboard() {
     loadPage('admin-dashboard.html', 'Dashboard');
 }
+const list = document.querySelectorAll('.list');
+function activeLink(){
+    list.forEach((item) =>
+    item.classList.remove('active'));
+    this.classList.add('active')
+}
+list.forEach((item) =>
+item.addEventListener('click',activeLink));
 // Kích hoạt sự kiện khi trang được load
 function loadPage(page, title) {
     $("#content").load(page, function() {
@@ -46,25 +55,6 @@ function loadPage(page, title) {
 $(document).ready(function() {
     activateEvents();
 });
-
-// Filter order
-
-
-const filterButtons = document.querySelectorAll(".filter_buttons button");
-const filterableCards= document.querySelectorAll(".order_list .card");
-
-const filterOrders = e => {
-    document.querySelector(".active").classList.remove("active");
-    e.target.classList.add("active");
-    
-    filterableCards.forEach(card => {
-        card.classList.add("hide");
-        if(card.dataset.name === e.target.dataset.name || e.target.dataset.name === "all"){
-            card.classList.remove("hide");
-        }
-    });
-}
-filterButtons.forEach(button => button.addEventListener("click", filterOrders));
 
 // Copy subscribers
 function copyEmail(i) {

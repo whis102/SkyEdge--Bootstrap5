@@ -16,63 +16,61 @@
             <!-- Logo -->
             <div  class="image-text d-flex align-items-center mb-2 gap-2" role="button" onclick="loadPage('admin-dashboard.html', 'Dashboard')">
                 <img class="image" src="./assets/favicon.png" alt="Logo" width="40" height="40">
-                <div class="text header-text">
-                    <span class="fs-4 color-web">SkyEdge</span>
-                </div>
+                <span class="text fs-4 color-web-text">SkyEdge</span>
             </div>
             <!-- Open&Close menu -->
             <i class="fa fa-angle-left toggle d-flex align-items-center justify-content-center position-absolute rounded-circle fs-7 top-50" role="button"></i>
         </header>
         <!-- Menu -->
-        <div class="menu-bar d-flex justify-content-between flex-column">
+        <div class="menu-bar">
             <div class="menu">
                 <ul class="menu-links">
                     <!-- Menu items -->
-                    <li class="nav-link" onclick="loadPage('admin-dashboard.html', 'Dashboard')">
-                        <a href="#">
+                    
+                    <li role="button" class="list nav-link active" onclick="loadPage('admin-dashboard.html', 'Dashboard', $(this))">
+                        <a>
                             <i class="fas fa-tachometer-alt icon"></i> 
                             <span class="text navtext">Dashboard</span>
                         </a>
                     </li>
-                    <li class="nav-link">
-                        <a href="#" onclick="loadPage('admin-productList.html', 'Product')">
+                    <li role="button" class="list nav-link" onclick="loadPage('admin-product.html', 'Product', $(this))">
+                        <a>
                             <i class="fas fa-box-open icon"></i> 
                             <span class="text navtext">Product</span>
                         </a>
                     </li>
-                    <li class="nav-link" onclick="loadPage('admin-voucher.html', 'Voucher')">
-                        <a href="#">
+                    <li role="button" class="list nav-link" onclick="loadPage('admin-voucher.html', 'Voucher', $(this))">
+                        <a>
                             <i class="fas fa-ticket-alt icon"></i> 
                             <span class="text navtext">Voucher</span>
-                        </a>
+                        </a>    
                     </li>
-                    <li class="nav-link" onclick="loadPage('admin-order.html', 'Order')">
-                        <a href="#">
+                    <li role="button" class="list nav-link" onclick="loadPage('admin-order.html', 'Order', $(this))">
+                        <a>
                             <i class="fas fa-shopping-cart icon"></i> 
                             <span class="text navtext">Order</span>
                         </a>
                     </li>
-                    <li class="nav-link" onclick="loadPage('admin-subscribers.html', 'Subscribers')">
-                        <a href="#">
+                    <li role="button" class="list nav-link" onclick="loadPage('admin-subscribers.html', 'Subscribers', $(this))">
+                        <a>
                             <i class="fas fa-users icon"></i> 
                             <span class="text navtext">Subscribers</span>
                         </a>
                     </li>
+                    <li role="button" class="list nav-link" onclick="loadPage('admin-profile.html', 'Profile', $(this))">
+                        <a>
+                            <i class="fas fa-user icon"></i> 
+                            <span class="text navtext">Profile</span>
+                        </a>   
+                    </li>
+                    <li role="button" class="list nav-link" >
+                        <a href="login.html">
+                            <i class="fas fa-sign-out-alt icon"></i> 
+                            <span class="text navtext">Logout</span>
+                        </a>
+                    </li>
+                    <div class="indicator"><i class="fas fa-caret-right"></i></div>
                 </ul>
-            </div>
-            <div class="bottom-menu">
-                <li class="nav-link" onclick="loadPage('admin-profile.html', 'Profile')">
-                    <a href="#">
-                        <i class="fas fa-user icon"></i> 
-                        <span class="text navtext">Profile</span>
-                    </a>
-                </li>
-                <li class="nav-link">
-                    <a href="login.html">
-                        <i class="fas fa-sign-out-alt icon"></i> 
-                        <span class="text navtext">Logout</span>
-                    </a>
-                </li>
             </div>
         </div>
     </nav>
@@ -82,7 +80,7 @@
         <nav class="navbar navbar-expand-lg ">
             <div class="container-fluid">
                 <!-- Page Title -->
-                <h2 id="page-title" class="color-web mx-5 my-1 fw-bold">Dashboard</h2>
+                <h2 id="page-title" class="color-web mx-5 my-1">Dashboard</h2>
                 <!-- Account and Notification -->
                 <div class="right-navbar d-flex align-items-center mx-5 gap-2">
                     <div class="notification"  role="button">
