@@ -115,6 +115,56 @@
     padding: 15px;
 }
 
+/* Receive info */
+
+.box-input .box-input-main {
+    background-color: #fff;
+    border: 0;
+    border-bottom: 1px solid rgba(145, 158, 171, .2);
+    border-radius: 0;
+    box-sizing: border-box;
+}
+
+.box-input label {
+    color: #919eab;
+    font-size: 15px;
+    left: 0;
+    line-height: 24px;
+    margin: 0;
+    opacity: 0;
+    overflow: hidden;
+    pointer-events: none;
+    position: absolute;
+    top: 18px;
+    transition: top .25s ease;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    white-space: nowrap;
+    width: 100%;
+}
+
+label {
+    display: inline-block;
+    margin-bottom: .5rem;
+}
+
+.box-input-line {
+    background-color: #59ab6e;
+    bottom: 0;
+    height: 1px;
+    left: 0;
+    position: absolute;
+    transition: .3s ease;
+    width: 0;
+}
+
+.box-input .box-input-arrow {
+    bottom: 5px;
+    position: absolute;
+    right: 2px;
+}
+
 /* Bottom bar */
 .bottom-bar {
     background-color: #fff;

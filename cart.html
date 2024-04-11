@@ -76,13 +76,8 @@
                             </div>
         
                             <div class="form-floating mb-3">
-                                <input type="number" class="form-control" id="floatingInput" placeholder="Type here..">
-                                <label for="floatingInput">Phone number</label>
-                            </div>
-        
-                            <div class="form-floating mb-3">
                                 <input type="text" class="form-control" id="floatingInput" placeholder="Type here..">
-                                <label for="floatingInput">Address</label>
+                                <label for="floatingInput">Phone number</label>
                             </div>
                         </div>
                     </div>
@@ -91,12 +86,34 @@
                 <div class="block-payment">
                     <p>Receiving Information</p>
                     <div class="block-payment-wrapper">
+                        <div class="block-payment-method">
+                            <div>
+                                <input type="text" id="pickup" value="pickup" name="delivery" type="radio">
+                                <label for="pickup" class="mb-0">On Store</label>
+                            </div>
+                            
+                            <div>
+                                <input type="text" id="pickup" value="pickup" name="delivery" type="radio">
+                                <label for="pickup" class="mb-0">At home</label>
+                            </div>
+                        </div>
+                            
                         <div class="block-payment-main">
                             <div class="payment-main-cod payment-main-item">
                                 <div class="box-select">
                                     
                                 </div>
-                                <div class="box-select"></div>
+                                <div class="box-select">
+                                    <div class="box-input">
+                                        <input type="search" placeholder="Pick your closest store" class="box-input-main">
+                                        <label>Store</label>
+                                        <div class="box-input-line"></div>
+                                    </div>
+
+                                    <div class="box-input-arrow">
+                                        <i class="fa-solid fa-chevron-down"></i>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
