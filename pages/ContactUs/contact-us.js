@@ -1,17 +1,16 @@
-const modal = document.getElementById('confirmationModal');
-const submitButton = document.getElementById('submitButton')
-const confirmButton = document.getElementById('confirmButton');
-const cancelButton = document.getElementById('cancelButton');
+var myModal = document.getElementById('confirmationModal')
+var myInput = document.getElementById('myInput')
 
-submitButton.addEventListener('click', function () {
-    modal.style.display = 'block';
-});
+myModal.addEventListener('shown.bs.modal', function () {
+    myInput.focus()
+})
 
-confirmButton.addEventListener('click', function () {
-    console.log('Form submitted');
-    modal.style.display = 'none';
-});
+function showToast() {
+    var toastEl = document.getElementById('liveToast');
+    var bsToast = new bootstrap.Toast(toastEl);
+    bsToast.show();
+}
 
-cancelButton.addEventListener('click', function () {
-    modal.style.display = 'none';
-});
+var toastBtn = document.getElementById('toastBtn')
+
+toastBtn.addEventListener('click', showToast);

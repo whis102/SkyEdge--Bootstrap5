@@ -1,3 +1,21 @@
+// let products = {
+//     data: [
+//         {
+//             productName: ".....",
+//             price: "48$",
+//             image: '.....',
+//         }
+//     ]
+// }
+
+// for(let i of products.data){
+    // let card = document.createElement("div")
+    // card.classList.add("card")
+    // document.getElementById("products").appendChild(card)
+// }
+
+
+
 
 const itemsContainer = document.createElement('div')
 itemsContainer.style.display = 'flex'; // Set display to flex
