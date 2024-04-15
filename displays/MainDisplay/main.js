@@ -80,7 +80,7 @@ header.innerHTML = `
     <!-- Menu Icon -->
     <div class="navbar align-items-center d-flex">
         <a class="nav-icon text-decoration-none" href="#">
-            <i class="fa-solid fa-magnifying-glass text-dark"></i>
+            <i class="fa-solid fa-heart text-dark"></i>
         </a>
         <a class="nav-icon text-decoration-none" href="cart.html">
             <i class="fa-solid fa-cart-shopping text-dark"></i>
