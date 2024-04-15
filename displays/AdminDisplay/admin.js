@@ -32,15 +32,15 @@ function activateEvents() {
         }
     });
 }
+
 var pages = {
     "admin-dashboard": {
         "title": "Dashboard",
-        "content": null, // Lưu trạng thái của trang sau khi được tạo
+        "content": null,
         "loadContent": function(){
             if (!this.content) {
                 const dashboardContainer = document.createElement('div');
                 dashboardContainer.classList.add('container', 'dashboard-container', 'mt-5');
-
                
                 const columns = [
                     { income: '17', type: 'Customer', iconClass: 'fa-users' },
@@ -56,6 +56,7 @@ var pages = {
                     const colDiv = createColumn(column.income, column.type, column.iconClass);
                     overviewContainer.appendChild(colDiv);
                 });
+                
                 dashboardContainer.appendChild(overviewContainer);
                 function createColumn(income, type, iconClass) {
                     const colDiv = document.createElement('div');
@@ -102,6 +103,7 @@ var pages = {
                 const recentContainer = document.createElement('div');
                 recentContainer.classList.add('row', 'gap-3');
                 dashboardContainer.appendChild(recentContainer);
+
                 // Create and append recent purchase table
                 const purchaseContainer = document.createElement('div');
                 purchaseContainer.id = 'purchase';
@@ -425,7 +427,3 @@ function viewOrderDetails() {
         });
     });
 }
-
-
-
-
