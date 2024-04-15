@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.body.appendChild(rowDiv);
 });
 
-console.log(rowDiv);
+console.log(r)
 
 let popup = document.getElementById("popup");
 
