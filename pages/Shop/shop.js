@@ -9,9 +9,9 @@
 // }
 
 // for(let i of products.data){
-    // let card = document.createElement("div")
-    // card.classList.add("card")
-    // document.getElementById("products").appendChild(card)
+// let card = document.createElement("div")
+// card.classList.add("card")
+// document.getElementById("products").appendChild(card)
 // }
 
 
@@ -25,19 +25,19 @@ for (let i = 0; i < 9; i++) {
     const cardItem = document.createElement('div');
 
 
-cardItem.innerHTML = `
+    cardItem.innerHTML = `
                     <!-- Card -->
                         <div class="card mt-4 m-2" style="width: 18rem; height: 34rem;">
                             <div class="position-relative">
                                 <img src="./assets/images/category_img.jpg" class="card-img-top img" alt="...">
                                 <div
-                                    class="img-overlay position-absolute top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center">
-                                    <div class="card-btn flex-row ">
-                                        <div><a class="btn2 btn btn-success text-white" href="product-details.html"><i
+                                    class="card-img-overlay img-overlay w-100 h-100 d-flex justify-content-center align-items-center">
+                                    <div class="card-btn d-flex align-items-center gap-2 mb-0 ">
+                                        <div class=""><a class="btn2 btn btn-success text-white" href="product-details.html"><i
                                                     class="far fa-heart"></i></a></div>
-                                        <div><a class="btn2 btn btn-success text-white mt-2"
+                                        <div class=""><a class="btn2 btn btn-success text-white"
                                                 href="product-details.html"><i class="far fa-eye"></i></a></div>
-                                        <div><a class="btn2 btn btn-success text-white mt-2"
+                                        <div class=""><a class="btn2 btn btn-success text-white"
                                                 href="product-details.html"><i class="fas fa-cart-plus"></i></a></div>
                                     </div>
                                 </div>
@@ -69,6 +69,6 @@ cardItem.innerHTML = `
 
 `
 
-itemsContainer.appendChild(cardItem);
+    itemsContainer.appendChild(cardItem);
 }
 document.getElementById("itemsContainer").appendChild(itemsContainer)

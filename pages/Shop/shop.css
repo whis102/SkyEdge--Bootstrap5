@@ -5,7 +5,6 @@
 }
 
 .card .img-overlay .card-btn {
-  /* background: rgba(0, 0, 0, .2); */
   visibility: visible;
   opacity: 0;
   transition: 0.3s;
@@ -14,13 +13,6 @@
 .card .img-overlay:hover .card-btn {
   visibility: visible;
   opacity: 1;
-}
-
-.img-overlay .card-btn {
-  position: absolute;
-  bottom: 70px;
-  left: 50%;
-  transform: translateX(-50%);
 }
 
 .card-btn .btn2 {
