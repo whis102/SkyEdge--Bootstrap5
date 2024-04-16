@@ -175,7 +175,6 @@ function showDashboard() {
 
         // Body bảng cho activities
         const tbodyActivity = document.createElement('tbody');
-
         // Dữ liệu mẫu cho activities
         const activities = [
             { adminName: 'Cong', avatar: './assets/images/Cong.png', activity: 'has deleted a voucher from List Voucher', dateTime: 'Mar 26, 2024' },
