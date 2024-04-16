@@ -247,38 +247,6 @@ body {
 /* ====== End Content ====== */
 
 /* ====== Start Product ====== */
-.product-info tr {
-    display: flex;
-}
-.product-info th,
-.product-info td {
-    flex: 1;
-}
-.product-container .buttonGrp{
-    width: 300px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-.product-container .btn-update, .btn-delete{
-    border: none;
-    border-radius: 6px;
-    font-size: 0.75rem;
-    padding: 8px 16px;
-}
-.product-container .btn-update{
-    background: #198754;
-    color: #ddd;
-}
-.product-container .btn-delete{
-    background: red;
-    color: #ddd;
-}
-.img-fluid {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-}
 /* ====== End Product ====== */
 
 /* ====== Start Voucher ====== */
