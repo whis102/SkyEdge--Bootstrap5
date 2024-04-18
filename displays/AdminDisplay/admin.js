@@ -47,6 +47,20 @@ var pages = {
         "loadContent": function() {
             return showProduct();
         }
+    },
+    "admin-voucher": {
+        "title": "Voucher",
+        "content": null,
+        "loadContent": function() {
+            return showVoucher();
+        }
+    },
+    "admin-order": {
+        "title": "Order",
+        "content": null,
+        "loadContent": function() {
+            return showOrder();
+        }
     }
 };
 
@@ -68,7 +82,7 @@ function loadPageContent(page) {
 }
 
 window.onload = function() {
-    loadPageContent('admin-product');
+    loadPageContent('admin-order');
 
     $('.load-page').on('click', function() {
         var page = $(this).data('page');
