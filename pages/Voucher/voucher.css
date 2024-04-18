@@ -1,0 +1,48 @@
+.voucher-popup {
+    position: fixed;
+    top: 20%;
+    left: 35%;
+    background-color: #fff;
+    padding: 20px;
+    z-index: 1000;
+    max-width: 80%;
+    border-radius: 6px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.voucher-popup-content {
+    text-align: center;
+}
+.list-voucher{
+    max-height: 600px;
+    overflow: scroll;
+}
+.voucher-data {
+    margin-top: 10px;
+}
+
+.voucher-info tr {
+    display: flex;
+}
+.voucher-info th,
+.voucher-info td {
+    flex: 1;
+}
+.voucher-box .buttonGrp{
+    width: 300px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.voucher-box  .btn-update, .btn-delete{
+    border: none;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    padding: 8px 16px;
+}
+.voucher-data{
+    text-align: start;
+}
+.voucher-image{
+    text-align: start;
+}

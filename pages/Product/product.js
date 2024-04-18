@@ -339,10 +339,10 @@ function showProduct(){
 
             // Popup
             const popup = document.createElement('div');
-            popup.classList.add('popup');
+            popup.classList.add('product-popup');
 
             const popupContent = document.createElement('div');
-            popupContent.classList.add('popup-content');
+            popupContent.classList.add('product-popup-content');
 
             // Close button
             const closeButton = document.createElement('span');
@@ -365,16 +365,16 @@ function showProduct(){
             const imageContainer = document.createElement('div');
             imageContainer.classList.add('image-container', 'd-flex', 'align-items-center', 'mt-2', 'gap-4');
             const image1Container = document.createElement('div');
-            image1Container.classList.add('img-product');
+            image1Container.classList.add('img-product-details');
             const image1 = document.createElement('img');
             image1.src = product.imgSrc;
             const image2Container = document.createElement('div');
-            image2Container.classList.add('img-product', 'add-more-image');
+            image2Container.classList.add('img-product-details', 'add-more-image');
             const image2 = document.createElement('button');
             image2.classList.add('rounded-pill', 'fs-075');
             image2.textContent = "add new image";
             const image3Container = document.createElement('div');
-            image3Container.classList.add('img-product', 'add-more-image');
+            image3Container.classList.add('img-product-details', 'add-more-image');
             const image3 = document.createElement('button');
             image3.classList.add('rounded-pill', 'fs-075');
             image3.textContent = "add new image";
@@ -625,6 +625,7 @@ function showProduct(){
             // Cập nhật số lượng sản phẩm
             updateProductCount();
             createPopup(newProduct);
+            createProductBox(newProduct);
         });
         // Function to open the popup
         function openPopup(product) {
@@ -634,7 +635,7 @@ function showProduct(){
         // Function to close the popup
         function closePopup() {
             const overlay = document.querySelector('.overlay');
-            const popup = document.querySelector('.popup');
+            const popup = document.querySelector('.product-popup');
             if (overlay && popup) {
                 overlay.remove();
                 popup.remove();
