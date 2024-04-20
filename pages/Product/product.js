@@ -1,6 +1,132 @@
 var productContent = null;
 var currentPage = 1; 
 var productsPerPage = 7; 
+
+const productData = [
+    {
+        id: 'check1',
+        imgSrc: './assets/images/Huan.png',
+        productId: 'G100002',
+        productName: 'Basic Glasses',
+        price: '$450',
+        stock: '100',
+        description: 'Discover the MM114 01 glasses from the second collaborative collection between Gentle Monster and Maison Margiela.',
+        country: 'Viet Nam',
+        manufaturer: 'IICOMBINED CO.,LTA',
+        category: 'Sport',
+        discount: '15%',
+        front: '149.9mm',
+        side: '149.9mm',
+        width: '149.9mm',
+        height: '149.9mm'
+    },
+    {
+        id: 'check2',
+        imgSrc: './assets/images/Long.png',
+        productId: 'G100003',
+        productName: 'Elegant Shades',
+        price: '$320',
+        stock: '50',
+        description: 'Classic and elegant, these shades provide UV protection and style in one.',
+        country: 'Italy',
+        manufaturer: 'Sunshine Co.',
+        category: 'Luxury',
+        discount: '20%',
+        front: '140mm',
+        side: '135mm',
+        width: '130mm',
+        height: '50mm'
+    },
+    {
+        id: 'check3',
+        imgSrc: './assets/images/Cong.png',
+        productId: 'G100004',
+        productName: 'Active Vision',
+        price: '$199',
+        stock: '80',
+        description: 'Engineered for sports enthusiasts, these glasses provide durability and clarity during any activity.',
+        country: 'Germany',
+        manufaturer: 'Active Gear Co.',
+        category: 'Sport',
+        discount: '10%',
+        front: '135mm',
+        side: '130mm',
+        width: '140mm',
+        height: '45mm'
+    },
+    {
+        id: 'check4',
+        imgSrc: './assets/images/PhamMinh.png',
+        productId: 'G100005',
+        productName: 'Casual Style',
+        price: '$99',
+        stock: '120',
+        description: 'Unleash your casual style with these comfortable and versatile glasses for everyday wear.',
+        country: 'USA',
+        manufaturer: 'Everyday Optics',
+        category: 'Popular',
+        discount: '5%',
+        front: '145mm',
+        side: '135mm',
+        width: '135mm',
+        height: '50mm'
+    },
+    {
+        id: 'check5',
+        imgSrc: './assets/images/AnhMinh.png',
+        productId: 'G100006',
+        productName: 'Retro Vibes',
+        price: '$280',
+        stock: '60',
+        description: 'Capture the retro vibes with these vintage-inspired glasses, perfect for a nostalgic look.',
+        country: 'France',
+        manufaturer: 'Retro Specs Inc.',
+        category: "Men's Glasses",
+        discount: '15%',
+        front: '140mm',
+        side: '145mm',
+        width: '135mm',
+        height: '45mm'
+    },
+    {
+        id: 'check6',
+        imgSrc: './assets/images/Huan.png',
+        productId: 'G100007',
+        productName: 'Chic Frames',
+        price: '$380',
+        stock: '70',
+        description: 'Make a fashion statement with these chic frames, designed for the trendsetters.',
+        country: 'Spain',
+        manufaturer: 'Fashion Frames Co.',
+        category: "Women's Glasses",
+        discount: '25%',
+        front: '135mm',
+        side: '140mm',
+        width: '140mm',
+        height: '50mm'
+    },
+    {
+        id: 'check7',
+        imgSrc: './assets/images/Huan.png',
+        productId: 'G100008',
+        productName: 'Active Shield',
+        price: '$220',
+        stock: '90',
+        description: 'For active lifestyles, these sport sunglasses provide both protection and style during outdoor activities.',
+        country: 'Australia',
+        manufaturer: 'Outdoor Optics',
+        category: 'Sunglasses',
+        discount: '12%',
+        front: '140mm',
+        side: '135mm',
+        width: '145mm',
+        height: '55mm'
+    }
+];
+
+function getProductData() {
+    return productData;
+}
 function showProduct(){
     if(!productContent){
         const productContainer = document.createElement('div');
@@ -67,127 +193,6 @@ function showProduct(){
         listProduct.classList.add('list-product','row', 'gap-2');
         productContainer.appendChild(listProduct);
         
-        const productData = [
-            {
-                id: 'check1',
-                imgSrc: './assets/images/Huan.png',
-                productId: 'G100002',
-                productName: 'Basic Glasses',
-                price: '$450',
-                stock: '100',
-                description: 'Discover the MM114 01 glasses from the second collaborative collection between Gentle Monster and Maison Margiela.',
-                country: 'Viet Nam',
-                manufaturer: 'IICOMBINED CO.,LTA',
-                category: 'Sport',
-                discount: '15%',
-                front: '149.9mm',
-                side: '149.9mm',
-                width: '149.9mm',
-                height: '149.9mm'
-            },
-            {
-                id: 'check2',
-                imgSrc: './assets/images/Long.png',
-                productId: 'G100003',
-                productName: 'Elegant Shades',
-                price: '$320',
-                stock: '50',
-                description: 'Classic and elegant, these shades provide UV protection and style in one.',
-                country: 'Italy',
-                manufaturer: 'Sunshine Co.',
-                category: 'Luxury',
-                discount: '20%',
-                front: '140mm',
-                side: '135mm',
-                width: '130mm',
-                height: '50mm'
-            },
-            {
-                id: 'check3',
-                imgSrc: './assets/images/Cong.png',
-                productId: 'G100004',
-                productName: 'Active Vision',
-                price: '$199',
-                stock: '80',
-                description: 'Engineered for sports enthusiasts, these glasses provide durability and clarity during any activity.',
-                country: 'Germany',
-                manufaturer: 'Active Gear Co.',
-                category: 'Sport',
-                discount: '10%',
-                front: '135mm',
-                side: '130mm',
-                width: '140mm',
-                height: '45mm'
-            },
-            {
-                id: 'check4',
-                imgSrc: './assets/images/PhamMinh.png',
-                productId: 'G100005',
-                productName: 'Casual Style',
-                price: '$99',
-                stock: '120',
-                description: 'Unleash your casual style with these comfortable and versatile glasses for everyday wear.',
-                country: 'USA',
-                manufaturer: 'Everyday Optics',
-                category: 'Popular',
-                discount: '5%',
-                front: '145mm',
-                side: '135mm',
-                width: '135mm',
-                height: '50mm'
-            },
-            {
-                id: 'check5',
-                imgSrc: './assets/images/AnhMinh.png',
-                productId: 'G100006',
-                productName: 'Retro Vibes',
-                price: '$280',
-                stock: '60',
-                description: 'Capture the retro vibes with these vintage-inspired glasses, perfect for a nostalgic look.',
-                country: 'France',
-                manufaturer: 'Retro Specs Inc.',
-                category: "Men's Glasses",
-                discount: '15%',
-                front: '140mm',
-                side: '145mm',
-                width: '135mm',
-                height: '45mm'
-            },
-            {
-                id: 'check6',
-                imgSrc: './assets/images/Huan.png',
-                productId: 'G100007',
-                productName: 'Chic Frames',
-                price: '$380',
-                stock: '70',
-                description: 'Make a fashion statement with these chic frames, designed for the trendsetters.',
-                country: 'Spain',
-                manufaturer: 'Fashion Frames Co.',
-                category: "Women's Glasses",
-                discount: '25%',
-                front: '135mm',
-                side: '140mm',
-                width: '140mm',
-                height: '50mm'
-            },
-            {
-                id: 'check7',
-                imgSrc: './assets/images/Huan.png',
-                productId: 'G100008',
-                productName: 'Active Shield',
-                price: '$220',
-                stock: '90',
-                description: 'For active lifestyles, these sport sunglasses provide both protection and style during outdoor activities.',
-                country: 'Australia',
-                manufaturer: 'Outdoor Optics',
-                category: 'Sunglasses',
-                discount: '12%',
-                front: '140mm',
-                side: '135mm',
-                width: '145mm',
-                height: '55mm'
-            }
-        ];
         productData.forEach(product => {
             const productBox = createProductBox(product);
             listProduct.appendChild(productBox);

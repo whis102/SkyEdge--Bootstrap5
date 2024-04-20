@@ -7,25 +7,30 @@ function showDashboard() {
         const dashboardContainer = document.createElement('div');
         dashboardContainer.classList.add('container', 'dashboard-container', 'mt-5');
 
+        const products = getProductData();
+        const productCount = products.length;
+        const vouchers = getVoucherData();
+        const voucherCount = vouchers.length;
+        const orders = getOrderData();
+        const orderCount = orders.length;
         const columns = [
-            { income: '17', type: 'Customer', iconClass: 'fa-users' },
-            { income: '25', type: 'Product', iconClass: 'fa-shopping-bag' },
-            { income: '10', type: 'Order', iconClass: 'fa-shopping-cart' },
-            { income: '50.89', type: 'Income', iconClass: 'fa-dollar-sign' }
+            { number: productCount, type: 'Product', iconClass: 'fa-shopping-bag' },
+            { number: voucherCount, type: 'Voucher', iconClass: 'fa-ticket' },
+            { number: orderCount, type: 'Order', iconClass: 'fa-shopping-cart' },
+            { number: '50.89', type: 'Income', iconClass: 'fa-dollar-sign' }
         ];
-
         const overviewContainer = document.createElement('div');
         overviewContainer.classList.add('overview-container', 'row', 'mb-5');
 
         columns.forEach(column => {
-            const colDiv = createColumn(column.income, column.type, column.iconClass);
+            const colDiv = createColumn(column.number, column.type, column.iconClass);
             overviewContainer.appendChild(colDiv);
         });
 
         dashboardContainer.appendChild(overviewContainer);
 
         // Function tạo column
-        function createColumn(income, type, iconClass) {
+        function createColumn(number, type, iconClass) {
             const colDiv = document.createElement('div');
             colDiv.classList.add('col-3');
 
@@ -38,12 +43,12 @@ function showDashboard() {
             const cardContent = document.createElement('div');
             cardContent.classList.add('custom-card-content');
 
-            const incomeDiv = document.createElement('div');
-            incomeDiv.classList.add('income');
+            const numberDiv = document.createElement('div');
+            numberDiv.classList.add('number');
 
             const cardTitle = document.createElement('h2');
             cardTitle.classList.add('card-title');
-            cardTitle.textContent = income;
+            cardTitle.textContent = number;
 
             const cardText = document.createElement('p');
             cardText.classList.add('card-text');
@@ -55,9 +60,9 @@ function showDashboard() {
             const iconCard = document.createElement('h2');
             iconCard.classList.add('fa', iconClass);
 
-            incomeDiv.appendChild(cardTitle);
-            incomeDiv.appendChild(cardText);
-            cardContent.appendChild(incomeDiv);
+            numberDiv.appendChild(cardTitle);
+            numberDiv.appendChild(cardText);
+            cardContent.appendChild(numberDiv);
             iconContainer.appendChild(iconCard);
             cardContent.appendChild(iconContainer);
             cardBody.appendChild(cardContent);

@@ -8,7 +8,16 @@ const body = document.querySelector("body"),
         sidebar.classList.toggle("close");
     });
 
+const user = [
+    {
+        userAvatar: './assets/images/Huan.png',
+        userName: 'Nguyen Van Huan',
+        userEmail: 'nguyenhuan200y@gmail.com',
+        userPhone: '0382816265',
+        userRole: 'Admin'
 
+    }
+];
 // Kích hoạt sự kiện đóng mở dropdown trên navbar
 function activateEvents() {
     // Khi click vào dropdown-toggle
@@ -61,6 +70,20 @@ var pages = {
         "loadContent": function() {
             return showOrder();
         }
+    },
+    "admin-subscribers": {
+        "title": "Subscribers",
+        "content": null,
+        "loadContent": function() {
+            return showSubscribers();
+        }
+    },
+    "admin-profile": {
+        "title": "Profile",
+        "content": null,
+        "loadContent": function() {
+            return showProfile();
+        }
     }
 };
 
@@ -82,7 +105,7 @@ function loadPageContent(page) {
 }
 
 window.onload = function() {
-    loadPageContent('admin-order');
+    loadPageContent('admin-dashboard');
 
     $('.load-page').on('click', function() {
         var page = $(this).data('page');
@@ -103,38 +126,6 @@ list.forEach((item) =>
     item.addEventListener('click', activeLink));
 
 
-function displayButton(checkbox) {
-    var button = checkbox.closest('.voucher-box').querySelector('.buttonGrp');
-    if (checkbox.checked) {
-        button.classList.remove('d-none');
-    } else {
-        button.classList.add('d-none');
-    }
-}
-// Copy subscribers
-function copyEmail(i) {
-    // Tìm phần tử chứa email trong cùng một hàng (row)
-    var row = i.closest("tr");
-    var emailElement = row.querySelector(".email");
-  
-    // Lấy nội dung email
-    var email = emailElement.textContent.trim();
-  
-    // Tạo một textarea ẩn để sao chép nội dung
-    var textarea = document.createElement("textarea");
-    textarea.value = email;
-    document.body.appendChild(textarea);
-  
-    // Chọn và sao chép nội dung trong textarea
-    textarea.select();
-    document.execCommand("copy");
-  
-    // Loại bỏ textarea không cần thiết
-    document.body.removeChild(textarea);
-  
-    // Thông báo cho người dùng biết rằng email đã được sao chép
-    alert("Email has been copied: " + email);
-}
 
 // Show more items
 function toggleItems(button) {
@@ -154,11 +145,3 @@ function toggleItems(button) {
     }
 }
 
-function toggleButton(checkbox) {
-    var button = checkbox.parentElement.nextElementSibling.querySelector('.viewDetails');
-    if (checkbox.checked) {
-        button.classList.remove('d-none');
-    } else {
-        button.classList.add('d-none');
-    }
-}
