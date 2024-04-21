@@ -1,74 +1,121 @@
-// let products = {
-//     data: [
-//         {
-//             productName: ".....",
-//             price: "48$",
-//             image: '.....',
-//         }
-//     ]
-// }
-
-// for(let i of products.data){
-// let card = document.createElement("div")
-// card.classList.add("card")
-// document.getElementById("products").appendChild(card)
-// }
-
-
-
-
 const itemsContainer = document.createElement('div')
-itemsContainer.style.display = 'flex'; // Set display to flex
-itemsContainer.style.flexWrap = 'wrap'; // Allow items to wrap onto multiple lines
-
-for (let i = 0; i < 9; i++) {
+itemsContainer.className = "d-flex flex-wrap gap-3";
+const productData = [
+    {
+        imageSrc: './assets/images/PhamMinh.png',
+        title: 'aaa',
+        description: 'iqwe',
+        review: 'ascasc',
+        price: {
+            amount: 90.99,
+            currency: '$'
+        }
+    }
+];
+productData.forEach(product => {
+    const cardItem = createCard(product);
+    itemsContainer.appendChild(cardItem);
+});
+function createCard(data) {
     const cardItem = document.createElement('div');
+    cardItem.classList.add('card', 'mt-4', 'mt-2');
+    cardItem.style.width = '18rem';
+    cardItem.style.height = '34rem';
 
+    const cardImageContainer = document.createElement('div');
+    cardImageContainer.classList.add('position-relative');
 
-    cardItem.innerHTML = `
-                    <!-- Card -->
-                        <div class="card mt-4 m-2" style="width: 18rem; height: 34rem;">
-                            <div class="position-relative">
-                                <img src="./assets/images/category_img.jpg" class="card-img-top img" alt="...">
-                                <div
-                                    class="card-img-overlay img-overlay w-100 h-100 d-flex justify-content-center align-items-center">
-                                    <div class="card-btn d-flex align-items-center gap-2 mb-0 ">
-                                        <div class=""><a class="btn2 btn btn-success text-white" href="product-details.html"><i
-                                                    class="far fa-heart"></i></a></div>
-                                        <div class=""><a class="btn2 btn btn-success text-white"
-                                                href="product-details.html"><i class="far fa-eye"></i></a></div>
-                                        <div class=""><a class="btn2 btn btn-success text-white"
-                                                href="product-details.html"><i class="fas fa-cart-plus"></i></a></div>
-                                    </div>
-                                </div>
-                            </div>
+    const cardImage = document.createElement('img');
+    cardImage.src = data.imageSrc;
+    cardImage.classList.add('card-img-top', 'img');
+    cardImage.alt = '...';
 
-                            <div class="card-body">
-                                <ul class="list-unstyled d-flex justify-content-between">
-                                    <li>
-                                        <i class="text-warning fa fa-star"></i>
-                                        <i class="text-warning fa fa-star"></i>
-                                        <i class="text-warning fa fa-star"></i>
-                                        <i class="text-warning fa fa-star"></i>
-                                        <i class="text-muted fa fa-star"></i>
-                                    </li>
-                                    <li class="text-muted text-right">$48.00</li>
-                                </ul>
-                                <a href="product-details.html" class="h3 text-decoration-none text-dark">
-                                    Sunglasses
-                                </a>
+    const cardBtn = document.createElement('div');
+    cardBtn.className = "card-btn position-absolute top-0 w-100 h-100 justify-content-center d-flex align-items-center gap-2";
 
-                                <p class="card-text pt-1">
-                                    Aenean gravida dignissim finibus. Nullam ipsum diam, posuere vitae pharetra sed,
-                                    commodo ullamcorper.
-                                </p>
-                                <p class="text-muted">Reviews (48)</p>
-                            </div>
-                        </div>
-                        <!-- End Card -->
+    ['fa-heart', 'fa-eye', 'fa-cart-plus'].forEach(iconClass => {
+        const btn = document.createElement('div');
+        const link = document.createElement('a');
+        link.classList.add('btn2', 'btn', 'btn-success', 'text-white', 'mt-2');
+        link.href = 'product-details.html';
+        const icon = document.createElement('i');
+        icon.className = "fas"; 
+        icon.classList.add(iconClass);
+        link.appendChild(icon);
+        btn.appendChild(link);
+        cardBtn.appendChild(btn);
+    });
+    cardImageContainer.appendChild(cardImage);
+    cardItem.appendChild(cardImageContainer);
 
-`
+    cardImageContainer.appendChild(cardBtn);
+    const cardBody = document.createElement('div');
+    cardBody.classList.add('card-body');
+
+    const rateAndPriceContainer = document.createElement('div');
+    rateAndPriceContainer.className = "list-unstyled d-flex justify-content-between";
+    cardBody.appendChild(rateAndPriceContainer);
+    const ratingList = document.createElement('div');
+    ratingList.className = "a";
+
+    for (let j = 0; j < 5; j++) {
+        const starIcon = document.createElement('i');
+        starIcon.className = "text-warning fa fa-star";
+        ratingList.appendChild(starIcon);
+    }
+
+    rateAndPriceContainer.appendChild(ratingList);
+    const priceItem = document.createElement('span');
+    priceItem.className = "text-muted text-right";
+    priceItem.textContent = data.price.currency + data.price.amount;
+    rateAndPriceContainer.appendChild(priceItem);
+
+    const titleLink = document.createElement('a');
+    titleLink.href = 'product-details.html';
+    titleLink.classList.add('h3', 'text-decoration-none', 'text-dark');
+    titleLink.textContent = data.title;
+
+    const description = document.createElement('p');
+    description.classList.add('card-text', 'pt-1');
+    description.textContent = data.description;
+
+    const reviewText = document.createElement('p');
+    reviewText.classList.add('text-muted');
+    reviewText.textContent = "Reviews: " + data.review;
+
+    cardBody.appendChild(titleLink);
+    cardBody.appendChild(description);
+    cardBody.appendChild(reviewText);
+
+    cardItem.appendChild(cardBody);
 
     itemsContainer.appendChild(cardItem);
+    return cardItem;
 }
-document.getElementById("itemsContainer").appendChild(itemsContainer)
+document.getElementById("itemsContainer").appendChild(itemsContainer);
+
+// Pages, navigate pages
+const totalPages = 3;
+    const currentPage = 1;
+
+    const paginationElement = document.getElementById('pagination');
+
+    const previousButton = document.createElement('li');
+    previousButton.classList.add('page-item');
+    previousButton.innerHTML = `<a class="page-link" href="#">Previous</a>`;
+    paginationElement.appendChild(previousButton);
+
+    for (let i = 1; i <= totalPages; i++) {
+        const pageItem = document.createElement('li');
+        pageItem.classList.add('page-item');
+        if (i === currentPage) {
+            pageItem.classList.add('active');
+        }
+        pageItem.innerHTML = `<a class="page-link" href="#">${i}</a>`;
+        paginationElement.appendChild(pageItem);
+    }
+
+    const nextButton = document.createElement('li');
+    nextButton.classList.add('page-item');
+    nextButton.innerHTML = `<a class="page-link" href="#">Next</a>`;
+    paginationElement.appendChild(nextButton);
