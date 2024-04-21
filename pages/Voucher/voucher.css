@@ -15,7 +15,7 @@
 }
 .list-voucher{
     max-height: 600px;
-    overflow: scroll;
+    overflow-y: scroll;
 }
 .voucher-data {
     margin-top: 10px;
@@ -46,3 +46,4 @@
 .voucher-image{
     text-align: start;
 }
+

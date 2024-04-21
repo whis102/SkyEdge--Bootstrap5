@@ -1,6 +1,123 @@
 var voucherContent = null;
 var currentPage = 1; 
 var vouchersPerPage = 7; 
+
+const voucherData = [
+    {
+        id: 'check1',
+        voucherIcon: 'fas fa-truck',
+        voucherCode: 'FREESHIP2024',
+        voucherName: 'Free Shipping',
+        discount: '50%',
+        type: 'Shipping Discount',
+        stock: '120',
+        applicable: 'All items available on our website, including sale and clearance items.',
+        validity: 'From February 25, 2024 to March 31, 2024'
+    },
+    {
+        id: 'check4',
+        voucherIcon: 'fas fa-tag',
+        voucherCode: 'SALE10',
+        voucherName: '10% Off Sale',
+        discount: '10%',
+        type: 'Discount',
+        stock: '150',
+        applicable: 'Applicable on all items in the sale category.',
+        validity: 'Valid until June 30, 2024'
+    },
+    {
+        id: 'check5',
+        voucherIcon: 'fas fa-gift',
+        voucherCode: 'GIFT2025',
+        voucherName: 'New Year Gift',
+        discount: 'Gift',
+        type: 'Free Gift',
+        stock: '200',
+        applicable: 'Applicable on all purchases over $150.',
+        validity: 'Valid from January 1, 2025 to January 31, 2025'
+    },
+    {
+        id: 'check6',
+        voucherIcon: 'fas fa-percent',
+        voucherCode: 'FLASHSALE',
+        voucherName: 'Flash Sale',
+        discount: '30%',
+        type: 'Discount',
+        stock: '50',
+        applicable: 'Applicable on selected items for a limited time.',
+        validity: 'Valid for 24 hours only.'
+    },
+    {
+        id: 'check7',
+        voucherIcon: 'fas fa-gift',
+        voucherCode: 'BIRTHDAY2024',
+        voucherName: 'Birthday Gift',
+        discount: 'Gift',
+        type: 'Free Gift',
+        stock: 'Unlimited',
+        applicable: 'Applicable on your birthday month.',
+        validity: 'Valid for one month from your birthday.'
+    },
+    {
+        id: 'check2',
+        voucherIcon: 'fas fa-percent',
+        voucherCode: 'SALE25',
+        voucherName: '25% Off Sale',
+        discount: '25%',
+        type: 'Discount',
+        stock: '100',
+        applicable: 'Applicable on selected sale items only.',
+        validity: 'Valid until April 30, 2024'
+    },
+    {
+        id: 'check3',
+        voucherIcon: 'fas fa-gift',
+        voucherCode: 'GIFT2024',
+        voucherName: 'Free Gift',
+        discount: 'Gift',
+        type: 'Free Gift',
+        stock: 'Unlimited',
+        applicable: 'Applicable on all purchases over $100.',
+        validity: 'Valid from May 1, 2024 to December 31, 2024'
+    },
+    {
+        id: 'check7',
+        voucherIcon: 'fas fa-gift',
+        voucherCode: 'BIRTHDAY2024',
+        voucherName: 'Birthday Gift',
+        discount: 'Gift',
+        type: 'Free Gift',
+        stock: 'Unlimited',
+        applicable: 'Applicable on your birthday month.',
+        validity: 'Valid for one month from your birthday.'
+    },
+    {
+        id: 'check2',
+        voucherIcon: 'fas fa-percent',
+        voucherCode: 'SALE25',
+        voucherName: '25% Off Sale',
+        discount: '25%',
+        type: 'Discount',
+        stock: '100',
+        applicable: 'Applicable on selected sale items only.',
+        validity: 'Valid until April 30, 2024'
+    },
+    {
+        id: 'check3',
+        voucherIcon: 'fas fa-gift',
+        voucherCode: 'GIFT2024',
+        voucherName: 'Free Gift',
+        discount: 'Gift',
+        type: 'Free Gift',
+        stock: 'Unlimited',
+        applicable: 'Applicable on all purchases over $100.',
+        validity: 'Valid from May 1, 2024 to December 31, 2024'
+    }
+];
+
+function getVoucherData() {
+    return voucherData;
+}
 function showVoucher(){
     if(!voucherContent){
         const voucherContainer = document.createElement('div');
@@ -18,7 +135,7 @@ function showVoucher(){
         management.classList.add('col-4', 'd-flex', 'align-items-center', 'gap-2');
         col12.appendChild(management);
         const iconVoucher= document.createElement('i');
-        iconVoucher.classList.add('fa-solid', 'fa-cart-shopping', 'fa-2x', 'mb-4');
+        iconVoucher.classList.add('fa-solid', 'fa-ticket', 'fa-2x', 'mb-4');
         management.appendChild(iconVoucher);
         const textVoucher= document.createElement('div');
         textVoucher.classList.add('d-flex', 'flex-column', 'ml-5');
@@ -67,19 +184,6 @@ function showVoucher(){
         listVoucher.classList.add('list-voucher','row', 'gap-2');
         voucherContainer.appendChild(listVoucher);
         
-        const voucherData = [
-            {
-                id: 'check1',
-                voucherIcon: 'fas fa-truck',
-                voucherCode: 'FREESHIP2024',
-                voucherName: 'Free Shipping',
-                discount: '50%',
-                type: 'Shipping Discount',
-                stock: '120',
-                applicable: 'All items available on our website, including sale and clearance items.',
-                validity: 'From February 25, 2024 to March 31, 2024'
-            }
-        ];
         voucherData.forEach(voucher => {
             const voucherBox = createVoucherBox(voucher);
             listVoucher.appendChild(voucherBox);
@@ -297,7 +401,7 @@ function showVoucher(){
             typeLabel.textContent = "Voucher type:";
             const inputType = document.createElement('input');
             inputType.classList.add('form-control');
-            inputType.value = voucher.side;
+            inputType.value = voucher.type;
             typeContainer.appendChild(typeLabel);
             typeContainer.appendChild(inputType);
             row2Container.appendChild(typeContainer);
@@ -311,7 +415,7 @@ function showVoucher(){
             iconLabel.textContent = "Voucher icon:";
             const inputIcon= document.createElement('input');
             inputIcon.classList.add('form-control');
-            inputIcon.value = voucher.width;
+            inputIcon.value = voucher.voucherIcon;
             iconContainer.appendChild(iconLabel);
             iconContainer.appendChild(inputIcon);
             row3Container.appendChild(iconContainer);
@@ -335,7 +439,7 @@ function showVoucher(){
             validityLabel.textContent = "Validity:";
             const inputValidity = document.createElement('input');
             inputValidity.classList.add('form-control');
-            inputValidity.value = voucher.stock;
+            inputValidity.value = voucher.validity;
             validityContainer.appendChild(validityLabel);
             validityContainer.appendChild(inputValidity);
             rightContent.appendChild(validityContainer);
@@ -430,6 +534,14 @@ function showVoucher(){
             }
         }
         
+        function displayButton(checkbox) {
+            var button = checkbox.closest('.voucher-box').querySelector('.buttonGrp');
+            if (checkbox.checked) {
+                button.classList.remove('d-none');
+            } else {
+                button.classList.add('d-none');
+            }
+        }
         voucherContent = voucherContainer;
     }
     return voucherContent;
