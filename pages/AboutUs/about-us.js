@@ -1,22 +1,22 @@
 const itemsContainer = document.createElement('div')
-    itemsContainer.innerHTML = `
+itemsContainer.innerHTML = `
     <!--First slide-->
     <div class="carousel-item active">
         <div class="row align-items-center">
             <div class="col md-5 border-start border-end p-3">
-                <img src="./assets/login_background.png" class="img" style="width: 14rem; height: 18rem" alt="...">
-                <h4 class="fs-5">Nguyen Chi Cong</h4>
-                <p class="fs-6 mb-1">Full-stack developer</p>
+                <img src="./assets/images/Cong.png" class="img" style="width: 14rem; height: 14rem" alt="Avatar">
+                <h4 class="fs-5 pt-2">Nguyen Chi Cong</h4>
+                <p class="fs-6">Full-stack developer</p>
             </div>
             <div class="col md-5 border-start border-end p-3">
-                <img src="./assets/login_background.png" class="img" style="width: 14rem; height: 18rem" alt="...">
-                <h4 class="fs-5">Nguyen Van Huan</h4>
-                <p class="fs-6 mb-1">Front-end, UX-UI designer</p>
+                <img src="./assets/images/Huan.png" class="img" style="width: 14rem; height: 14rem" alt="Avatar">
+                <h4 class="fs-5 pt-2">Nguyen Van Huan</h4>
+                <p class="fs-6">Front-end, UX-UI designer</p>
             </div>
             <div class="col md-5 border-start border-end p-3">
-                <img src="./assets/login_background.png" class="img" style="width: 14rem; height: 18rem" alt="...">
-                <h4 class="fs-5">Nguyen Anh Minh</h4>
-                <p class="fs-6 mb-1">Full-stack developer</p>
+                <img class="img" src="./assets/images/AnhMinh.png" style="width: 14rem; height: 14rem" alt="Avatar">
+                <h4 class="fs-5 pt-2">Nguyen Anh Minh</h4>
+                <p class="fs-6">Full-stack developer</p>
             </div>
         </div>
     
@@ -27,19 +27,19 @@ const itemsContainer = document.createElement('div')
     <div class="carousel-item">
         <div class="row">
             <div class="col md-5 border-start border-end p-3">
-                <img src="./assets/login_background.png" class="img" style="width: 14rem; height: 18rem" alt="...">
-                <h4 class="fs-5">Nguyen Thanh Long</h4>
-                <p class="fs-6 mb-1">Full-stack developer</p>
+                <img src="./assets/images/Long.png" class="img" style="width: 14rem; height: 14rem" alt="Avatar" >
+                <h4 class="fs-5 pt-2">Nguyen Thanh Long</h4>
+                <p class="fs-6">Full-stack developer</p>
             </div>
             <div class="col md-5 border-start border-end p-3">
-                <img src="./assets/login_background.png" class="img" style="width: 14rem; height: 18rem" alt="...">
-                <h4 class="fs-5">Pham Anh Minh</h4>
-                <p class="fs-6 mb-1">BA, UX-UI designer</p>
+                <img src="./assets/images/PhamMinh.png" class="img" style="width: 14rem; height: 14rem" alt="Avatar">
+                <h4 class="fs-5 pt-2">Pham Anh Minh</h4>
+                <p class="fs-6">BA, UX-UI designer</p>
             </div>
             <div class="col md-5 border-start border-end p-3">
-                <img src="./assets/login_background.png" class="img" style="width: 14rem; height: 18rem" alt="...">
-                <h4 class="fs-5">Bootstrap 5</h4>
-                <p class="fs-6 mb-1">Front-end developer</p>
+                <img src="./assets/login_background.png" class="img" style="width: 14rem; height: 14rem" alt="Avatar">
+                <h4 class="fs-5 pt-2">Bootstrap 5</h4>
+                <p class="fs-6">Front-end developer</p>
             </div>
         </div>
     

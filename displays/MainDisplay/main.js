@@ -1,46 +1,60 @@
 // Top Nav
-const topNav = document.createElement('div')
-topNav.classList.add('container', 'text-light')
+const topNav = document.createElement('div');
+topNav.classList.add('container', 'text-light');
 
-topNav.innerHTML = `
-    <div class="w-100 d-flex justify-content-between">
+// Contact information
+const createContactInfo = (email, phone) => {
+    const contactDiv = document.createElement('div');
 
-        <!-- Nav Top Contact -->
-        <div>
-            <a class="navbar-sm-brand text-light text-decoration-none"
-                href="mailto:hanu@gmail.com">
-                <i class="fa-solid fa-envelope"></i>
-                hanu@gmail.com
-            </a>
+    const emailLink = document.createElement('a');
+    emailLink.classList.add('navbar-sm-brand', 'text-light', 'text-decoration-none');
+    emailLink.href = `mailto:${email}`;
+    emailLink.innerHTML = `<i class="fa-solid fa-envelope"></i> ${email}`;
+    contactDiv.appendChild(emailLink);
 
-            <a class="navbar-sm-brand text-light text-decoration-none" href="tel:032-323-3232">
-                <i class="fa-solid fa-phone"></i>
-                032-323-3232
-            </a>
-        </div>
-        <!-- End Contact Nav Top -->
+    const phoneLink = document.createElement('a');
+    phoneLink.classList.add('navbar-sm-brand', 'text-light', 'text-decoration-none');
+    phoneLink.href = `tel:${phone}`;
+    phoneLink.innerHTML = `<i class="fa-solid fa-phone"></i> ${phone}`;
+    contactDiv.appendChild(phoneLink);
 
-        <!-- Nav Top Icon-->
-        <div>
-            <!-- Facebook Icon -->
-            <a href="https://www.facebook.com/" class="text-light text-decoration-none" target="_blank">
-                <i class="fab fa-facebook-f fa-sm fa-fw me-2"></i>
-            </a>
+    return contactDiv;
+};
 
-            <!-- Instagram Icon -->
-            <a href="https://www.instagram.com/" class="text-light text-decoration-none" target="_blank">
-                <i class="fab fa-instagram fa-sm fa-fw me-2"></i>
-            </a>
+// Social icons
+const createSocialIcons = (socials) => {
+    const iconDiv = document.createElement('div');
+    socials.forEach(social => {
+        const socialLink = document.createElement('a');
+        socialLink.href = social.link;
+        socialLink.classList.add('text-light', 'text-decoration-none');
+        socialLink.target = '_blank';
 
-            <!-- LinkedIn Icon -->
-            <a href="https://www.linkedin.com/" class="text-light text-decoration-none" target="_blank">
-                <i class="fab fa-linkedin fa-sm fa-fw me-2"></i>
-            </a>
-        </div>
-        <!-- End Icon Nav Top -->
-    </div>
-`
-document.getElementById('nav-top').appendChild(topNav)
+        const socialIcon = document.createElement('i');
+        socialIcon.classList.add('fab', social.icon, 'fa-sm', 'fa-fw', 'me-2');
+
+        socialLink.appendChild(socialIcon);
+        iconDiv.appendChild(socialLink);
+    });
+    return iconDiv;
+};
+
+// Define contact information and social icons data
+const contactInfo = {
+    email: 'hanu@gmail.com',
+    phone: '032-323-3232'
+};
+
+const socialIcons = [
+    { link: 'https://www.facebook.com/', icon: 'fa-facebook-f' },
+    { link: 'https://www.instagram.com/', icon: 'fa-instagram' },
+    { link: 'https://www.linkedin.com/', icon: 'fa-linkedin' }
+];
+
+topNav.appendChild(createContactInfo(contactInfo.email, contactInfo.phone));
+topNav.appendChild(createSocialIcons(socialIcons));
+
+document.getElementById('nav-top').appendChild(topNav);
 
 // Header
 const header = document.createElement('div')
@@ -49,9 +63,9 @@ header.classList.add('container', 'd-flex', 'justify-content-between', 'align-it
 header.innerHTML = `
 <!-- Brand -->
 <a class="navbar-brand align-self-center logo" href="index.html">
-    <div class="d-flex align-items-center">
-        <img src="./assets/favicon.png" alt="skyedge-logo" style="width: 16%;">
-        <h4 class="ms-3 text-success">SkyEdge</h4>
+    <div  class="image-text d-flex align-items-center mb-2 gap-2">
+        <img class="image" src="./assets/favicon.png" alt="Logo" width="40" height="40">
+        <span class="text fs-4 color-web-text">SkyEdge</span>
     </div>
 </a>
 
@@ -80,7 +94,7 @@ header.innerHTML = `
     <!-- Menu Icon -->
     <div class="navbar align-items-center d-flex">
         <a class="nav-icon text-decoration-none" href="#">
-            <i class="fa-solid fa-magnifying-glass text-dark"></i>
+            <i class="fa-solid fa-heart text-dark"></i>
         </a>
         <a class="nav-icon text-decoration-none" href="cart.html">
             <i class="fa-solid fa-cart-shopping text-dark"></i>
@@ -196,20 +210,62 @@ footerContainer.innerHTML = `
     </div>
 `
 
+function createFooterLinks(links) {
+    const ul = document.createElement('ul');
+    ul.className = 'list-unstyled text-light footer-link-list';
+
+    links.forEach(link => {
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.className = 'text-decoration-none';
+        a.href = link.href;
+        a.textContent = link.text;
+        li.appendChild(a);
+        ul.appendChild(li);
+    });
+
+    return ul;
+}
+
+const footerLinks = [
+    { text: 'Luxury', href: '#' },
+    { text: 'Trending', href: '#' },
+    { text: 'Men\'s Glass', href: '#' },
+    { text: 'Women\'s Glass', href: '#' },
+    { text: 'Sunglasses', href: '#' },
+    { text: 'Accessories', href: '#' },
+    { text: 'Eyeglass Frames', href: '#' }
+];
+
+// const footerLinksElement = createFooterLinks(footerLinks);
+// const footer = document.querySelector('.col-md-4');
+// footer.appendChild(footerLinksElement);
+// footerContainer.appendChild(footer)
+
 document.getElementById("footer").appendChild(footerContainer)
 
 // Copyright
 const cpContainer = document.createElement('div');
 cpContainer.classList.add('container')
 
-cpContainer.innerHTML = `
-    <div class="row pt-2">
-      <div class="col-12">
-        <p class="text-left text-light">Copyright &copy; 2024 SE2-Group-4 | From Hanu with love
-          <i class="fa-solid fa-heart"></i>
-        </p>
-      </div>
-    </div>
-`;
+const createCopyright = (copyright) => {
+    const rowDiv = document.createElement('div');
+    rowDiv.classList.add('row', 'pt-2');
+
+    const colDiv = document.createElement('div');
+    colDiv.classList.add('col-12');
+    rowDiv.appendChild(colDiv);
+
+    const pElement = document.createElement('p');
+    pElement.classList.add('text-left', 'text-light');
+    pElement.textContent = 'Copyright © 2024 SE2-Group-4 | From Hanu with love';
+    colDiv.appendChild(pElement);
+
+    const iElement = document.createElement('i');
+    iElement.classList.add('fa-solid', 'fa-heart');
+    pElement.appendChild(iElement);
+
+    return rowDiv;
+};    
 
 document.getElementById("copyright").appendChild(cpContainer);

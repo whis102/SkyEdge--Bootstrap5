@@ -27,7 +27,7 @@
     <nav id="header" class="navbar navbar-expand-lg navbar-light shadow"></nav>
 
     <!-- Main -->
-    <div class="container py-5">
+    <div id="products" class="container py-5">
         <div class="row">
             <!-- Categories -->
             <div class="col-lg-3">
@@ -69,7 +69,7 @@
             <div class="col-lg-9">
 
                 <!-- Filter -->
-                <div class="row container">
+                <div class="row container px-4">
                     <div class="col-md-6">
                         <ul class="list-inline shop-top-menu pb-3 pt-1">
                             <li class="list-inline-item">
@@ -84,19 +84,22 @@
                         </ul>
                     </div>
                     <div class="col-md-6 pb-4">
-                        <div class="d-flex">
-                            <select class="form-control">
-                                <option>Featured</option>
-                                <option>A to Z</option>
-                                <option>Item</option>
-                            </select>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">
+                                <i class="fa-solid fa-magnifying-glass text-dark"></i>
+                            </span>
+                            <input type="text" class="form-control" placeholder="Search for products"
+                                aria-label="Search" aria-describedby="basic-addon1">
                         </div>
+                        <!-- <div class="d-flex">
+                            <input placeholder=" Search for items" class="border border-1 control w-100"></input>
+                        </div> -->
                     </div>
                 </div>
                 <!-- End Filter -->
                 <!-- Cards -->
                 <div class="row">
-                    <div class="rpw-md-4">
+                    <div class="row-md-4">
                         <div id="itemsContainer" class="container">
                         </div>
                     </div>
@@ -108,12 +111,7 @@
 
         <div>
             <div class="d-flex justify-content-end mt-4">
-                <ul class="pagination">
-                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                <ul class="pagination" id="pagination">
                 </ul>
             </div>
         </div>
