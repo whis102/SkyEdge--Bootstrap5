@@ -19,4 +19,4 @@ document.querySelectorAll('.product-overlay a').forEach(function(iconLink) {
       this.querySelector('i').classList.toggle('fas'); // Toggle the fas class for filled icon
       this.querySelector('i').classList.toggle('far'); // Toggle the far class for empty icon
     });
-  });
+});
