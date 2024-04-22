@@ -30,3 +30,7 @@ footer #footer, footer #copyright {
 .carousel-control-prev-icon, .carousel-control-next-icon {
     background-color: transparent !important;
 }
+
+.icon-item {
+    margin-right: 10px;
+}
