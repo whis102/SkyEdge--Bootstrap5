@@ -2,15 +2,65 @@ const itemsContainer = document.createElement('div')
 itemsContainer.className = "d-flex flex-wrap gap-3";
 const productData = [
     {
-        imageSrc: './assets/images/PhamMinh.png',
-        title: 'aaa',
-        description: 'iqwe',
-        review: 'ascasc',
+        imageSrc: './assets/images/category_img.jpg',
+        title: 'Basic Glasses',
+        description: 'A simple-looking eyeglasses which suits everyone',
+        review: '40',
         price: {
             amount: 90.99,
             currency: '$'
         }
-    }
+    },
+    {
+        imageSrc: './assets/images/category_img.jpg',
+        title: 'Basic Glasses',
+        description: 'A simple-looking eyeglasses which suits everyone',
+        review: '40',
+        price: {
+            amount: 90.99,
+            currency: '$'
+        }
+    },
+    {
+        imageSrc: './assets/images/category_img.jpg',
+        title: 'Basic Glasses',
+        description: 'A simple-looking eyeglasses which suits everyone',
+        review: '40',
+        price: {
+            amount: 90.99,
+            currency: '$'
+        }
+    },
+    {
+        imageSrc: './assets/images/category_img.jpg',
+        title: 'Basic Glasses',
+        description: 'A simple-looking eyeglasses which suits everyone',
+        review: '40',
+        price: {
+            amount: 90.99,
+            currency: '$'
+        }
+    },
+    {
+        imageSrc: './assets/images/category_img.jpg',
+        title: 'Basic Glasses',
+        description: 'A simple-looking eyeglasses which suits everyone',
+        review: '40',
+        price: {
+            amount: 90.99,
+            currency: '$'
+        }
+    },
+    {
+        imageSrc: './assets/images/category_img.jpg',
+        title: 'Basic Glasses',
+        description: 'A simple-looking eyeglasses which suits everyone',
+        review: '40',
+        price: {
+            amount: 90.99,
+            currency: '$'
+        }
+    },
 ];
 productData.forEach(product => {
     const cardItem = createCard(product);

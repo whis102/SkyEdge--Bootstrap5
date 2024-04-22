@@ -169,9 +169,10 @@ for (let i = 0; i < 4; i++) {
     overlayDiv.classList.add('card-img-overlay', 'rounded-0', 'product-overlay', 'd-flex', 'align-items-center', 'justify-content-center');
 
     const ul = document.createElement('ul');
-    ul.classList.add('list-unstyled');
+    ul.classList.add('list-unstyled', 'd-flex');
 
     const heartLi = document.createElement('li');
+    heartLi.classList.add('icon-item');
     const heartLink = document.createElement('a');
     heartLink.classList.add('btn', 'btn-success', 'text-white', 'heart-icon');
     heartLink.href = product.heartLink;
@@ -193,9 +194,10 @@ for (let i = 0; i < 4; i++) {
     ul.appendChild(heartLi);
 
     const eyeLi = document.createElement('li');
+    eyeLi.classList.add('icon-item');
     const eyeLink = document.createElement('a');
-    eyeLink.classList.add('btn', 'btn-success', 'text-white', 'mt-2');
-    eyeLink.href = product.eyeLink;
+    eyeLink.classList.add('btn', 'btn-success', 'text-white');
+    eyeLink.href = 'product-details.html';
     const eyeIcon = document.createElement('i');
     eyeIcon.classList.add('far', 'fa-eye');
     eyeLink.appendChild(eyeIcon);
@@ -203,8 +205,9 @@ for (let i = 0; i < 4; i++) {
     ul.appendChild(eyeLi);
 
     const cartLi = document.createElement('li');
+    cartLi.classList.add('icon-item');
     const cartLink = document.createElement('a');
-    cartLink.classList.add('btn', 'btn-success', 'text-white', 'mt-2');
+    cartLink.classList.add('btn', 'btn-success', 'text-white');
     cartLink.href = product.cartLink;
     const cartIcon = document.createElement('i');
     cartIcon.classList.add('fas', 'fa-cart-plus');
