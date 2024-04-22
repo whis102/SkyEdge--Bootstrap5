@@ -63,9 +63,9 @@ header.classList.add('container', 'd-flex', 'justify-content-between', 'align-it
 header.innerHTML = `
 <!-- Brand -->
 <a class="navbar-brand align-self-center logo" href="index.html">
-    <div class="d-flex align-items-center">
-        <img src="./assets/favicon.png" alt="skyedge-logo" style="width: 16%;">
-        <h4 class="ms-3 text-success">SkyEdge</h4>
+    <div  class="image-text d-flex align-items-center mb-2 gap-2">
+        <img class="image" src="./assets/favicon.png" alt="Logo" width="40" height="40">
+        <span class="text fs-4 color-web-text">SkyEdge</span>
     </div>
 </a>
 

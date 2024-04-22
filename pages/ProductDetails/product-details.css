@@ -19,5 +19,14 @@ footer #footer, footer #copyright {
     background-color: white;
     border: 1px solid #ccc;
     border-radius: 5px;
-    
+}
+
+.carousel-control-prev, .carousel-control-next {
+    background-color: #76c893 !important;
+    color: white !important;
+    border-radius: 10px;
+}
+
+.carousel-control-prev-icon, .carousel-control-next-icon {
+    background-color: transparent !important;
 }
