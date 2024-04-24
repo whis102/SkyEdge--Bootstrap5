@@ -47,3 +47,9 @@ footer a {
     background-color: #59ab6e !important;
     border-color: #56ae6c !important;
 }
+
+.btn-success:hover {
+    background-color: #52b69a !important;
+    border-color: #52b69a !important;
+    color: white !important;
+}
