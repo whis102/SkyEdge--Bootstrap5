@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
 
-body, html {
+body,
+html {
     margin: 0;
     padding: 0;
     width: 100%;
@@ -15,9 +16,9 @@ body, html {
 .column {
     float: left;
     width: 50%;
-    block-size:auto;
+    block-size: auto;
     display: table-cell;
-}  
+}
 
 .row:after {
     content: "";
@@ -25,7 +26,7 @@ body, html {
     clear: both;
 }
 
-.heading{
+.heading {
     font-style: normal;
     font-weight: 500;
     line-height: normal;
@@ -40,13 +41,16 @@ body, html {
 .custom-form {
     max-width: 300px;
 }
-.custom-form .form-label, .custom-form .form-control {
+
+.custom-form .form-label,
+.custom-form .form-control {
     font-size: 0.9rem;
     border-radius: 10px;
 }
 
-.image{
-    width: 100%;
+.image {
+    height: auto;
+    width: 800px;
     object-fit: cover;
     height: 100vh;
 }
@@ -58,14 +62,14 @@ body, html {
     width: 100%;
 }
 
-h6{
+h6 {
     text-align: center;
     font-family: 'Inter';
     font-style: normal;
     color: #666666;
 }
 
-.chk-box{
+.chk-box {
     font-family: 'Inter';
     font-style: normal;
     font-weight: 500;
@@ -74,7 +78,7 @@ h6{
     font-size: 12px;
 }
 
-.psw-link{
+.psw-link {
     font-family: 'Inter';
     font-style: normal;
     font-weight: 500;
@@ -82,7 +86,7 @@ h6{
     color: #666666;
 }
 
-.label-font{
+.label-font {
     font-family: 'Inter';
     font-style: normal;
     font-weight: 700;
@@ -90,7 +94,7 @@ h6{
     color: #666666;
 }
 
-.form-control{
+.form-control {
     background: #D9D9D9;
     border-radius: 30px;
     font-size: 0.9rem;
@@ -103,7 +107,7 @@ h6{
     margin-left: 50px;
 }
 
-.mt-3{
+.mt-3 {
     font-family: 'Inter';
     font-style: normal;
     font-weight: 500;
@@ -111,7 +115,7 @@ h6{
     color: #666666;
 }
 
-span.logo-name{
+span.logo-name {
     font-family: 'Inter';
     font-size: 25px;
     color: #00DB6D;
@@ -120,22 +124,22 @@ span.logo-name{
     margin-top: 30px;
 }
 
-a{
+a {
     text-decoration: none;
 }
 
-.row > *{
+.row>* {
     padding: 0;
 }
 
-.popup{
+.popup {
     width: 400px;
     background: #ffff;
     border-radius: 6px;
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%) scale(0,1);
+    transform: translate(-50%, -50%) scale(0, 1);
     text-align: center;
     padding: 0 30px 30px;
     color: #333;
@@ -143,15 +147,15 @@ a{
     transition: transform 0.4s, top 0.4s;
 }
 
-.popup img{
+.popup img {
     width: 100px;
     border-radius: 50%;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 
 }
 
-.open-popup{
+.open-popup {
     visibility: visible;
     top: 50%;
-    transform: translate(-50%,-50%) scale(1);
+    transform: translate(-50%, -50%) scale(1);
 }
