@@ -20,12 +20,12 @@
 // User user02 = new User();
 
 // user01.setEmail("ac01@mail.com");
-// user01.setPassword("password");
+// user01.setPassword("123456");
 // user01.setName("user01");
 // user01.setUsername("user01");
 
 // user02.setEmail("ac02@mail.com");
-// user02.setPassword("password");
+// user02.setPassword("123456");
 // user02.setName("user02");
 // user02.setUsername("user02");
 
