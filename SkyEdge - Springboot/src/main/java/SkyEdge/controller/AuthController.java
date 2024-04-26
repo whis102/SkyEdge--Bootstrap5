@@ -16,10 +16,10 @@ public class AuthController {
         return "home";
     }
 
-    @GetMapping("/register")
-    public String register() {
-        return "register";
-    }
+    // @GetMapping("/register")
+    // public String register() {
+    // return "register";
+    // }
 
     @GetMapping("/member")
     public String member() {
