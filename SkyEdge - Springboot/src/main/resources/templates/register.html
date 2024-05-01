@@ -7,18 +7,19 @@
 </head>
 
 <body>
-    <form method="post" th:action="'/login'">
+    <form action="#" th:action="@{/register}" th:object="${user}" method="post">
         <h2>Please register</h2>
         <p>
             <label for="username">Username</label>
-            <input type="text" id="username" name="username" />
+            <input type="text" id="username" th:field="*{username}" name="username" />
         </p>
         <p>
             <label for="password">Password</label>
-            <input type="password" id="password" name="password" />
+            <input type="password" id="password" th:field="*{password}" name="password" />
         </p>
-        <input type="submit" value="Login" />
+        <input type="submit" value="Register" />
     </form>
+    <p><a href="/login">Login</a></p>
 </body>
 
 </html>

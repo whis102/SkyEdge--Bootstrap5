@@ -20,6 +20,7 @@ public class WebSecurityConfig {
         private static final String[] WHITELIST = {
                         "/",
                         "/login",
+                        "/register",
                         "/resources/**",
                         "/auth/**"
 
@@ -40,6 +41,7 @@ public class WebSecurityConfig {
         @Bean
         public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
                 http
+                                .csrf(csrf -> csrf.disable())
                                 .authorizeHttpRequests(requests -> requests
                                                 .requestMatchers(WHITELIST).permitAll()
                                                 .requestMatchers("/").permitAll()
@@ -52,9 +54,8 @@ public class WebSecurityConfig {
                                                 .defaultSuccessUrl("/", true).failureUrl("/login?error")
                                                 .permitAll())
                                 .logout(logout -> logout.logoutUrl("/logout")
-                                                .logoutSuccessUrl("/"))
+                                                .logoutSuccessUrl("/login"))
                                 .rememberMe(me -> me.rememberMeParameter("remember-me"));
-                http.csrf(csrf -> csrf.disable());
 
                 return http.build();
         }

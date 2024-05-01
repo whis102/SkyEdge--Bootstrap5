@@ -40,6 +40,12 @@ public class MyUserDetails implements UserDetails {
             @JoinColumn(name = "role_id") })
     private Set<Role> authorities;
 
+    public MyUserDetails(String username, String password, Set<Role> authorities) {
+        this.username = username;
+        this.password = password;
+        this.authorities = authorities;
+    }
+
     @Override
     public String getUsername() {
         return this.username;
