@@ -21,3 +21,16 @@
     line-height: 29px;
     color: #198754;
 }
+
+.popup img{
+    width: 100px;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+
+}
+
+.open-popup{
+    visibility: visible;
+    top: 50%;
+    transform: translate(-50%,-50%) scale(1);
+}

@@ -144,6 +144,36 @@ let popup = document.getElementById("popup");
 
 function openPopup() {
     popup.classList.add("open-popup");
+    var popupContent = `
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Popup Form</title>
+    </head>
+        <body>
+
+        
+            <div class="popup" id="popup">
+                <div>
+                    <img src="./assets/Vector.png" alt="">
+                    <h3>Forgot password</h3>
+                    <h6>Enter your email and we'll send you an OTP code to reset your password.</h6>
+                    <input type="text" class="form-control" id="email" placeholder="Enter your email">
+                </div>
+                
+                <button type="submit" class="btn btn-primary custom-btn-width btn-login" onclick="closePopup()">Close</button>
+            </div>
+
+
+        </body>
+    </html>
+`;
+
+// Open the popup window
+var popupWindow = window.open("", "FormPopup", popupOptions);
+popupWindow.document.write(popupContent);
 }
 
 function closePopup() {
