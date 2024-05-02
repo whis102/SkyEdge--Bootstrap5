@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="../static/pages/Profile/profile.css">
+    <link rel="stylesheet" href="../static/pages/Subscribers/subscribers.css">
+    <link rel="stylesheet" href="../static/pages/Order/order.css">
+    <link rel="stylesheet" href="../static/pages/Voucher/voucher.css">
+    <link rel="stylesheet" href="../static/pages/Product/product.css">
+    <link rel="stylesheet" href="../static/pages/Dashboard/dashboard.css">
+    <link rel="stylesheet" href="../static/displays/AdminDisplay/admin.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+    <nav class="sidebar position-fixed h-100 px-2 py-3">
+        <header class="position-relative">
+            <!-- Logo -->
+            <div class="image-text d-flex align-items-center mb-2 gap-2">
+                <img class="image" src="./assets/favicon.png" alt="Logo" width="40" height="40">
+                <span class="text fs-4 color-web-text">SkyEdge</span>
+            </div>
+            <!-- Open&Close menu -->
+            <i class="fa fa-angle-left toggle d-flex align-items-center justify-content-center position-absolute rounded-circle fs-7 top-50"
+                role="button"></i>
+        </header>
+        <!-- Menu -->
+        <div class="menu-bar">
+            <div class="menu">
+                <ul class="menu-links">
+                    <!-- Menu items -->
+
+                    <li role="button" class="list nav-link load-page active" data-page="admin-dashboard">
+                        <a>
+                            <i class="fas fa-tachometer-alt icon"></i>
+                            <span class="text navtext">Dashboard</span>
+                        </a>
+                    </li>
+                    <li role="button" class="list nav-link load-page" data-page="admin-product">
+                        <a>
+                            <i class="fas fa-box-open icon"></i>
+                            <span class="text navtext">Product</span>
+                        </a>
+                    </li>
+                    <li role="button" class="list nav-link load-page" data-page="admin-voucher">
+                        <a>
+                            <i class="fas fa-ticket icon"></i>
+                            <span class="text navtext">Voucher</span>
+                        </a>
+                    </li>
+                    <li role="button" class="list nav-link load-page" data-page="admin-order">
+                        <a>
+                            <i class="fas fa-shopping-cart icon"></i>
+                            <span class="text navtext">Order</span>
+                        </a>
+                    </li>
+                    <li role="button" class="list nav-link load-page" data-page="admin-subscribers">
+                        <a>
+                            <i class="fas fa-users icon"></i>
+                            <span class="text navtext">Subscribers</span>
+                        </a>
+                    </li>
+                    <li role="button" class="list nav-link load-page" data-page="admin-profile">
+                        <a>
+                            <i class="fas fa-user icon"></i>
+                            <span class="text navtext">Profile</span>
+                        </a>
+                    </li>
+                    <li role="button" class="list nav-link load-page">
+                        <a href="login.html">
+                            <i class="fas fa-sign-out-alt icon"></i>
+                            <span class="text navtext">Logout</span>
+                        </a>
+                    </li>
+                    <div class="indicator"><i class="fas fa-caret-right"></i></div>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div id="navbar">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg ">
+            <div class="container-fluid">
+                <!-- Page Title -->
+                <h2 id="page-title" class="color-web mx-5 my-1">Dashboard</h2>
+                <!-- Account and Notification -->
+                <div class="right-navbar d-flex align-items-center mx-5 gap-4">
+                    <div class="notification" role="button">
+                        <i class="fa fa-bell fs-5 my-2"></i>
+                        <span
+                            class="number-notification position-absolute rounded-circle bg-danger text-white fs-065">23</span>
+                    </div>
+                    <div class="admin-profile dropdown">
+                        <div class="user d-flex align-items-center dropdown-toggle" role="button"
+                            data-bs-toggle="dropdown">
+                            <img class="rounded-circle" src="./assets/images/Huan.png" alt="Avatar" width="30px"
+                                height="30px">
+                            <p class="mb-0">Huan</p>
+                        </div>
+                        <ul class="dropdown-menu p-2">
+                            <li class="d-flex align-items-center load-page" role="button"
+                                onclick="loadPage('admin-profile')">
+                                <i class="fas fa-user"></i>
+                                <a class="dropdown-item">Profile</a>
+                            </li>
+                            <li class="d-flex align-items-center load-page" role="button"
+                                onclick="loadPage('login.html')">
+                                <i class="fas fa-sign-out-alt"></i>
+                                <a class="dropdown-item" href="login.html">Logout</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <div id="content" class="bg-w p-3"></div>
+
+    <!-- Scripts -->
+    <script src="../static/pages/Profile/profile.js"></script>
+    <script src="../static/pages/Subscribers/subscribers.js"></script>
+    <script src="../static/pages/Order/order.js"></script>
+    <script src="../static/pages/Voucher/voucher.js"></script>
+    <script src="../static/pages/Product/product.js"></script>
+    <script src="../static/pages/Dashboard/dashboard.js"></script>
+    <script src="../static/displays/AdminDisplay/admin.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</body>
+
+</html>

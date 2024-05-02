@@ -1,20 +1,20 @@
 var quantity = 1;
 var varValue = document.getElementById("var-value");
 
-document.getElementById("btn-minus").addEventListener("click", function() {
+document.getElementById("btn-minus").addEventListener("click", function () {
     if (quantity > 1) {
         quantity--;
         varValue.innerText = quantity;
     }
 });
 
-document.getElementById("btn-plus").addEventListener("click", function() {
+document.getElementById("btn-plus").addEventListener("click", function () {
     quantity++;
     varValue.innerText = quantity;
 });
 
-document.querySelectorAll('.product-overlay a').forEach(function(iconLink) {
-    iconLink.addEventListener('click', function(event) {
+document.querySelectorAll('.product-overlay a').forEach(function (iconLink) {
+    iconLink.addEventListener('click', function (event) {
         event.preventDefault();
         this.querySelector('i').classList.toggle('fas');
         this.querySelector('i').classList.toggle('far');
@@ -78,13 +78,13 @@ for (let i = 0; i < images.length; i += 3) {
 }
 
 // Quantity
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     const quantityInput = document.getElementById('product-quanity');
     const minusButton = document.getElementById('btn-minus');
     const plusButton = document.getElementById('btn-plus');
     const varValue = document.getElementById('var-value');
 
-    minusButton.addEventListener("click", function() {
+    minusButton.addEventListener("click", function () {
         let value = parseInt(quantityInput.value);
         if (value > 1) {
             value--;
@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    plusButton.addEventListener("click", function() {
+    plusButton.addEventListener("click", function () {
         let value = parseInt(quantityInput.value);
         value++;
         quantityInput.value = value;
@@ -179,7 +179,7 @@ for (let i = 0; i < 4; i++) {
     const heartIcon = document.createElement('i');
     heartIcon.classList.add('far', 'fa-heart');
     heartLink.appendChild(heartIcon);
-    heartLink.addEventListener('click', function(event) {
+    heartLink.addEventListener('click', function (event) {
         event.preventDefault();
         if (heartIcon.classList.contains('far')) {
             heartIcon.classList.remove('far');
@@ -197,7 +197,7 @@ for (let i = 0; i < 4; i++) {
     eyeLi.classList.add('icon-item');
     const eyeLink = document.createElement('a');
     eyeLink.classList.add('btn', 'btn-success', 'text-white');
-    eyeLink.href = 'product-details.html';
+    eyeLink.href = '/product-details';
     const eyeIcon = document.createElement('i');
     eyeIcon.classList.add('far', 'fa-eye');
     eyeLink.appendChild(eyeIcon);

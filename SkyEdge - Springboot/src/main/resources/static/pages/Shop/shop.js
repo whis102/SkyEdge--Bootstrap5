@@ -87,9 +87,9 @@ function createCard(data) {
         const btn = document.createElement('div');
         const link = document.createElement('a');
         link.classList.add('btn2', 'btn', 'btn-success', 'text-white', 'mt-2');
-        link.href = 'product-details.html';
+        link.href = '/product-details';
         const icon = document.createElement('i');
-        icon.className = "fas"; 
+        icon.className = "fas";
         icon.classList.add(iconClass);
         link.appendChild(icon);
         btn.appendChild(link);
@@ -121,7 +121,7 @@ function createCard(data) {
     rateAndPriceContainer.appendChild(priceItem);
 
     const titleLink = document.createElement('a');
-    titleLink.href = 'product-details.html';
+    titleLink.href = '/product-details';
     titleLink.classList.add('h3', 'text-decoration-none', 'text-dark');
     titleLink.textContent = data.title;
 
@@ -146,26 +146,26 @@ document.getElementById("itemsContainer").appendChild(itemsContainer);
 
 // Pages, navigate pages
 const totalPages = 3;
-    const currentPage = 1;
+const currentPage = 1;
 
-    const paginationElement = document.getElementById('pagination');
+const paginationElement = document.getElementById('pagination');
 
-    const previousButton = document.createElement('li');
-    previousButton.classList.add('page-item');
-    previousButton.innerHTML = `<a class="page-link" href="#">Previous</a>`;
-    paginationElement.appendChild(previousButton);
+const previousButton = document.createElement('li');
+previousButton.classList.add('page-item');
+previousButton.innerHTML = `<a class="page-link" href="#">Previous</a>`;
+paginationElement.appendChild(previousButton);
 
-    for (let i = 1; i <= totalPages; i++) {
-        const pageItem = document.createElement('li');
-        pageItem.classList.add('page-item');
-        if (i === currentPage) {
-            pageItem.classList.add('active');
-        }
-        pageItem.innerHTML = `<a class="page-link" href="#">${i}</a>`;
-        paginationElement.appendChild(pageItem);
+for (let i = 1; i <= totalPages; i++) {
+    const pageItem = document.createElement('li');
+    pageItem.classList.add('page-item');
+    if (i === currentPage) {
+        pageItem.classList.add('active');
     }
+    pageItem.innerHTML = `<a class="page-link" href="#">${i}</a>`;
+    paginationElement.appendChild(pageItem);
+}
 
-    const nextButton = document.createElement('li');
-    nextButton.classList.add('page-item');
-    nextButton.innerHTML = `<a class="page-link" href="#">Next</a>`;
-    paginationElement.appendChild(nextButton);
+const nextButton = document.createElement('li');
+nextButton.classList.add('page-item');
+nextButton.innerHTML = `<a class="page-link" href="#">Next</a>`;
+paginationElement.appendChild(nextButton);
