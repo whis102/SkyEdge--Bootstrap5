@@ -18,10 +18,11 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableMethodSecurity
 public class WebSecurityConfig {
         private static final String[] WHITELIST = {
-                        "/",
                         "/login",
                         "/register",
-                        "/resources/**",
+                        "/displays/**",
+                        "/assets/**",
+                        "/pages/**",
                         "/auth/**"
 
         };
@@ -44,17 +45,20 @@ public class WebSecurityConfig {
                                 .csrf(csrf -> csrf.disable())
                                 .authorizeHttpRequests(requests -> requests
                                                 .requestMatchers(WHITELIST).permitAll()
-                                                .requestMatchers("/").permitAll()
-                                                .requestMatchers("/member/**").authenticated()
-                                                .requestMatchers("/about/**").authenticated()
-                                                .requestMatchers("/admin/**").hasRole("ADMIN"))
+                                                .requestMatchers("/").authenticated()
+                                                .requestMatchers("/about-us/**").authenticated()
+                                                .requestMatchers("/shop/**").authenticated()
+                                                .requestMatchers("/cart/**").authenticated()
+                                                .requestMatchers("/contact-us/**").authenticated()
+                                                .requestMatchers("/product-details/**").authenticated()
+                                                .requestMatchers("/admin/**").authenticated())
                                 .formLogin(login -> login
                                                 .loginPage("/login").loginProcessingUrl("/login")
                                                 .usernameParameter("username").passwordParameter("password")
                                                 .defaultSuccessUrl("/", true).failureUrl("/login?error")
                                                 .permitAll())
                                 .logout(logout -> logout.logoutUrl("/logout")
-                                                .logoutSuccessUrl("/login"))
+                                                .logoutSuccessUrl("/login?logout"))
                                 .rememberMe(me -> me.rememberMeParameter("remember-me"));
 
                 return http.build();

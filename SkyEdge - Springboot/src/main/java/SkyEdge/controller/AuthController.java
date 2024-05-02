@@ -22,6 +22,31 @@ public class AuthController {
         return "login";
     }
 
+    @GetMapping("/about-us")
+    public String about_us() {
+        return "about-us";
+    }
+
+    @GetMapping("/contact-us")
+    public String contact_us() {
+        return "contact-us";
+    }
+
+    @GetMapping("/cart")
+    public String cart() {
+        return "cart";
+    }
+
+    @GetMapping("/shop")
+    public String shop() {
+        return "shop";
+    }
+
+    @GetMapping("/product-details")
+    public String product_details() {
+        return "product-details";
+    }
+
     @GetMapping("/register")
     public String register(Model model) {
         RegistrationDTO registrationDTO = new RegistrationDTO();
@@ -37,7 +62,7 @@ public class AuthController {
 
     @GetMapping("/")
     public String home() {
-        return "home";
+        return "index";
     }
 
     // @GetMapping("/register")
