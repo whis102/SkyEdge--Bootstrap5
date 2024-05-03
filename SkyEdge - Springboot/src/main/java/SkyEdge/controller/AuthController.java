@@ -1,21 +1,28 @@
 package SkyEdge.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import SkyEdge.model.MyUserDetails;
+import SkyEdge.model.Product;
 import SkyEdge.model.RegistrationDTO;
 import SkyEdge.service.AuthenticationService;
+import SkyEdge.service.ProductService;
 
 @Controller
 public class AuthController {
     @Autowired
     private AuthenticationService authenticationService;
+
+    @Autowired
+    private ProductService productService;
 
     @GetMapping("/login")
     public String login() {
@@ -43,7 +50,16 @@ public class AuthController {
     }
 
     @GetMapping("/product-details")
-    public String product_details() {
+    public String product_details(Model model) throws NotFoundException {
+        Product product = productService.findByProductId((long) 0);
+        model.addAttribute("product", product);
+        return "product-details";
+    }
+
+    @GetMapping("/product-details/{id}")
+    public String product_details1(@PathVariable(value = "id") Long id, Model model) throws NotFoundException {
+        Product product = productService.findByProductId((long) id);
+        model.addAttribute("product", product);
         return "product-details";
     }
 
@@ -77,6 +93,7 @@ public class AuthController {
 
     @GetMapping("/admin")
     public String admin() {
+
         return "admin";
     }
 

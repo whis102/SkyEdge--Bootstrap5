@@ -87,7 +87,7 @@ function createCard(data) {
         const btn = document.createElement('div');
         const link = document.createElement('a');
         link.classList.add('btn2', 'btn', 'btn-success', 'text-white', 'mt-2');
-        link.href = '/product-details';
+        link.href = '/product-details/1';
         const icon = document.createElement('i');
         icon.className = "fas";
         icon.classList.add(iconClass);
