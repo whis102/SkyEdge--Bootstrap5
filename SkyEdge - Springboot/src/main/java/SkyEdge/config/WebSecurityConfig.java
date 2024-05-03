@@ -23,7 +23,8 @@ public class WebSecurityConfig {
                         "/displays/**",
                         "/assets/**",
                         "/pages/**",
-                        "/auth/**"
+                        "/auth/**",
+                        "/static/**"
 
         };
 
