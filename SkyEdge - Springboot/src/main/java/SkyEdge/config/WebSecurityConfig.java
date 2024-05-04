@@ -45,14 +45,10 @@ public class WebSecurityConfig {
                 http
                                 .csrf(csrf -> csrf.disable())
                                 .authorizeHttpRequests(requests -> requests
-                                                .requestMatchers(WHITELIST).permitAll()
-                                                .requestMatchers("/").authenticated()
-                                                .requestMatchers("/about-us/**").authenticated()
-                                                .requestMatchers("/shop/**").authenticated()
-                                                .requestMatchers("/cart/**").authenticated()
-                                                .requestMatchers("/contact-us/**").authenticated()
-                                                .requestMatchers("/product-details/**").authenticated()
-                                                .requestMatchers("/admin/**").hasAuthority("ADMIN"))
+                                                // .requestMatchers(WHITELIST).permitAll()
+                                                // .requestMatchers("/cart/**").authenticated()
+                                                // .requestMatchers("/admin/**").hasAuthority("ADMIN")
+                                                .anyRequest().permitAll())
                                 .formLogin(login -> login
                                                 .loginPage("/login").loginProcessingUrl("/login")
                                                 .usernameParameter("username").passwordParameter("password")
