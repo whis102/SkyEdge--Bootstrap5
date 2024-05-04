@@ -1,9 +1,7 @@
 package SkyEdge.model;
 
-import java.util.Collection;
 import java.util.Set;
 
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.Column;
@@ -57,8 +55,8 @@ public class MyUserDetails implements UserDetails {
     }
 
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+    public Set<Role> getAuthorities() {
+        return this.authorities;
         // create & return a List<GrantedAuthority> from roles
     }
 

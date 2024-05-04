@@ -52,7 +52,7 @@ public class WebSecurityConfig {
                                                 .requestMatchers("/cart/**").authenticated()
                                                 .requestMatchers("/contact-us/**").authenticated()
                                                 .requestMatchers("/product-details/**").authenticated()
-                                                .requestMatchers("/admin/**").authenticated())
+                                                .requestMatchers("/admin/**").hasAuthority("ADMIN"))
                                 .formLogin(login -> login
                                                 .loginPage("/login").loginProcessingUrl("/login")
                                                 .usernameParameter("username").passwordParameter("password")
