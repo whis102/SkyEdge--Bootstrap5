@@ -1,37 +1,32 @@
-// package SkyEdge.config;
+package SkyEdge.config;
 
-// import org.springframework.beans.factory.annotation.Autowired;
-// import org.springframework.boot.CommandLineRunner;
-// import org.springframework.stereotype.Component;
+import java.util.Optional;
 
-// import SkyEdge.model.User;
-// import SkyEdge.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
 
-// @Component
-// public class SeedData implements CommandLineRunner {
+import SkyEdge.model.Role;
+import SkyEdge.repository.RoleRepository;
 
-// @Autowired
-// private UserService userService;
+@Component
+public class SeedData implements CommandLineRunner {
+    @Autowired
+    private RoleRepository roleRepository;
 
-// @Override
-// public void run(String... args) throws Exception {
+    @Override
+    public void run(String... args) throws Exception {
 
-// User user01 = new User();
-// User user02 = new User();
+        Optional<Role> adminRole = roleRepository.findByAuthority("ADMIN");
+        Optional<Role> userRole = roleRepository.findByAuthority("USER");
+        System.out.println(adminRole);
+        if (adminRole.isEmpty()) {
+            roleRepository.save(new Role(0, "ADMIN"));
+        }
+        if (userRole.isEmpty()) {
+            roleRepository.save(new Role(1, "USER"));
+        }
 
-// user01.setEmail("ac01@mail.com");
-// user01.setPassword("123456");
-// user01.setName("user01");
-// user01.setUsername("user01");
+    }
 
-// user02.setEmail("ac02@mail.com");
-// user02.setPassword("123456");
-// user02.setName("user02");
-// user02.setUsername("user02");
-
-// userService.save(user01);
-// userService.save(user02);
-
-// }
-
-// }
+}

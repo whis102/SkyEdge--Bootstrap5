@@ -1,6 +1,6 @@
 var voucherContent = null;
-var currentPage = 1; 
-var vouchersPerPage = 7; 
+var currentPage = 1;
+var vouchersPerPage = 7;
 
 const voucherData = [
     {
@@ -118,8 +118,8 @@ const voucherData = [
 function getVoucherData() {
     return voucherData;
 }
-function showVoucher(){
-    if(!voucherContent){
+function showVoucher() {
+    if (!voucherContent) {
         const voucherContainer = document.createElement('div');
         voucherContainer.classList.add('container', 'voucher-container', 'p-4');
 
@@ -130,14 +130,14 @@ function showVoucher(){
         const col12 = document.createElement('div');
         col12.classList.add('col-12', 'd-flex', 'align-items-center');
         searchVoucher.appendChild(col12);
-        
+
         const management = document.createElement('div');
         management.classList.add('col-4', 'd-flex', 'align-items-center', 'gap-2');
         col12.appendChild(management);
-        const iconVoucher= document.createElement('i');
+        const iconVoucher = document.createElement('i');
         iconVoucher.classList.add('fa-solid', 'fa-ticket', 'fa-2x', 'mb-4');
         management.appendChild(iconVoucher);
-        const textVoucher= document.createElement('div');
+        const textVoucher = document.createElement('div');
         textVoucher.classList.add('d-flex', 'flex-column', 'ml-5');
         management.appendChild(textVoucher);
         const title = document.createElement('span');
@@ -181,9 +181,9 @@ function showVoucher(){
         col12.appendChild(addVoucherContainer);
 
         const listVoucher = document.createElement('div');
-        listVoucher.classList.add('list-voucher','row', 'gap-2');
+        listVoucher.classList.add('list-voucher', 'row', 'gap-2');
         voucherContainer.appendChild(listVoucher);
-        
+
         voucherData.forEach(voucher => {
             const voucherBox = createVoucherBox(voucher);
             listVoucher.appendChild(voucherBox);
@@ -192,7 +192,7 @@ function showVoucher(){
         function createVoucherBox(voucher) {
             const voucherBox = document.createElement('div');
             voucherBox.classList.add('voucher-box', 'rounded-3', 'bg-white', 'p-3', 'd-flex', 'align-items-center', 'gap-5');
-        
+
             const checkboxDiv = document.createElement('div');
             const checkbox = document.createElement('input');
             checkbox.classList.add('checkbox-voucher', 'form-check-input', 'mb-1');
@@ -200,14 +200,14 @@ function showVoucher(){
             checkbox.id = voucher.id;
             checkbox.name = 'option1';
             checkbox.value = voucher.voucherId;
-            checkbox.addEventListener('change', function() {
+            checkbox.addEventListener('change', function () {
                 displayButton(this);
             });
             checkboxDiv.appendChild(checkbox);
-        
+
             const icon = document.createElement('i');
-            icon.className = voucher.voucherIcon; 
-        
+            icon.className = voucher.voucherIcon;
+
             const table = document.createElement('table');
             table.classList.add('voucher-info', 'w-100');
             const thead = document.createElement('thead');
@@ -219,7 +219,7 @@ function showVoucher(){
                 headerRow.appendChild(th);
             });
             thead.appendChild(headerRow);
-            
+
             const tbody = document.createElement('tbody');
             const dataRow = document.createElement('tr');
             ['voucherCode', 'voucherName', 'discount', 'type', 'stock'].forEach(dataKey => {
@@ -228,13 +228,13 @@ function showVoucher(){
                 dataRow.appendChild(td);
             });
             tbody.appendChild(dataRow);
-        
+
             table.appendChild(thead);
             table.appendChild(tbody);
-        
+
             const buttonGroup = document.createElement('div');
             buttonGroup.classList.add('buttonGrp', 'd-none');
-            
+
             const updateButton = document.createElement('button');
             updateButton.classList.add('btn-update', 'd-flex', 'align-items-center', 'gap-1');
             const updateIcon = document.createElement('i');
@@ -243,10 +243,10 @@ function showVoucher(){
             const textUpdate = document.createElement('span');
             textUpdate.textContent = 'Update';
             updateButton.appendChild(textUpdate);
-            updateButton.addEventListener('click', function() {
+            updateButton.addEventListener('click', function () {
                 openPopup(voucher);
             });
-            
+
             const deleteButton = document.createElement('button');
             deleteButton.classList.add('btn-delete', 'd-flex', 'align-items-center', 'gap-1');
             const deleteIcon = document.createElement('i');
@@ -255,15 +255,15 @@ function showVoucher(){
             const textDelete = document.createElement('span');
             textDelete.textContent = 'Delete';
             deleteButton.appendChild(textDelete);
-            
+
             buttonGroup.appendChild(updateButton);
             buttonGroup.appendChild(deleteButton);
-        
+
             voucherBox.appendChild(checkboxDiv);
             voucherBox.appendChild(icon);
             voucherBox.appendChild(table);
             voucherBox.appendChild(buttonGroup);
-        
+
             return voucherBox;
         }
         const ulPagination = document.createElement("ul");
@@ -314,7 +314,7 @@ function showVoucher(){
         aNext.textContent = "Next";
         liNext.appendChild(aNext);
         ulPagination.appendChild(liNext);
-                
+
 
         function displayButton(checkbox) {
             var button = checkbox.closest('.voucher-box').querySelector('.buttonGrp');
@@ -324,7 +324,7 @@ function showVoucher(){
                 button.classList.add('d-none');
             }
         }
-        
+
         // Function to create the popup
         function createPopup(voucher) {
             // Overlay
@@ -341,7 +341,7 @@ function showVoucher(){
 
             // Close button
             const closeButton = document.createElement('span');
-            closeButton.classList.add('close-popup','fs-2');
+            closeButton.classList.add('close-popup', 'fs-2');
             closeButton.role = 'button';
             closeButton.textContent = '×';
             closeButton.addEventListener('click', closePopup);
@@ -349,7 +349,7 @@ function showVoucher(){
             // Form
             const inforContainer = document.createElement('div');
             inforContainer.classList.add('col', 'd-flex', 'align-items-center', 'bg-w', 'rounded-3');
-            
+
             const rightContent = document.createElement('div');
             rightContent.classList.add('right-content', 'p-4');
             inforContainer.appendChild(rightContent);
@@ -405,7 +405,7 @@ function showVoucher(){
             typeContainer.appendChild(typeLabel);
             typeContainer.appendChild(inputType);
             row2Container.appendChild(typeContainer);
-            
+
             // Icon & stock
             const row3Container = document.createElement('div')
             row3Container.classList.add('voucher-data', 'specifications');
@@ -413,7 +413,7 @@ function showVoucher(){
             const iconContainer = document.createElement('div');
             const iconLabel = document.createElement('label');
             iconLabel.textContent = "Voucher icon:";
-            const inputIcon= document.createElement('input');
+            const inputIcon = document.createElement('input');
             inputIcon.classList.add('form-control');
             inputIcon.value = voucher.voucherIcon;
             iconContainer.appendChild(iconLabel);
@@ -458,7 +458,7 @@ function showVoucher(){
             // Update & Delete button
             const buttonGroup = document.createElement('buttonGrp');
             buttonGroup.classList.add('buttonGrp');
-            
+
             rightContent.appendChild(buttonGroup);
             const updateButton = document.createElement('button');
             updateButton.classList.add('btn-update');
@@ -469,7 +469,7 @@ function showVoucher(){
             updateButton.appendChild(iconUpdate);
             updateButton.appendChild(textUpdate);
             buttonGroup.appendChild(updateButton);
-            updateButton.addEventListener('click', function(event) {
+            updateButton.addEventListener('click', function (event) {
                 event.preventDefault();
                 // Handle form submission here
                 closePopup();
@@ -484,9 +484,20 @@ function showVoucher(){
             deleteButton.appendChild(textDelete);
             buttonGroup.appendChild(deleteButton);
             // Form
-            const form = document.createElement('form');
-            form.id = 'updateForm';
 
+
+            const formHTML = '<form th:action="@{/admin/create-user}" class="border border-3" th:object="${user}" method="post">' +
+                '</form>';
+            const tempContainer = document.createElement('div');
+
+            // Set the innerHTML of the container to the form HTML
+            tempContainer.innerHTML = formHTML;
+
+            // Extract the form element from the container
+            const form = tempContainer.firstChild;
+
+            form.id = 'updateForm';
+            document.body.appendChild(form);
             // Add elements to popupContent
             popupContent.appendChild(closeButton);
             popupContent.appendChild(inforContainer);
@@ -499,8 +510,8 @@ function showVoucher(){
             document.body.appendChild(popup);
         }
         updateVoucherCount();
-        
-        addVoucherButton.addEventListener("click", function() {
+
+        addVoucherButton.addEventListener("click", function () {
             const newVoucher = {
                 id: 'check1',
                 voucherIcon: 'new icon',
@@ -513,7 +524,7 @@ function showVoucher(){
                 validity: 'new validity'
             };
             voucherData.push(newVoucher);
-        
+
             // Cập nhật số lượng sản phẩm
             updateVoucherCount();
             createPopup(newVoucher);
@@ -533,7 +544,7 @@ function showVoucher(){
                 popup.remove();
             }
         }
-        
+
         function displayButton(checkbox) {
             var button = checkbox.closest('.voucher-box').querySelector('.buttonGrp');
             if (checkbox.checked) {
