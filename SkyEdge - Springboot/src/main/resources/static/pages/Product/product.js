@@ -160,7 +160,21 @@ function displayButton(checkbox) {
         button.classList.add('d-none');
     }
 }
+function openPopup() {
+    // Display the popup
+    document.querySelector('.product-popup').classList.remove('d-none');
+    document.querySelector('.overlay').classList.remove('d-none');
+    // let currentUrl = window.location.href;
+    // let newUrl = currentUrl + "?popup=true";
+    // window.location.href = newUrl;
+}
 
+// Function to close the popup
+function closePopup() {
+    // Hide the popup
+    document.querySelector('.product-popup').classList.add('d-none');
+    document.querySelector('.overlay').classList.add('d-none');
+}
 // // Function to create the popup
 // function createPopup(product) {
 //     // Overlay
@@ -444,18 +458,3 @@ function displayButton(checkbox) {
 //         popup.remove();
 //     }
 // }
-function openPopup() {
-    // Display the popup
-    document.querySelector('.product-popup').classList.remove('d-none');
-    document.querySelector('.overlay').classList.remove('d-none');
-    // let currentUrl = window.location.href;
-    // let newUrl = currentUrl + "?popup=true";
-    // window.location.href = newUrl;
-}
-
-// Function to close the popup
-function closePopup() {
-    // Hide the popup
-    document.querySelector('.product-popup').classList.add('d-none');
-    document.querySelector('.overlay').classList.add('d-none');
-}
