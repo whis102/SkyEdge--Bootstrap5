@@ -94,7 +94,7 @@ public class AuthController {
     @GetMapping("/admin")
     public String admin() {
 
-        return "admin";
+        return "admin/admin";
     }
 
     @RequestMapping("/about")

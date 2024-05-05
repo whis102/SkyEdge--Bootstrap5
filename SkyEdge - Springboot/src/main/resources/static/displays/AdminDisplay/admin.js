@@ -42,76 +42,76 @@ function activateEvents() {
     });
 }
 
-var pages = {
-    "admin-dashboard": {
-        "title": "Dashboard",
-        "content": null,
-        "loadContent": function(){
-            return showDashboard();
-        }
-    },
-    "admin-product": {
-        "title": "Product",
-        "content": null,
-        "loadContent": function() {
-            return showProduct();
-        }
-    },
-    "admin-voucher": {
-        "title": "Voucher",
-        "content": null,
-        "loadContent": function() {
-            return showVoucher();
-        }
-    },
-    "admin-order": {
-        "title": "Order",
-        "content": null,
-        "loadContent": function() {
-            return showOrder();
-        }
-    },
-    "admin-subscribers": {
-        "title": "Subscribers",
-        "content": null,
-        "loadContent": function() {
-            return showSubscribers();
-        }
-    },
-    "admin-profile": {
-        "title": "Profile",
-        "content": null,
-        "loadContent": function() {
-            return showProfile();
-        }
-    }
-};
+// var pages = {
+//     "admin-dashboard": {
+//         "title": "Dashboard",
+//         "content": null,
+//         "loadContent": function(){
+//             return showDashboard();
+//         }
+//     },
+//     "admin-product": {
+//         "title": "Product",
+//         "content": null,
+//         "loadContent": function() {
+//             return showProduct();
+//         }
+//     },
+//     "admin-voucher": {
+//         "title": "Voucher",
+//         "content": null,
+//         "loadContent": function() {
+//             return showVoucher();
+//         }
+//     },
+//     "admin-order": {
+//         "title": "Order",
+//         "content": null,
+//         "loadContent": function() {
+//             return showOrder();
+//         }
+//     },
+//     "admin-subscribers": {
+//         "title": "Subscribers",
+//         "content": null,
+//         "loadContent": function() {
+//             return showSubscribers();
+//         }
+//     },
+//     "admin-profile": {
+//         "title": "Profile",
+//         "content": null,
+//         "loadContent": function() {
+//             return showProfile();
+//         }
+//     }
+// };
 
 // Function to load pages
-var currentPage = null;
+// var currentPage = null;
 
-function loadPageContent(page) {
-    const contentContainer = document.getElementById('content');
-    contentContainer.innerHTML = ''; // Xóa nội dung cũ
+// function loadPageContent(page) {
+//     const contentContainer = document.getElementById('content');
+//     contentContainer.innerHTML = ''; // Xóa nội dung cũ
 
-    if (pages[page] && typeof pages[page].loadContent === 'function') {
-        const pageContent = pages[page].loadContent();
-        contentContainer.appendChild(pageContent);
+//     if (pages[page] && typeof pages[page].loadContent === 'function') {
+//         const pageContent = pages[page].loadContent();
+//         contentContainer.appendChild(pageContent);
 
-        currentPage = page;
-    } else {
-        console.error('Page or loadContent function not found.');
-    }
-}
+//         currentPage = page;
+//     } else {
+//         console.error('Page or loadContent function not found.');
+//     }
+// }
 
-window.onload = function() {
-    loadPageContent('admin-dashboard');
+// window.onload = function() {
+//     loadPageContent('admin-dashboard');
 
-    $('.load-page').on('click', function() {
-        var page = $(this).data('page');
-        loadPageContent(page);
-    });
-};
+//     $('.load-page').on('click', function() {
+//         var page = $(this).data('page');
+//         loadPageContent(page);
+//     });
+// };
 
 // Menu animation
 const list = document.querySelectorAll('.list');
