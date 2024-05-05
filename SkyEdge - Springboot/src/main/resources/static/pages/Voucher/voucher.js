@@ -486,7 +486,7 @@ function showVoucher() {
             // Form
 
 
-            const formHTML = '<form th:action="@{/admin/create-user}" class="border border-3" th:object="${user}" method="post">' +
+            const formHTML = '<form th:action="@{/admin/create-user}" th:object="${user}" method="post">' +
                 '</form>';
             const tempContainer = document.createElement('div');
 

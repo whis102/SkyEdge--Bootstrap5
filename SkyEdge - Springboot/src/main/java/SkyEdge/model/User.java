@@ -1,60 +1,85 @@
-// package SkyEdge.model;
+package SkyEdge.model;
 
-// import java.time.LocalDate;
+import java.util.Set;
 
-// import jakarta.persistence.Column;
-// import jakarta.persistence.Entity;
-// import jakarta.persistence.GeneratedValue;
-// import jakarta.persistence.GenerationType;
-// import jakarta.persistence.Id;
-// import jakarta.validation.constraints.NotEmpty;
-// import lombok.Getter;
-// import lombok.NoArgsConstructor;
-// import lombok.Setter;
+import org.springframework.security.core.userdetails.UserDetails;
 
-// // @Getter
-// // @Setter
-// // @Entity
-// // public class User {
-// // @Id
-// // @GeneratedValue(strategy = GenerationType.IDENTITY)
-// // private Long id;
-// // private String username;
-// // private String password;
-// // private String roles; // "ADMIN,USER,MOD"
-// // private String address;
-// // }
-// @Getter
-// @Setter
-// @Entity
-// @NoArgsConstructor
-// public class User {
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-// @Id
-// @GeneratedValue(strategy = GenerationType.SEQUENCE)
-// private Long id;
+@Entity
+@Table(name = "user")
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+public class User implements UserDetails {
 
-// @Column(name = "username", length = 45, nullable = false)
-// @NotEmpty(message = "Username missing")
-// private String username;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int userId;
+    @Column(unique = true)
+    private String username;
+    private String password;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_role_junction", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {
+            @JoinColumn(name = "role_id") })
+    private Set<Role> authorities;
 
-// @Column(name = "password", length = 100, nullable = false)
-// @NotEmpty(message = "Password missing")
-// private String password;
+    @Column
+    private String email;
 
-// @Column(name = "email", length = 45, nullable = false)
-// @NotEmpty(message = "Email missing")
-// private String email;
+    public User(String username, String password, Set<Role> authorities) {
+        this.username = username;
+        this.password = password;
+        this.authorities = authorities;
+    }
 
-// @Column(name = "name", length = 100, nullable = false)
-// @NotEmpty(message = "Full Name missing")
-// private String name;
+    @Override
+    public String getUsername() {
+        return this.username;
+    }
 
-// @Column(name = "phone", length = 100, nullable = true)
-// private String phone;
+    @Override
+    public String getPassword() {
+        return this.password;
+    }
 
-// @Column(name = "createdDate", length = 1000, nullable = true)
-// private LocalDate createdDate = LocalDate.now();
+    @Override
+    public Set<Role> getAuthorities() {
+        return this.authorities;
+        // create & return a List<GrantedAuthority> from roles
+    }
 
-// private String role;
-// }
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+}

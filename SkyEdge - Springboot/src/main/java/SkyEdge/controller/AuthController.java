@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import SkyEdge.model.MyUserDetails;
 import SkyEdge.model.Product;
 import SkyEdge.model.RegistrationDTO;
+import SkyEdge.model.User;
 import SkyEdge.service.AuthenticationService;
 import SkyEdge.service.ProductService;
 
@@ -71,7 +71,7 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public String registerUser(@ModelAttribute MyUserDetails user) {
+    public String registerUser(@ModelAttribute User user) {
         authenticationService.registerUser(user.getUsername(), user.getPassword());
         return "redirect:/";
     }
