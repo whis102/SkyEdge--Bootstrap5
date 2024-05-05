@@ -1,5 +1,5 @@
-<div  th:fragment="menu">
-<nav class="sidebar position-fixed h-100 px-2 py-3">
+
+<nav class="sidebar position-fixed h-100 px-2 py-3" th:fragment="menu">
     <header class="position-relative">
         <!-- Logo -->
         <a role="button" class="image-text d-flex align-items-center mb-2 gap-2 text-decoration-none" href="/admin">
@@ -16,14 +16,14 @@
             <ul class="menu-links">
                 <!-- Menu items -->
 
-                <li role="button" class="list nav-link load-page active">
+                <li role="button" class="list nav-link load-page">
                     <a href="/admin">
                         <i class="fas fa-tachometer-alt icon"></i>
                         <span class="text navtext">Dashboard</span>
                     </a>
                 </li>
-                <li role="button" class="list nav-link load-page" >
-                    <a  href="/admin/product">
+                <li role="button" class="list nav-link load-page">
+                    <a th:href="@{/admin/product}">
                         <i class="fas fa-box-open icon"></i>
                         <span class="text navtext">Product</span>
                     </a>
@@ -39,7 +39,7 @@
                         <i class="fas fa-shopping-cart icon"></i>
                         <span class="text navtext">Order</span>
                     </a>
-                </li>
+                </li>   
                 <li role="button" class="list nav-link load-page">
                     <a href="/admin/subscriber">
                         <i class="fas fa-users icon"></i>
@@ -53,14 +53,13 @@
                     </a>
                 </li>
                 <li role="button" class="list nav-link load-page">
-                    <a href="/login">
+                    <a href="/login">   
                         <i class="fas fa-sign-out-alt icon"></i>
                         <span class="text navtext">Logout</span>
                     </a>
                 </li>
-                <div class="indicator"><i class="fas fa-caret-right"></i></div>
+                <!-- <div class="indicator"><i class="fas fa-caret-right"></i></div> -->
             </ul>
         </div>
     </div>
 </nav>
-</div>

@@ -19,7 +19,7 @@
     --tran-03: all 0.3s ease;
     --tran-04: all 0.4s ease;
     --tran-05: all 0.5s ease;
-
+    --index: 0;
 }
 
 /* ====== Start Custom ====== */
@@ -187,7 +187,7 @@ body {
 }
 .menu ul li:nth-child(6).active ~ .indicator{
     transform: translateY(calc(60px * 5));
-}
+} 
 .menu li .icon,
 .menu li .text{
     color: var(--text-color-light);

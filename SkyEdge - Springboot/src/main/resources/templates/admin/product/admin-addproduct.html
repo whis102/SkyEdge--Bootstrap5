@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="admin/fragments/head :: head"></head>
+
+<body>
+    <nav th:replace="admin/fragments/menu :: menu"></nav>
+
+    <div th:replace="admin/fragments/navbar :: navbar"></div>
+
+    <div id="content" class="bg-w p-3">
+        <!-- Form -->
+        <form th:action="@{/admin/product/add}" th:object="${product}" method="post" class="col d-flex align-items-center bg-w rounded-3" th:fragment="addproduct">
+            <!-- Left content -->
+            <div class="col-6 left-content p-4">
+                <!-- Product Images -->
+                <div class="product-image">
+                    <span>Product Images</span>
+                    <div class="image-container d-flex align-items-center mt-2 gap-4">
+                        <div class="img-product-details">
+                            <img src="product.imgSrc" alt="Product Image 1">
+                        </div>
+                        <div class="img-product-details add-more-image">
+                            <button class="rounded-pill fs-075">add new image</button>
+                        </div>
+                        <div class="img-product-details add-more-image">
+                            <button class="rounded-pill fs-075">add new image</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Name -->
+                <div class="product-data">
+                    <label for="productName">Product name:</label>
+                    <input type="text" class="form-control" id="name" th:field="*{name}">
+                </div>
+
+                <!-- Product Description -->
+                <div class="product-data">
+                    <label for="description">Product description:</label>
+                    <input class="form-control" id="description" th:field="*{description}" rows="4"></input>
+                </div>
+
+                <!-- Country of Manufacturer -->
+                <div class="product-data">
+                    <label for="country">Country of manufacturer:</label>
+                    <input type="text" class="form-control" id="country" value="product.country">
+                </div>
+
+                <!-- Manufacturer & Importer -->
+                <div class="product-data">
+                    <label for="manufacturer">Manufacturer & Importer:</label>
+                    <input type="text" class="form-control" id="manufacturer" value="product.manufacturer">
+                </div>
+            </div>
+
+            <!-- Right content -->
+            <div class="col-6 right-content p-4">
+                <!-- Category -->
+                <div class="product-data">
+                    <label for="category">Category:</label>
+                    <select class="form-select mt-2" id="category">
+                        <!-- Options will be added dynamically with JavaScript -->
+                    </select>
+                </div>
+
+                <!-- Base pricing -->
+                <div class="product-data specifications">
+                    <div>
+                        <label for="price">Base pricing:</label>
+                        <input type="text" class="form-control" id="price" value="product.price">
+                    </div>
+
+                    <!-- Discount -->
+                    <div>
+                        <label for="discount">Discount:</label>
+                        <input type="text" class="form-control" id="discount" value="product.discount">
+                    </div>
+                </div>
+
+                <!-- Frame -->
+                <div class="product-data specifications">
+                    <div>
+                        <label for="frameFront">Frame Front:</label>
+                        <input type="text" class="form-control" id="frameFront" value="product.front">
+                    </div>
+                    <div>
+                        <label for="frameSide">Frame Side:</label>
+                        <input type="text" class="form-control" id="frameSide" value="product.side">
+                    </div>
+                </div>
+
+                <!-- Lens -->
+                <div class="product-data specifications">
+                    <div>
+                        <label for="lensWidth">Lens Width:</label>
+                        <input type="text" class="form-control" id="lensWidth" value="product.width">
+                    </div>
+                    <div>
+                        <label for="lensHeight">Lens Height:</label>
+                        <input type="text" class="form-control" id="lensHeight" value="product.height">
+                    </div>
+                </div>
+
+                <!-- Stock -->
+                <div class="product-data">
+                    <label for="stock">Stock:</label>
+                    <input type="text" class="form-control" id="stock" value="product.stock">
+                </div>
+
+                <!-- Update & Delete buttons -->
+                <div class="buttonGrp">
+                    <button type="submit" class="btn-update" th:href="@{/admin/product}">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                        <span>Update</span>
+                    </button>
+                    <a  class="btn-delete" th:href="@{/admin/product}" >
+                        <i class="fa-regular fa-trash-can"></i>
+                        <span>Cancel</span>
+                    </a>
+                </div>
+            </div>
+        </form>
+</body>
+
+</html>

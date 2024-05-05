@@ -112,7 +112,6 @@ function activateEvents() {
 //         loadPageContent(page);
 //     });
 // };
-
 // Menu animation
 const list = document.querySelectorAll('.list');
 
@@ -124,7 +123,6 @@ function activeLink() {
 
 list.forEach((item) =>
     item.addEventListener('click', activeLink));
-
 
 
 // Show more items

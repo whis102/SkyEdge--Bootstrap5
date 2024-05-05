@@ -4,220 +4,104 @@
 <head th:replace="admin/fragments/head :: head"></head>
 
 <body>
-    <div th:replace="admin/fragments/menu :: menu"></div>
+    <nav th:replace="admin/fragments/menu :: menu"></nav>
 
     <div th:replace="admin/fragments/navbar :: navbar"></div>
 
     <div id="content" class="bg-w p-3">
-        <div class="container product-container p-4">
-            <!-- Search Bar -->
-            <div class="row d-flex align-items-center rounded-3 p-3 mb-4 bg-white">
-                <div class="col-12 d-flex align-items-center">
-                    <!-- Management -->
-                    <div class="col-4 d-flex align-items-center gap-2">
-                        <i class="fa-solid fa-cart-shopping fa-2x mb-4"></i>
-                        <div class="d-flex flex-column ml-5">
-                            <span class="fs-2">Product Management</span>
-                            <span id="total-product" class="text-secondary">0 products</span>
-                        </div>
-                    </div>
-                    <!-- Search -->
-                    <div class="col-6">
-                        <div class="search-box d-flex align-items-center bg-w rounded-3 px-2 mx-4 gap-3">
-                            <i class="fas fa-search icon mx-1"></i>
-                            <input class="bg-w rounded-3 h-4 fs-6 w-100 border-0 outline-none" type="search"
-                                placeholder="Search">
-                        </div>
-                    </div>
-                    <!-- Add Product Button -->
-                    <div class="col-2 px-4">
-                        <button id="add-product-button"
-                            class="rounded-pill text-white bg-success py-2 px-3 d-flex align-items-center gap-2 border-0 outline-0"
-                            onclick="openPopup()">
-                            <i class="fas fa-plus-circle"></i>
-                            <span class="mt-0">Add product</span>
-                        </button>
+        
+    <div class="container product-container p-4">
+        <!-- Search Bar -->
+        <div class="row d-flex align-items-center rounded-3 p-3 mb-4 bg-white">
+            <div class="col-12 d-flex align-items-center">
+                <!-- Management -->
+                <div class="col-4 d-flex align-items-center gap-2">
+                    <i class="fa-solid fa-cart-shopping fa-2x mb-4"></i>
+                    <div class="d-flex flex-column ml-5">
+                        <span class="fs-2">Product Management</span>
+                        <span id="total-product" class="text-secondary">0 products</span>
                     </div>
                 </div>
-            </div>
-            <!-- List Product -->
-            <div class="list-product row gap-2">
-                <div class="product-box rounded-3 bg-white p-3 d-flex align-items-center gap-5">
-                    <input id="checkbox-product-input" type="checkbox" onchange="displayButton(this)">
-                    <img class="img-product">
-                    <table class="product-info w-100">
-                        <thead class="fs-075 text-secondary">
-                            <tr>
-                                <th>Product ID</th>
-                                <th>Product Name</th>
-                                <th>Price</th>
-                                <th>Type</th>
-                                <th>Origin</th>
-                                <th>Stock</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr id="tr-product">
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <!-- Các nút Update và Delete -->
-                    <div class="buttonGrp d-none">
-                        <button id="btn-update-product" class="btn-update d-flex align-items-center gap-1"
-                            onclick="openPopup()">
-                            <i class="fa-solid fa-pen-to-square"></i>
-                            <span>Update</span>
-                        </button>
-                        <button class="btn-delete d-flex align-items-center gap-1">
-                            <i class="fa-regular fa-trash-can"></i>
-                            <span>Delete</span>
-                        </button>
+                <!-- Search -->
+                <form th:action="'/admin/product/search'" method="GET" class="col-6">
+                    <div class="search-box d-flex align-items-center bg-w rounded-3 px-2 mx-4 gap-3">
+                        <i class="fas fa-search icon mx-1"></i>
+                        <input class="bg-w rounded-3 h-4 fs-6 w-100 border-0 outline-none" type="search" name="query"
+                            placeholder="Search">
                     </div>
+                </form>
+                <!-- Add Product Button -->
+                <div class="col-2 px-4">
+                    <a th:href="@{/admin/product/add}" id="add-product-button" class="rounded-pill text-white bg-success py-2 px-3 d-flex align-items-center gap-2 border-0 outline-0">
+                        <i class="fas fa-plus-circle"></i>
+                        <span class="mt-0">Add product</span>
+                    </a>
                 </div>
             </div>
-            <!-- Overlay -->
-            <div class="overlay d-none"></div>
-
-            <!-- Popup -->
-            <div class="product-popup d-none">
-                <div class="product-popup-content">
-                    <!-- Close button -->
-                    <span class="close-popup fs-2" role="button" onclick="closePopup()">×</span>
-
-                    <!-- Form -->
-                    <form class="col d-flex align-items-center bg-w rounded-3">
-                        <!-- Left content -->
-                        <div class="col-6 left-content p-4">
-                            <!-- Product Images -->
-                            <div class="product-image">
-                                <span>Product Images</span>
-                                <div class="image-container d-flex align-items-center mt-2 gap-4">
-                                    <div class="img-product-details">
-                                        <img src="product.imgSrc" alt="Product Image 1">
-                                    </div>
-                                    <div class="img-product-details add-more-image">
-                                        <button class="rounded-pill fs-075">add new image</button>
-                                    </div>
-                                    <div class="img-product-details add-more-image">
-                                        <button class="rounded-pill fs-075">add new image</button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Product Name -->
-                            <div class="product-data">
-                                <label for="productName">Product name:</label>
-                                <input type="text" class="form-control" id="productName" value="product.productName">
-                            </div>
-
-                            <!-- Product Description -->
-                            <div class="product-data">
-                                <label for="description">Product description:</label>
-                                <textarea class="form-control" id="description" rows="4">product.description</textarea>
-                            </div>
-
-                            <!-- Country of Manufacturer -->
-                            <div class="product-data">
-                                <label for="country">Country of manufacturer:</label>
-                                <input type="text" class="form-control" id="country" value="product.country">
-                            </div>
-
-                            <!-- Manufacturer & Importer -->
-                            <div class="product-data">
-                                <label for="manufacturer">Manufacturer & Importer:</label>
-                                <input type="text" class="form-control" id="manufacturer" value="product.manufacturer">
-                            </div>
-                        </div>
-
-                        <!-- Right content -->
-                        <div class="col-6 right-content p-4">
-                            <!-- Category -->
-                            <div class="product-data">
-                                <label for="category">Category:</label>
-                                <select class="form-select mt-2" id="category">
-                                    <!-- Options will be added dynamically with JavaScript -->
-                                </select>
-                            </div>
-
-                            <!-- Base pricing -->
-                            <div class="product-data specifications">
-                                <div>
-                                    <label for="price">Base pricing:</label>
-                                    <input type="text" class="form-control" id="price" value="product.price">
-                                </div>
-
-                                <!-- Discount -->
-                                <div>
-                                    <label for="discount">Discount:</label>
-                                    <input type="text" class="form-control" id="discount" value="product.discount">
-                                </div>
-                            </div>
-
-                            <!-- Frame -->
-                            <div class="product-data specifications">
-                                <div>
-                                    <label for="frameFront">Frame Front:</label>
-                                    <input type="text" class="form-control" id="frameFront" value="product.front">
-                                </div>
-                                <div>
-                                    <label for="frameSide">Frame Side:</label>
-                                    <input type="text" class="form-control" id="frameSide" value="product.side">
-                                </div>
-                            </div>
-
-                            <!-- Lens -->
-                            <div class="product-data specifications">
-                                <div>
-                                    <label for="lensWidth">Lens Width:</label>
-                                    <input type="text" class="form-control" id="lensWidth" value="product.width">
-                                </div>
-                                <div>
-                                    <label for="lensHeight">Lens Height:</label>
-                                    <input type="text" class="form-control" id="lensHeight" value="product.height">
-                                </div>
-                            </div>
-
-                            <!-- Stock -->
-                            <div class="product-data">
-                                <label for="stock">Stock:</label>
-                                <input type="text" class="form-control" id="stock" value="product.stock">
-                            </div>
-
-                            <!-- Update & Delete buttons -->
-                            <div class="buttonGrp">
-                                <button type="submit" class="btn-update" onclick="closePopup()">
-                                    <i class="fa-solid fa-pen-to-square"></i>
-                                    <span>Update</span>
-                                </button>
-                                <button class="btn-delete">
-                                    <i class="fa-regular fa-trash-can"></i>
-                                    <span>Delete</span>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-            <!-- Pagination -->
-            <ul class="pagination justify-content-end" style="margin: 20px 0;">
-                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">Next</a></li>
-            </ul>
         </div>
-    </div>
+        <!-- List Product -->
+        <div  class="list-product row gap-2">
+            <div th:each="product : ${products}" class="product-box rounded-3 bg-white p-3 d-flex align-items-center gap-5">
+                <input id="checkbox-product-input" type="checkbox" onchange="displayButton(this)">
+                <img class="img-product">
+                <table class="product-info w-100">
+                    <thead class="fs-075 text-secondary">
+                        <tr>
+                            <th>Product ID</th>
+                            <th>Product Name</th>
+                            <th>Price</th>
+                            <th>Type</th>
+                            <th>Origin</th>
+                            <th>Stock</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr id="tr-product">
+                            <td th:text="${product.id}"></td>
+                            <td th:text="${product.name}"></td>
+                            <td th:text="${product.description}"></td>
+                            <td></td>
+                            <td></td>
+                            <td ></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- Các nút Update và Delete -->
+                <div class="buttonGrp d-none">
+                    <a th:href="'/admin/product/update/' + ${product.id}" class="btn-update d-flex align-items-center gap-1"
+                        onclick="openPopup()">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                        <span>Update</span>
+                    </a>
+                    <a th:href="'/admin/product/delete/' + ${product.id}" class="btn-delete d-flex align-items-center text-decoration-none gap-1">
+                        <i class="fa-regular fa-trash-can"></i>
+                        <span>Delete</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- Overlay -->
+        <div class="overlay d-none"></div>
 
-    <!-- Scripts -->
-    <div th:replace="admin/fragments/script :: script"></div>
+        <!-- Popup -->
+        <div class="product-popup d-none">
+            <div class="product-popup-content">
+                <!-- Close button -->
+                <span class="close-popup fs-2" role="button" onclick="closePopup()">×</span>
+        
+            </div>
+        </div>
+
+        <!-- Pagination -->
+        <ul class="pagination justify-content-end" style="margin: 20px 0;">
+            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        </ul>
+    </div>
+    <script th:replace="admin/fragments/script :: script"></script>
 </body>
 
 </html>
