@@ -60,155 +60,327 @@ document.getElementById('nav-top').appendChild(topNav);
 const header = document.createElement('div')
 header.classList.add('container', 'd-flex', 'justify-content-between', 'align-items-center')
 
-header.innerHTML = `
-<!-- Brand -->
-<a class="navbar-brand align-self-center logo" href="index.html">
-    <div  class="image-text d-flex align-items-center mb-2 gap-2">
-        <img class="image" src="./assets/favicon.png" alt="Logo" width="40" height="40">
-        <span class="text fs-4 color-web-text">SkyEdge</span>
-    </div>
-</a>
+const brandLink = document.createElement('a');
+brandLink.classList.add('navbar-brand', 'align-self-center', 'logo');
+brandLink.href = 'index.html';
 
-<!-- Menubar -->
-<div id="nav-menu" class="align-self-center collapse navbar-collapse flex-fill d-lg-flex justify-content-lg-between">
-    <div class="flex-fill">
-        <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="index.html" aria-current="page">Home</a>
-            </li>
+const imageTextDiv = document.createElement('div');
+imageTextDiv.classList.add('image-text', 'd-flex', 'align-items-center', 'mb-2', 'gap-2');
 
-            <li class="nav-item">
-                <a class="nav-link" href="shop.html">Shop</a>
-            </li>
+const logoImg = document.createElement('img');
+logoImg.classList.add('image');
+logoImg.src = './assets/favicon.png';
+logoImg.alt = 'Logo';
+logoImg.width = 40;
+logoImg.height = 40;
 
-            <li class="nav-item">
-                <a class="nav-link" href="about-us.html">About</a>
-            </li>
+const textSpan = document.createElement('span');
+textSpan.classList.add('text', 'fs-4', 'color-web-text');
+textSpan.textContent = 'SkyEdge';
 
-            <li class="nav-item">
-                <a class="nav-link" href="contact-us.html">Contact</a>
-            </li>
-        </ul>
-    </div>
+imageTextDiv.appendChild(logoImg);
+imageTextDiv.appendChild(textSpan);
 
-    <!-- Menu Icon -->
-    <div class="navbar align-items-center d-flex">
-        <a class="nav-icon text-decoration-none" href="#">
-            <i class="fa-solid fa-heart text-dark"></i>
-        </a>
-        <a class="nav-icon text-decoration-none" href="cart.html">
-            <i class="fa-solid fa-cart-shopping text-dark"></i>
-            <span class="position-absolute translate-middle badge rounded-pill bg-danger">
-            0
-            </span>
-        </a>
-        <div id="dropdown" class="dropdown">
-            <a class="nav-icon d-flex align-items-center text-decoration-none" data-bs-toggle="dropdown" href="#">
-                <i class="fa-solid fa-user text-dark"></i>
-                <span class="dropdown-toggle ms-2"></span>
-            </a>
+brandLink.appendChild(imageTextDiv);
 
-            <ul class="dropdown-menu" aria-labelledby="userDropdown">
-                <li><a class="dropdown-item" href="#">Settings</a></li>
-                <li><a class="dropdown-item" href="login.html">Log out</a></li>
-            </ul>
-        </div>
-    </div>
-</div>
-`
+const navMenuDiv = document.createElement('div');
+navMenuDiv.id = 'nav-menu';
+navMenuDiv.classList.add('align-self-center', 'collapse', 'navbar-collapse', 'flex-fill', 'd-lg-flex', 'justify-content-lg-between');
+
+const ulMenu = document.createElement('ul');
+ulMenu.classList.add('nav', 'navbar-nav', 'd-flex', 'justify-content-between', 'mx-lg-auto');
+
+const menuItems = [
+    { text: 'Home', href: 'index.html' },
+    { text: 'Shop', href: 'shop.html' },
+    { text: 'About', href: 'about-us.html' },
+    { text: 'Contact', href: 'contact-us.html' }
+];
+
+menuItems.forEach(item => {
+    const li = document.createElement('li');
+    li.classList.add('nav-item');
+    const a = document.createElement('a');
+    a.classList.add('nav-link');
+    a.href = item.href;
+    a.textContent = item.text;
+    a.style.margin = '0 35px';
+    li.appendChild(a);
+    ulMenu.appendChild(li);
+});
+
+navMenuDiv.appendChild(ulMenu);
+
+const menuIconDiv = document.createElement('div');
+menuIconDiv.classList.add('navbar', 'align-items-center', 'd-flex');
+
+const heartIconLink = document.createElement('a');
+heartIconLink.classList.add('nav-icon', 'text-decoration-none');
+heartIconLink.href = '#';
+heartIconLink.style.marginRight = '20px';
+
+const heartIcon = document.createElement('i');
+heartIcon.classList.add('fa-solid', 'fa-heart', 'text-dark');
+heartIconLink.appendChild(heartIcon);
+
+const cartIconLink = document.createElement('a');
+cartIconLink.classList.add('nav-icon', 'text-decoration-none');
+cartIconLink.href = 'cart.html';
+cartIconLink.style.marginRight = '20px';
+
+const cartIcon = document.createElement('i');
+cartIcon.classList.add('fa-solid', 'fa-cart-shopping', 'text-dark');
+cartIconLink.appendChild(cartIcon);
+
+const cartBadge = document.createElement('span');
+cartBadge.classList.add('position-absolute', 'translate-middle', 'badge', 'rounded-pill', 'bg-danger');
+cartBadge.textContent = '0';
+cartIconLink.appendChild(cartBadge);
+
+const dropdownDiv = document.createElement('div');
+dropdownDiv.id = 'dropdown';
+dropdownDiv.classList.add('dropdown');
+
+const userIconLink = document.createElement('a');
+userIconLink.classList.add('nav-icon', 'd-flex', 'align-items-center', 'text-decoration-none');
+userIconLink.setAttribute('data-bs-toggle', 'dropdown');
+userIconLink.href = '#';
+
+const userIcon = document.createElement('i');
+userIcon.classList.add('fa-solid', 'fa-user', 'text-dark');
+userIconLink.appendChild(userIcon);
+
+const dropdownMenu = document.createElement('ul');
+dropdownMenu.classList.add('dropdown-menu');
+dropdownMenu.setAttribute('aria-labelledby', 'userDropdown');
+
+const dropdownItems = [
+    { text: 'Settings', href: '#' },
+    { text: 'Log out', href: 'login.html' }
+];
+
+dropdownItems.forEach(item => {
+    const li = document.createElement('li');
+    const a = document.createElement('a');
+    a.classList.add('dropdown-item');
+    a.href = item.href;
+    a.textContent = item.text;
+    li.appendChild(a);
+    dropdownMenu.appendChild(li);
+});
+
+dropdownDiv.appendChild(userIconLink);
+dropdownDiv.appendChild(dropdownMenu);
+
+menuIconDiv.appendChild(heartIconLink);
+menuIconDiv.appendChild(cartIconLink);
+menuIconDiv.appendChild(dropdownDiv);
+
+header.appendChild(brandLink);
+header.appendChild(navMenuDiv);
+header.appendChild(menuIconDiv);
+
+document.body.appendChild(header);
 
 document.getElementById('header').appendChild(header)
 
 // Footer
 const footerContainer = document.createElement('div')
 footerContainer.classList.add('row')
+const containerFooter = document.getElementById('footer');
+containerFooter.appendChild(footerContainer);
 
-footerContainer.innerHTML = `
-    <!-- Contact -->
-    <div class="col-md-4 pt-5">
-        <h2 class="h2 border-bottom pb-3 border-light text-success">SkyEdge</h2>
-        <ul class="list-unstyled text-light footer-link-list">
-            <li>
-                <i class="fas fa-map-marker-alt fa-fw"></i>
-                Hanoi University
-            </li>
+// Contact
+const contactColumn = document.createElement('div');
+contactColumn.classList.add('col-md-4', 'pt-5');
 
-            <li>
-                <i class="fa fa-phone fa-fw"></i>
-                <a class="text-decoration-none" href="tel:032-323-3232">032-323-3232</a>
-            </li>
+footerContainer.appendChild(contactColumn);
 
-            <li>
-                <i class="fa fa-envelope fa-fw"></i>
-                <a class="text-decoration-none" href="mailto:hanu@gmail.com">hanu@gmail.com</a>
-            </li>
-        </ul>
-    </div>
+const contactTitle = document.createElement('h2');
+contactTitle.classList.add('h2', 'border-bottom', 'pb-3', 'border-light', 'text-success');
+contactTitle.textContent = 'SkyEdge';
 
-    <!-- Product -->
-    <div class="col-md-4 pt-5">
-        <h2 class="h3 text-light border-bottom pb-3 border-light foot-title">Products</h2>
-        <ul class="list-unstyled text-light footer-link-list">
-            <li><a class="text-decoration-none" href="#">Luxury</a></li>
-            <li><a class="text-decoration-none" href="#">Trending</a></li>
-            <li><a class="text-decoration-none" href="#">Men's Glass</a></li>
-            <li><a class="text-decoration-none" href="#">Women's Glass</a></li>
-            <li><a class="text-decoration-none" href="#">Sunglasses</a></li>
-            <li><a class="text-decoration-none" href="#">Accessories</a></li>
-            <li><a class="text-decoration-none" href="#">Eyeglass Frames</a></li>
-        </ul>
-    </div>
 
-    <!-- Futher infor -->
-    <div class="col-md-4 pt-5">
-        <h2 class="h3 text-light border-bottom pb-3 border-light foot-title">Pages</h2>
-        <ul class="list-unstyled text-light footer-link-list">
-            <li><a class="text-decoration-none" href="index.html">Home</a></li>
-            <li><a class="text-decoration-none" href="#">Shop</a></li>
-            <li><a class="text-decoration-none" href="about-us.html">About</a></li>
-            <li><a class="text-decoration-none" href="#">FAQs</a></li>
-            <li><a class="text-decoration-none" href="#">Contact</a></li>
-        </ul>
-    </div>
-    </div>
+contactColumn.appendChild(contactTitle);
 
-    <!-- Social contacts -->
-    <div class="row text-light mb-4">
-    <div class="col-12 mb-3">
-        <div class="w-100 my-3 border-top border-light"></div>
-    </div>
 
-    <div class="col-auto me-auto">
-        <ul class="list-inline text-left footer-icons">
-            <li class="list-inline-item border border-light rounded-circle text-center">
-                <a class="text-light text-decoration-none" target="_blank" href="http://facebook.com/"><i class="fab fa-facebook-f fa-lg fa-fw"></i></a>
-            </li>
+const contactItems = [
+    { icon: 'fas fa-map-marker-alt fa-fw', href:'https://maps.app.goo.gl/5jtXTNnZV3NLpy8m6', text: 'Hanoi University' },
+    { icon: 'fa fa-phone fa-fw', href:'tel:032-323-3232', text: '032-323-3232' },
+    { icon: 'fa fa-envelope fa-fw', href:'mailto:hanu@gmail.com', text: 'hanu@gmail.com' }
+];
+const ulElement = document.createElement('ul');
+ulElement.classList.add('list-unstyled', 'text-light', 'footer-link-list');
 
-            <li class="list-inline-item border border-light rounded-circle text-center">
-                <a class="text-light text-decoration-none" target="_blank" href="https://www.instagram.com/"><i class="fab fa-instagram fa-lg fa-fw"></i></a>
-            </li>
+contactItems.forEach(item => {
+    const liElement = document.createElement('li');
+    liElement.className = "d-flex align-items-center gap-2";
+    ulElement.appendChild(liElement);
+    const iElement = document.createElement('i');
+    iElement.className = item.icon ;
 
-            <li class="list-inline-item border border-light rounded-circle text-center">
-                <a class="text-light text-decoration-none" target="_blank" href="https://twitter.com/"><i class="fab fa-twitter fa-lg fa-fw"></i></a>
-            </li>
+    const linkElement = document.createElement('a');
+    linkElement.className = "text-decoration-none";
+    linkElement.href = item.href;
+    linkElement.textContent = item.text;
+    
+    liElement.appendChild(iElement);
+    liElement.appendChild(linkElement);
+});
 
-            <li class="list-inline-item border border-light rounded-circle text-center">
-                <a class="text-light text-decoration-none" target="_blank" href="https://www.linkedin.com/"><i class="fab fa-linkedin fa-lg fa-fw"></i></a>
-            </li>
-        </ul>
-    </div>
+contactColumn.appendChild(ulElement);
+// Product
+const productColumn = document.createElement('div');
+productColumn.classList.add('col-md-4', 'pt-5');
 
-    <!-- Email subscriber -->
-    <div class="col-auto">
-        <div class="container-fluid col-auto">
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="email" placeholder="Enter your email"
-                    aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Subscribe</button>
-            </form>
-        </div>
-    </div>
-`
+const productTitle = document.createElement('h2');
+productTitle.classList.add('h3', 'text-light', 'border-bottom', 'pb-3', 'border-light', 'foot-title');
+productTitle.textContent = 'Products';
+
+const productList = document.createElement('ul');
+productList.classList.add('list-unstyled', 'text-light', 'footer-link-list');
+
+const productItems = [
+    'Luxury', 'Trending', "Men's Glass", "Women's Glass", 'Sunglasses', 'Accessories', 'Eyeglass Frames'
+];
+
+productItems.forEach(item => {
+    const li = document.createElement('li');
+    const a = document.createElement('a');
+    a.classList.add('text-decoration-none');
+    a.href = '#';
+    a.textContent = item;
+    li.appendChild(a);
+    productList.appendChild(li);
+});
+
+productColumn.appendChild(productTitle);
+productColumn.appendChild(productList);
+footerContainer.appendChild(productColumn);
+
+// Pages
+const pagesColumn = document.createElement('div');
+pagesColumn.classList.add('col-md-4', 'pt-5');
+
+footerContainer.appendChild(pagesColumn);
+const pagesTitle = document.createElement('h2');
+pagesTitle.classList.add('h3', 'text-light', 'border-bottom', 'pb-3', 'border-light', 'foot-title');
+pagesTitle.textContent = 'Pages';
+
+const pagesList = document.createElement('ul');
+pagesList.classList.add('list-unstyled', 'text-light', 'footer-link-list');
+
+const pagesItems = [
+    { text: 'Home', href: 'index.html' },
+    { text: 'Shop', href: '#' },
+    { text: 'About', href: 'about-us.html' },
+    { text: 'FAQs', href: '#' },
+    { text: 'Contact', href: '#' }
+];
+
+pagesItems.forEach(item => {
+    const li = document.createElement('li');
+    const a = document.createElement('a');
+    a.classList.add('text-decoration-none');
+    a.href = item.href;
+    a.textContent = item.text;
+    li.appendChild(a);
+    pagesList.appendChild(li);
+});
+
+pagesColumn.appendChild(pagesTitle);
+pagesColumn.appendChild(pagesList);
+
+const socialContacts = document.createElement('div');
+socialContacts.classList.add('row', 'text-light', 'mb-4');
+
+const socialDivider = document.createElement('div');
+socialDivider.classList.add('col-12', 'mb-3');
+const divider = document.createElement('div');
+divider.classList.add('w-100', 'my-3', 'border-top', 'border-light');
+socialDivider.appendChild(divider);
+socialContacts.appendChild(socialDivider);
+
+const socialIconsColumn = document.createElement('div');
+socialIconsColumn.classList.add('col-auto', 'me-auto');
+
+const socialIconsList = document.createElement('ul');
+socialIconsList.classList.add('list-inline', 'text-left', 'footer-icons');
+
+const socialIcons2 = [
+    'fab fa-facebook-f fa-lg fa-fw',
+    'fab fa-instagram fa-lg fa-fw',
+    'fab fa-twitter fa-lg fa-fw',
+    'fab fa-linkedin fa-lg fa-fw'
+];
+
+socialIcons2.forEach(icon => {
+    const li = document.createElement('li');
+    li.classList.add('list-inline-item', 'border', 'border-light', 'rounded-circle', 'text-center');
+    const a = document.createElement('a');
+    a.classList.add('text-light', 'text-decoration-none');
+    a.target = '_blank';
+    a.href = '#';
+    const i = document.createElement('i');
+    i.classList.add(icon);
+    a.appendChild(i);
+    li.appendChild(a);
+    socialIconsList.appendChild(li);
+});
+
+socialIconsColumn.appendChild(socialIconsList);
+socialContacts.appendChild(socialIconsColumn);
+
+const emailSubscriberColumn = document.createElement('div');
+emailSubscriberColumn.classList.add('col-auto');
+
+const emailForm = document.createElement('form');
+emailForm.classList.add('container-fluid', 'col-auto', 'd-flex');
+emailForm.role = 'search';
+
+const emailInput = document.createElement('input');
+emailInput.classList.add('form-control', 'me-2');
+emailInput.type = 'email';
+emailInput.placeholder = 'Enter your email';
+emailInput.setAttribute('aria-label', 'Search');
+
+const subscribeButton = document.createElement('button');
+subscribeButton.classList.add('btn', 'btn-outline-success');
+subscribeButton.type = 'submit';
+subscribeButton.textContent = 'Subscribe';
+
+emailForm.appendChild(emailInput);
+emailForm.appendChild(subscribeButton);
+emailSubscriberColumn.appendChild(emailForm);
+socialContacts.appendChild(emailSubscriberColumn);
+
+footerContainer.appendChild(socialContacts);
+
+// Copyright
+const cpContainer = document.createElement('div');
+cpContainer.classList.add('container')
+
+const createCopyright = (copyright) => {
+    const rowDiv = document.createElement('div');
+    rowDiv.classList.add('row', 'pt-2');
+
+    const colDiv = document.createElement('div');
+    colDiv.classList.add('col-12');
+    rowDiv.appendChild(colDiv);
+
+    const pElement = document.createElement('p');
+    pElement.classList.add('text-left', 'text-light');
+    pElement.textContent = 'Copyright © 2024 SE2-Group-4 | From Hanu with love';
+    colDiv.appendChild(pElement);
+
+    const iElement = document.createElement('i');
+    iElement.classList.add('fa-solid', 'fa-heart');
+    pElement.appendChild(iElement);
+
+    return rowDiv;
+};    
+
+document.getElementById("copyright").appendChild(cpContainer);
 
 function createFooterLinks(links) {
     const ul = document.createElement('ul');
@@ -242,30 +414,3 @@ const footerLinks = [
 // footer.appendChild(footerLinksElement);
 // footerContainer.appendChild(footer)
 
-document.getElementById("footer").appendChild(footerContainer)
-
-// Copyright
-const cpContainer = document.createElement('div');
-cpContainer.classList.add('container')
-
-const createCopyright = (copyright) => {
-    const rowDiv = document.createElement('div');
-    rowDiv.classList.add('row', 'pt-2');
-
-    const colDiv = document.createElement('div');
-    colDiv.classList.add('col-12');
-    rowDiv.appendChild(colDiv);
-
-    const pElement = document.createElement('p');
-    pElement.classList.add('text-left', 'text-light');
-    pElement.textContent = 'Copyright © 2024 SE2-Group-4 | From Hanu with love';
-    colDiv.appendChild(pElement);
-
-    const iElement = document.createElement('i');
-    iElement.classList.add('fa-solid', 'fa-heart');
-    pElement.appendChild(iElement);
-
-    return rowDiv;
-};    
-
-document.getElementById("copyright").appendChild(cpContainer);
