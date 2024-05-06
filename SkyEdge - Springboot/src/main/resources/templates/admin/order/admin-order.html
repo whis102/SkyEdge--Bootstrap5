@@ -1,3 +1,130 @@
-<div class="container">
-    <h1>Order</h1>
-</div>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="admin/fragments/head :: head"></head>
+
+<body>
+    <nav th:replace="admin/fragments/menu :: menu"></nav>
+
+    <div th:replace="admin/fragments/navbar :: navbar"></div>
+
+    <div id="content" class="bg-w p-3">
+        <div class="container order-container p-4">
+            <!-- Order management -->
+            <div class="row d-flex align-items-center rounded-3 custom-padding mb-4 bg-white">
+                <!-- Top container -->
+                <div class="col-12 d-flex align-items-center">
+                    <!-- Left management -->
+                    <div class="col-4">
+                        <div class="d-flex align-items-center mb-4">
+                            <i class="fas fa-clipboard-list fa-2x mx-2"></i>
+                            <h2 class="mb-0">Order Management</h2>
+                        </div>
+                        <!-- Filter -->
+                        <!-- <div class="filter_buttons d-flex align-items-center mt-2">
+                            <button class="active btn all-btn d-flex align-items-center gap-2 rounded-0">
+                                <span>All</span>
+                                <span class="all-order rounded-pill fs-065 p-2-5 text-white">400</span>
+                            </button>
+                            <button class="btn new-btn d-flex align-items-center gap-2 rounded-0">
+                                <span>New</span>
+                                <span class="new-order rounded-pill fs-065 p-2-5 text-white">400</span>
+                            </button>
+                            <button class="btn pending-btn d-flex align-items-center gap-2 rounded-0">
+                                <span>Pending</span>
+                                <span class="pending-order rounded-pill fs-065 p-2-5 text-white">400</span>
+                            </button>
+                            <button class="btn delivered-btn d-flex align-items-center gap-2 rounded-0">
+                                <span>Delivered</span>
+                                <span class="delivered-order rounded-pill fs-065 p-2-5 text-white">400</span>
+                            </button>
+                        </div> -->
+                    </div>
+                    <!-- Search -->
+                    <div class="col-8">
+                        <div class="search-box d-flex align-items-center bg-w rounded-3 px-2 py-1 mx-5 mb-3 gap-3">
+                            <i class="fas fa-search icon mx-1"></i>
+                            <input class="bg-w rounded-3 h-4 fs-6 w-100 border-0 outline-none" type="search" placeholder="Search">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!-- List Order -->
+            <div class="row">
+                <div class="order_list rounded-3 p-0">
+                    <div class="order rounded-3 p-3 bg-white w-100 mb-2">
+                        <!-- Id and Price -->
+                        <div class="d-flex align-items-center mb-2 justify-content-between">
+                            <!-- Checkbox and ID container -->
+                            <div class="d-flex align-items-center gap-2">
+                                <input class="form-check-input mb-1" type="checkbox" id="check1" name="option1" value="something" onclick="displayViewDetailsButton(this)">
+                                <h5 class="text-secondary mb-0">Order</h5>
+                                <h5 class="order-id mb-0">#<span class="order-id-value">order.id</span></h5>
+                            </div>
+                            <!-- Price -->
+                            <div class="d-flex align-items-center gap-3">
+                                <span class="fs-4 fw-bold price-value"></span>
+                                <button class="viewDetails btn btn-outline-primary rounded-pill fs-075 px-3 py-2 d-none">View details</button>
+                            </div>
+                        </div>
+                        <!-- Date and Ship -->
+                        <div class="d-flex align-items-center mx-4 mb-2 gap-2">
+                            <!-- Date -->
+                            <div class="d-flex align-items-center gap-1">
+                                <i class="fa fa-calendar"></i>
+                                <p class="mb-0 date-text">Date: <span class="time">order.time</span></p>
+                            </div>
+                            <!-- Shipping No -->
+                            <div class="d-flex align-items-center gap-1">
+                                <p class="mb-0 shipping-no-text">Shipping no: <span class="shipping-no text-primary">order.number</span></p>
+                            </div>
+                        </div>
+                        <!-- Status -->
+                        <div class="custom-select mx-4 mb-3">
+                            <select class="status-select rounded-pill p-2-5 text-success"></select>
+                        </div>
+                        <!-- Items -->
+                        <div class="item mx-4">
+                            <div class="d-flex mb-2 align-items-center justify-content-between w-100">
+                                <div class="d-flex align-items-center">
+                                    <img class="rounded" height="80" width="80" src="" alt="Item Image">
+                                    <div class="d-flex flex-column pb-3 mx-2">
+                                        <span class="text-start item-name">item.name</span>
+                                        <span class="sku text-primary text-start">item.sku</span>
+                                        <span class="quantity text-start">item.quantity</span>
+                                        <div class="item-price pb-5 mb-3 d-none">
+                                            <span class="fw-bold fs-5 total-price-item">item.price</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <div class="item mx-4">
+                            <div class="d-flex mb-2 align-items-center justify-content-between w-100">
+                                <div class="d-flex align-items-center">
+                                    <img class="rounded" height="80" width="80" src="" alt="Item Image">
+                                    <div class="d-flex flex-column pb-3 mx-2">
+                                        <span class="text-start item-name">item.name</span>
+                                        <span class="sku text-primary text-start">item.sku</span>
+                                        <span class="quantity text-start">item.quantity</span>
+                                        <div class="item-price pb-5 mb-3 d-none">
+                                            <span class="fw-bold fs-5 total-price-item">item.price</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Show More Items Button -->
+                        <div class="mt-2 show-item-1 d-flex align-items-center gap-2 mx-4 d-none" role="button">
+                            <span class="show-item-text"></span>
+                            <i class="fa fa-angle-down"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <script th:replace="admin/fragments/script :: script"></script>
+</body>
+
+</html>

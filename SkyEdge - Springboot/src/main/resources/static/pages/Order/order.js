@@ -153,119 +153,119 @@
 // }
 // function showOrder(){
 //     if(!orderContent){
-//         const orderContainer = document.createElement('div');
-//         orderContainer.className = "container order-container p-4";
-//         // Order management
-//         const management = document.createElement('div');
-//         management.className = "row d-flex align-items-center rounded-3 custom-padding mb-4 bg-white";
+        // const orderContainer = document.createElement('div');
+        // orderContainer.className = "container order-container p-4";
+        // // Order management
+        // const management = document.createElement('div');
+        // management.className = "row d-flex align-items-center rounded-3 custom-padding mb-4 bg-white";
         
-//         //
-//         const topContainer = document.createElement('div');
-//         topContainer.className = "col-12 d-flex align-items-center";
-//         //
-//         const leftManagement = document.createElement('div');
-//         leftManagement.className = "col-4";
-//         //
-//         const managementTextContainer = document.createElement('div');
-//         managementTextContainer.className = "d-flex align-items-center";
-//         const iconOrder = document.createElement('i');
-//         iconOrder.className = "fas fa-clipboard-list fa-2x mx-2";
-//         const textManagement = document.createElement('h2');
-//         textManagement.textContent = "Order Management";
-//         textManagement.className ="mb-0";
-//         managementTextContainer.appendChild(iconOrder);
-//         managementTextContainer.appendChild(textManagement);
-//         // Filter
-//         const filterContainer = document.createElement('div');
-//         filterContainer.className = "filter_buttons d-flex align-items-center mt-2";        const btnAll = document.createElement('button');
-//         btnAll.className = "active btn all-btn d-flex align-items-center gap-2 rounded-0";
-//         const allOrderText = document.createElement('span');
-//         allOrderText.textContent = "All";
-//         const allOrderNumber = document.createElement('span');
-//         allOrderNumber.textContent = "400";
-//         allOrderNumber.className = "all-order rounded-pill fs-065 p-2-5 text-white";
-//         btnAll.appendChild(allOrderText);
-//         btnAll.appendChild(allOrderNumber);
+        // //
+        // const topContainer = document.createElement('div');
+        // topContainer.className = "col-12 d-flex align-items-center";
+        // //
+        // const leftManagement = document.createElement('div');
+        // leftManagement.className = "col-4";
+        // //
+        // const managementTextContainer = document.createElement('div');
+        // managementTextContainer.className = "d-flex align-items-center";
+        // const iconOrder = document.createElement('i');
+        // iconOrder.className = "fas fa-clipboard-list fa-2x mx-2";
+        // const textManagement = document.createElement('h2');
+        // textManagement.textContent = "Order Management";
+        // textManagement.className ="mb-0";
+        // managementTextContainer.appendChild(iconOrder);
+        // managementTextContainer.appendChild(textManagement);
+        // // Filter
+        // const filterContainer = document.createElement('div');
+        // filterContainer.className = "filter_buttons d-flex align-items-center mt-2";        const btnAll = document.createElement('button');
+        // btnAll.className = "active btn all-btn d-flex align-items-center gap-2 rounded-0";
+        // const allOrderText = document.createElement('span');
+        // allOrderText.textContent = "All";
+        // const allOrderNumber = document.createElement('span');
+        // allOrderNumber.textContent = "400";
+        // allOrderNumber.className = "all-order rounded-pill fs-065 p-2-5 text-white";
+        // btnAll.appendChild(allOrderText);
+        // btnAll.appendChild(allOrderNumber);
 
-//         const btnNew = document.createElement('button');
-//         btnNew.className = "btn new-btn d-flex align-items-center gap-2 rounded-0";
-//         const newOrderText = document.createElement('span');
-//         newOrderText.textContent = "New";
-//         const newOrderNumber = document.createElement('span');
-//         newOrderNumber.textContent = "400";
-//         newOrderNumber.className = "new-order rounded-pill fs-065 p-2-5 text-white";
-//         btnNew.appendChild(newOrderText);
-//         btnNew.appendChild(newOrderNumber);
+        // const btnNew = document.createElement('button');
+        // btnNew.className = "btn new-btn d-flex align-items-center gap-2 rounded-0";
+        // const newOrderText = document.createElement('span');
+        // newOrderText.textContent = "New";
+        // const newOrderNumber = document.createElement('span');
+        // newOrderNumber.textContent = "400";
+        // newOrderNumber.className = "new-order rounded-pill fs-065 p-2-5 text-white";
+        // btnNew.appendChild(newOrderText);
+        // btnNew.appendChild(newOrderNumber);
 
-//         const btnPending = document.createElement('button');
-//         btnPending.className = "btn pending-btn d-flex align-items-center gap-2 rounded-0";
-//         const pendingOrderText = document.createElement('span');
-//         pendingOrderText.textContent = "Pending";
-//         const pendingOrderNumber = document.createElement('span');
-//         pendingOrderNumber.textContent = "400";
-//         pendingOrderNumber.className = "pending-order rounded-pill fs-065 p-2-5 text-white";
-//         btnPending.appendChild(pendingOrderText);
-//         btnPending.appendChild(pendingOrderNumber);
+        // const btnPending = document.createElement('button');
+        // btnPending.className = "btn pending-btn d-flex align-items-center gap-2 rounded-0";
+        // const pendingOrderText = document.createElement('span');
+        // pendingOrderText.textContent = "Pending";
+        // const pendingOrderNumber = document.createElement('span');
+        // pendingOrderNumber.textContent = "400";
+        // pendingOrderNumber.className = "pending-order rounded-pill fs-065 p-2-5 text-white";
+        // btnPending.appendChild(pendingOrderText);
+        // btnPending.appendChild(pendingOrderNumber);
 
-//         const btnDelivered = document.createElement('button');
-//         btnDelivered.className = "btn delivered-btn d-flex align-items-center gap-2 rounded-0";
-//         const deliveredOrderText = document.createElement('span');
-//         deliveredOrderText.textContent = "Delivered";
-//         const deliveredOrderNumber = document.createElement('span');
-//         deliveredOrderNumber.textContent = "400";
-//         deliveredOrderNumber.className = "delivered-order rounded-pill fs-065 p-2-5 text-white";
-//         btnDelivered.appendChild(deliveredOrderText);
-//         btnDelivered.appendChild(deliveredOrderNumber);
-//         filterContainer.appendChild(btnAll);
-//         filterContainer.appendChild(btnNew);
-//         filterContainer.appendChild(btnPending);
-//         filterContainer.appendChild(btnDelivered);
+        // const btnDelivered = document.createElement('button');
+        // btnDelivered.className = "btn delivered-btn d-flex align-items-center gap-2 rounded-0";
+        // const deliveredOrderText = document.createElement('span');
+        // deliveredOrderText.textContent = "Delivered";
+        // const deliveredOrderNumber = document.createElement('span');
+        // deliveredOrderNumber.textContent = "400";
+        // deliveredOrderNumber.className = "delivered-order rounded-pill fs-065 p-2-5 text-white";
+        // btnDelivered.appendChild(deliveredOrderText);
+        // btnDelivered.appendChild(deliveredOrderNumber);
+        // filterContainer.appendChild(btnAll);
+        // filterContainer.appendChild(btnNew);
+        // filterContainer.appendChild(btnPending);
+        // filterContainer.appendChild(btnDelivered);
 
-//         leftManagement.appendChild(managementTextContainer);
-//         leftManagement.appendChild(filterContainer);
+        // leftManagement.appendChild(managementTextContainer);
+        // leftManagement.appendChild(filterContainer);
 
-//         // Search
-//         const rightManagement = document.createElement('div');
-//         rightManagement.className = "col-8";
-//         const searchBox = document.createElement('div');
-//         searchBox.className = "search-box d-flex align-items-center bg-w rounded-3 px-2 py-1 mx-5 mb-3 gap-3";
-//         const iconSearch = document.createElement('i');
-//         iconSearch.className = "fas fa-search icon mx-1";
-//         const inputSearch = document.createElement('input');
-//         inputSearch.className = "bg-w rounded-3 h-4 fs-6 w-100 border-0 outline-none";
-//         inputSearch.type = "search";
-//         inputSearch.placeholder = "Search";
-//         searchBox.appendChild(iconSearch);
-//         searchBox.appendChild(inputSearch);
-//         rightManagement.appendChild(searchBox);
+        // // Search
+        // const rightManagement = document.createElement('div');
+        // rightManagement.className = "col-8";
+        // const searchBox = document.createElement('div');
+        // searchBox.className = "search-box d-flex align-items-center bg-w rounded-3 px-2 py-1 mx-5 mb-3 gap-3";
+        // const iconSearch = document.createElement('i');
+        // iconSearch.className = "fas fa-search icon mx-1";
+        // const inputSearch = document.createElement('input');
+        // inputSearch.className = "bg-w rounded-3 h-4 fs-6 w-100 border-0 outline-none";
+        // inputSearch.type = "search";
+        // inputSearch.placeholder = "Search";
+        // searchBox.appendChild(iconSearch);
+        // searchBox.appendChild(inputSearch);
+        // rightManagement.appendChild(searchBox);
 
-//         topContainer.appendChild(leftManagement);
-//         topContainer.appendChild(rightManagement);
-//         management.appendChild(topContainer);
-//         orderContainer.appendChild(management);
+        // topContainer.appendChild(leftManagement);
+        // topContainer.appendChild(rightManagement);
+        // management.appendChild(topContainer);
+        // orderContainer.appendChild(management);
 
-//         orderContent = orderContainer;
+        // orderContent = orderContainer;
 
 //         const listOrder = document.createElement('div');
 //         listOrder.className = "list-order row rounded-3 p-0 gap-2";
 //         orderContainer.appendChild(listOrder); 
         
-//         for (let i = 0; i < orderData.length; i++){
-//             const order = orderData[i];
-//             const itemAmounts = order.items.map(item => item.priceItem.itemAmount);
-//             // Tính tổng số tiền của các mặt hàng
-//             const totalItemAmount = itemAmounts.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-//             // Tính tổng số tiền sau khi trừ đi shippingFee và discount
-//             const totalAmount = totalItemAmount - order.shippingFee.amount - order.discount.amount;
-//             // Làm tròn đến 2 số thập phân
-//             const totalAmountRounded = totalAmount.toFixed(2);
-//             order.totalPrice = {
-//                 amount: totalAmountRounded,
-//                 currency: '$'
-//             };
-//             const orderBox = createOrder(order);
-//             listOrder.appendChild(orderBox);
-//         }
+        for (let i = 0; i < orderData.length; i++){
+            const order = orderData[i];
+            const itemAmounts = order.items.map(item => item.priceItem.itemAmount);
+            // Tính tổng số tiền của các mặt hàng
+            const totalItemAmount = itemAmounts.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+            // Tính tổng số tiền sau khi trừ đi shippingFee và discount
+            const totalAmount = totalItemAmount - order.shippingFee.amount - order.discount.amount;
+            // Làm tròn đến 2 số thập phân
+            const totalAmountRounded = totalAmount.toFixed(2);
+            order.totalPrice = {
+                amount: totalAmountRounded,
+                currency: '$'
+            };
+            const orderBox = createOrder(order);
+            listOrder.appendChild(orderBox);
+        }
 //         // Function to create Orders
 //         function createOrder(order){
 //             const orderBox = document.createElement('div');
@@ -377,12 +377,12 @@
 //             itemsContainer.appendChild(itemBox);
 //             orderBox.appendChild(itemsContainer);
 
-//             for (let i = 1; i < order.items.length; i++) {
-//                 const item = order.items[i];
-//                 const itemBox = createItems(item);
-//                 itemBox.classList.add('d-none');
-//                 itemsContainer.appendChild(itemBox);
-//             }
+            for (let i = 1; i < order.items.length; i++) {
+                const item = order.items[i];
+                const itemBox = createItems(item);
+                itemBox.classList.add('d-none');
+                itemsContainer.appendChild(itemBox);
+            }
 
 //             const btnShow = document.createElement('div');
 //             btnShow.className = "mt-2 show-item-1 d-flex align-items-center gap-2 mx-4 d-none";
@@ -390,39 +390,39 @@
 //             const btnShowText = document.createElement('span');
 //             btnShowText.textContent = "More " + (order.items.length-1) +  " items";
             
-//             if(order.items.length > 1){
-//                 btnShow.classList.remove('d-none');
-//             }
+            if(order.items.length > 1){
+                btnShow.classList.remove('d-none');
+            }
 //             const iconShow = document.createElement('i');
 //             iconShow.className = "fa fa-angle-down";
 //             btnShow.appendChild(btnShowText);
 //             btnShow.appendChild(iconShow);
 //             orderBox.appendChild(btnShow);
-//             btnShow.addEventListener('click', function() {
-//                 for (let i = 1; i < itemsContainer.children.length; i++) {
-//                     const item = itemsContainer.children[i];
-//                     if (item.classList.contains('d-none')) {
-//                         item.classList.remove('d-none');
-//                         btnShowText.textContent = "Show less items";
-//                         iconShow.classList.add('rotate-180');
-//                     } else {
-//                         item.classList.add('d-none');
-//                         btnShowText.textContent = "More " + (order.items.length-1) +  " items";
-//                         iconShow.classList.remove('rotate-180');
-//                     }
-//                 }
-//                 btnShow.style.display = "none";
-//             })
+            btnShow.addEventListener('click', function() {
+                for (let i = 1; i < itemsContainer.children.length; i++) {
+                    const item = itemsContainer.children[i];
+                    if (item.classList.contains('d-none')) {
+                        item.classList.remove('d-none');
+                        btnShowText.textContent = "Show less items";
+                        iconShow.classList.add('rotate-180');
+                    } else {
+                        item.classList.add('d-none');
+                        btnShowText.textContent = "More " + (order.items.length-1) +  " items";
+                        iconShow.classList.remove('rotate-180');
+                    }
+                }
+                btnShow.style.display = "none";
+            })
 //             return orderBox;
 //         }
-//         function displayViewDetailsButton(checkbox) {
-//             var button = checkbox.closest('.order').querySelector('.viewDetails');
-//             if (checkbox.checked) {
-//                 button.classList.remove('d-none');
-//             } else {
-//                 button.classList.add('d-none');
-//             }
-//         }
+        function displayViewDetailsButton(checkbox) {
+            var button = checkbox.closest('.order').querySelector('.viewDetails');
+            if (checkbox.checked) {
+                button.classList.remove('d-none');
+            } else {
+                button.classList.add('d-none');
+            }
+        }
 //         function createItems(item){
 //             const itemContainer = document.createElement('div');
 //             itemContainer.className = "d-flex mb-2 align-items-center justify-content-between w-100";
