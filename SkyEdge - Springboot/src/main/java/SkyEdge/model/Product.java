@@ -7,9 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
@@ -18,62 +17,46 @@ import lombok.Setter;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
+    @NotEmpty(message = "Name is required")
     @Column(name = "name", length = 100, nullable = false)
     private String name;
 
     @Column(name = "description", length = 1000)
     private String description;
 
-    // @Column(name = "price", precision = 10, scale = 2)
-    // private BigDecimal price;
+    @Column(name = "image", columnDefinition = "TEXT")
+    private String imageFileName;
 
-    // @Column(name = "stock")
-    // private int stock;
+    @Column(name = "price")
+    private double price;
 
+    @Column(name = "stock")
+    private int stock;
 
-    // @Column(name = "country", length = 100)
-    // private String country;
+    @Column(name = "country", length = 100)
+    private String country;
 
-    // @Column(name = "manufacturer", length = 100)
-    // private String manufacturer;
+    @Column(name = "manufacturer", length = 100)
+    private String manufacturer;
 
-    // @Column(name = "category", length = 50)
-    // private String category;
+    @Column(name = "category", length = 50)
+    private String category;
 
-    // @Column(name = "discount", length = 10)
-    // private String discount;
+    @Column(name = "discount")
+    private int discount;
 
-    // @Column(name = "front", length = 10)
-    // private String front;
+    @Column(name = "front")
+    private double front;
 
-    // @Column(name = "side", length = 10)
-    // private String side;
+    @Column(name = "side")
+    private double side;
 
-    // @Column(name = "width", length = 10)
-    // private String width;
+    @Column(name = "width")
+    private double width;
 
-    // @Column(name = "height", length = 10)
-    // private String height;
-
-    // public Product(String productName, BigDecimal price, int stock, String
-    // description, String country,
-    // String manufacturer, String category, String discount, String front, String
-    // side, String width,
-    // String height) {
-    // this.productName = productName;
-    // this.price = price;
-    // this.stock = stock;
-    // this.description = description;
-    // this.country = country;
-    // this.manufacturer = manufacturer;
-    // this.category = category;
-    // this.discount = discount;
-    // this.front = front;
-    // this.side = side;
-    // this.width = width;
-    // this.height = height;
-    // }
+    @Column(name = "height")
+    private double height;
 
 }

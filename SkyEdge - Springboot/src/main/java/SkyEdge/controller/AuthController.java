@@ -59,8 +59,8 @@ public class AuthController {
     }
 
     @GetMapping("/product-details/{id}")
-    public String product_details(@PathVariable(value = "id") Long id, Model model) throws NotFoundException {
-        Product product = productRepository.findOneById(id);
+    public String product_details(@PathVariable(value = "id") int id, Model model) throws NotFoundException {
+        Product product = productRepository.findById(id).get();
         model.addAttribute("product", product);
         return "product-details";
     }
