@@ -1,34 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="admin/fragments/head :: head"></head>
+<head th:replace="~{admin/fragments/head :: head}"></head>
 
 <body>
-    <nav th:replace="admin/fragments/menu :: menu"></nav>
+    <nav th:replace="~{admin/fragments/menu :: menu}"></nav>
 
-    <div th:replace="admin/fragments/navbar :: navbar"></div>
+    <div th:replace="~{admin/fragments/navbar :: navbar}"></div>
 
     <div id="content" class="bg-w p-3">
         
     </div>
 
     <!-- Scripts -->
-    <div th:replace="admin/fragments/script :: script"></div>
-    <!-- <script th:inline="javascript">
-      // Sử dụng jQuery để tải các trang con bằng AJAX
-      $(document).ready(function () {
-          $('.load-page').click(function (event) {
-              event.preventDefault(); // Ngăn chặn hành vi mặc định của thẻ a
-
-              var pageUrl = $(this).find('a').attr('href'); // Lấy URL của trang con
-
-              // Thực hiện AJAX request để tải trang con
-              $.get(pageUrl, function (data) {
-                  $('#content').html(data); // Cập nhật nội dung của trang chính với nội dung của trang con
-              });
-          });
-      });
-  </script> -->
+    <div th:replace="~{admin/fragments/script :: script}"></div>
 </body>
 
 </html>

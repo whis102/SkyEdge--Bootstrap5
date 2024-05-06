@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="shortcut icon" href="./assets/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/assets/favicon.png" type="image/x-icon">
 
     <!-- CSS -->
     <link rel="stylesheet" th:href="@{/displays/MainDisplay/main.css}">
@@ -28,12 +28,12 @@
 
     <!-- Main content-->
     <section class="bg-light">
-        <div class="container pb-5" th:object="${product}">
+        <div class="container pb-5" th:object="${products}">
             <div class="row">
                 <!-- Glasses Image-->
                 <div class="col-lg-5 mt-5">
                     <div class="card mb-3">
-                        <img class="card-img img-fluid" th:src="@{/assets//images/product-12.png}" alt="Dark Glasses"
+                        <img class="card-img img-fluid" th:src="@{'/images/' + ${product.imageFileName}}" alt="Dark Glasses"
                             id="product-detail">
                     </div>
                     <div class="row">
@@ -62,8 +62,8 @@
                 <div class="col-lg-7 mt-5">
                     <div class="card">
                         <div class="card-body">
-                            <h1 class="h2"><b th:text="${product.name}">Dark Glasses</b></h1>
-                            <p class="h3 py-2" style="color: red;">$25.00</p>
+                            <p class="h2" th:text="${product.name}"></p>
+                            <p class="h3 py-2 text-danger" th:text="'$' + ${product.price}"></p>
                             <p class="py-2">
                                 <i class="fa fa-star text-warning"></i>
                                 <i class="fa fa-star text-warning"></i>
@@ -82,7 +82,7 @@
                             </ul>
 
                             <h6><b>Description:</b></h6>
-                            <p>A glasses which is very suitable for everyone and will help to improve their looks.</p>
+                            <p th:text="${product.description}"></p>
                             <ul class="list-inline">
                                 <li class="list-inline-item">
                                     <h6><b>Avaliable Color :</b></h6>
