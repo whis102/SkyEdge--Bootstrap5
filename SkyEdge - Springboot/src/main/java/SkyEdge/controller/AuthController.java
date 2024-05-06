@@ -1,5 +1,7 @@
 package SkyEdge.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.stereotype.Controller;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import SkyEdge.model.Product;
 import SkyEdge.model.RegistrationDTO;
 import SkyEdge.model.User;
+import SkyEdge.repository.ProductRepository;
 import SkyEdge.service.AuthenticationService;
 import SkyEdge.service.ProductService;
 
@@ -20,6 +23,9 @@ import SkyEdge.service.ProductService;
 public class AuthController {
     @Autowired
     private AuthenticationService authenticationService;
+
+    @Autowired
+    private ProductRepository productRepository;
 
     @Autowired
     private ProductService productService;
@@ -45,20 +51,15 @@ public class AuthController {
     }
 
     @GetMapping("/shop")
-    public String shop() {
+    public String shop(Model model) {
+        List<Product> products = productRepository.findAll();
+        model.addAttribute("products", products);
         return "shop";
     }
 
-    @GetMapping("/product-details")
-    public String product_details(Model model) throws NotFoundException {
-        Product product = productService.findByProductId((long) 0);
-        model.addAttribute("product", product);
-        return "product-details";
-    }
-
     @GetMapping("/product-details/{id}")
-    public String product_details1(@PathVariable(value = "id") Long id, Model model) throws NotFoundException {
-        Product product = productService.findByProductId((long) id);
+    public String product_details(@PathVariable(value = "id") Long id, Model model) throws NotFoundException {
+        Product product = productRepository.findOneById(id);
         model.addAttribute("product", product);
         return "product-details";
     }

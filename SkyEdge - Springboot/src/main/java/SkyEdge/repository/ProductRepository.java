@@ -10,5 +10,6 @@ import SkyEdge.model.Product;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> findByNameContainingIgnoreCase(String query);
+
     Product findOneById(Long id);
 }
