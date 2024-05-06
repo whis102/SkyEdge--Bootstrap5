@@ -1,69 +1,69 @@
-// package SkyEdge.model;
+package SkyEdge.model;
 
-// import java.math.BigDecimal;
-// import java.time.LocalDate;
-// import java.util.List;
+import java.time.LocalDate;
 
-// import jakarta.persistence.Column;
-// import jakarta.persistence.ElementCollection;
-// import jakarta.persistence.Embeddable;
-// import jakarta.persistence.Embedded;
-// import jakarta.persistence.Entity;
-// import jakarta.persistence.Id;
-// import lombok.Getter;
-// import lombok.NoArgsConstructor;
-// import lombok.Setter;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-// @Getter
-// @Setter
-// @Entity
-// @NoArgsConstructor
-// public class Order {
-// @Id
-// private String orderID;
+@Getter
+@Setter
+@Entity
+@NoArgsConstructor
+public class Order {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private String orderID;
 
-// @Column(name = "order_date", columnDefinition = "DATE")
-// private LocalDate date;
+    @Column(name = "order_date", columnDefinition = "DATE")
+    private LocalDate date;
 
-// @Column(name = "shipping_no")
-// private String shippingNo;
+    @Column(name = "shipping_no")
+    private String shippingNo;
 
-// private String status;
-// private String address;
-// private String phone;
+    @Column(name = "name")
 
-// @Embedded
-// private Money shippingFee;
+    private String status;
+    private String address;
+    private String phone;
 
-// @Embedded
-// private Money discount;
+    // @Embedded
+    // private Money shippingFee;
 
-// @Embedded
-// private Payment payment;
+    // @Embedded
+    // private Money discount;
 
-// @ElementCollection
-// private List<OrderItem> items;
-// }
+    // @Embedded
+    // private Payment payment;
 
-// @Embeddable
-// class Money {
-// private BigDecimal amount;
-// private String currency;
-// }
+    // @ElementCollection
+    // private List<OrderItem> items;
+    // }
 
-// @Embeddable
-// class Payment {
-// private String method;
-// private String transactionNo;
-// }
+    // @Embeddable
+    // class Money {
+    // private BigDecimal amount;
+    // private String currency;
+    // }
 
-// @Embeddable
-// class OrderItem {
-// private String itemImg;
-// private String itemName;
-// private String sku;
-// private int quantity;
+    // @Embeddable
+    // class Payment {
+    // private String method;
+    // private String transactionNo;
+    // }
 
-// @Embedded
-// private Money priceItem;
-// }
+    // @Embeddable
+    // class OrderItem {
+    // private String itemImg;
+    // private String itemName;
+    // private String sku;
+    // private int quantity;
+
+    // @Embedded
+    // private Money priceItem;
+}
