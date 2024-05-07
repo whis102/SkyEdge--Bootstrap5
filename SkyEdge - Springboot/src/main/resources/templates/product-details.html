@@ -21,10 +21,10 @@
 
 <body>
     <!-- Nav Top -->
-    <nav id="nav-top" class="navbar navbar-expand-lg bg-dark navbar-light d-none d-lg-block"></nav>
+    <nav id="nav-top" class="navbar navbar-expand-lg bg-dark navbar-light d-none d-lg-block" th:replace="~{main/fragments/topnav :: topnav}"></nav>
 
     <!-- Header -->
-    <nav id="header" class="navbar navbar-expand-lg navbar-light shadow"></nav>
+    <nav id="header" class="navbar navbar-expand-lg navbar-light shadow" th:replace="~{main/fragments/header :: header}"></nav>
 
     <!-- Main content-->
     <section class="bg-light">
@@ -33,8 +33,8 @@
                 <!-- Glasses Image-->
                 <div class="col-lg-5 mt-5">
                     <div class="card mb-3">
-                        <img class="card-img img-fluid" th:src="@{'/images/' + ${product.imageFileName}}" alt="Dark Glasses"
-                            id="product-detail">
+                        <img class="card-img img-fluid" th:src="@{'/images/' + ${product.imageFileName}}"
+                            alt="Dark Glasses" id="product-detail">
                     </div>
                     <div class="row">
                         <!-- Start Glasses Image Details-->
@@ -74,10 +74,10 @@
                             </p>
                             <ul class="list-inline">
                                 <li class="list-inline-item">
-                                    <h6><b>Brand:</b></h6>
+                                    <h6><b>Category:</b></h6>
                                 </li>
                                 <li class="list-inline-item">
-                                    <p class="text-muted">Easy Wear</p>
+                                    <p class="text-muted" th:text="${product.category}">Easy Wear</p>
                                 </li>
                             </ul>
 
@@ -149,10 +149,10 @@
 
     <!-- Start Footer -->
     <footer class="bg-dark">
-        <div id="footer" class="container"></div>
+        <div id="footer" class="container"  th:replace="~{main/fragments/footer :: footer}"></div>
 
         <!-- Copyright -->
-        <div id="copyright" class="bg-black copy-right py-3 w-100"></div>
+        <div id="copyright" class="bg-black copy-right py-3 w-100" th:replace="~{main/fragments/copyright :: copyright}"></div>
     </footer>
     <!-- Close Footer -->
 

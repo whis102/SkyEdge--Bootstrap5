@@ -16,7 +16,7 @@
             <div class="card-body">
               <div class="custom-card-content">
                 <div class="quantity">
-                  <h2 class="card-title">17</h2>
+                  <h2 class="card-title" th:text="${numOfUsers}">17</h2>
                   <p class="card-text">Customer</p>
                 </div>
                 <div class="icon-container">
@@ -167,7 +167,8 @@
               <tr class="acticity-container">
                 <td class="d-flex align-items-center">
                   <div class="admin-logo d-flex align-items-center">
-                    <img class="avt" src="./assets/images/Cong.png" alt="Avatar" width="30px" height="30px">
+                    <img class="avt" width="30px" height="30px" th:src="@{'/images/' + ${history[2]}}"
+                      alt="Product Image">
                     <p class="admin-name text-success mb-0" th:text="${history[0]}">Cong</p>
                   </div>
                   <p class="activity mb-0" th:text="${history[1]}"> has deleted a voucher from List Voucher</p>
