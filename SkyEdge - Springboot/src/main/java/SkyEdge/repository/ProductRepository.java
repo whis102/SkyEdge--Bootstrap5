@@ -11,6 +11,9 @@ import SkyEdge.model.Product;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Integer> {
     List<Product> findByNameContainingIgnoreCase(String query);
+
     @Query("SELECT COUNT(p) FROM Product p")
     Long countProducts();
+
+    Product findOneById(int productId);
 }

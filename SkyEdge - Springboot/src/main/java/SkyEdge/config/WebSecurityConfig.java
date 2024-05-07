@@ -47,7 +47,8 @@ public class WebSecurityConfig {
                                 .authorizeHttpRequests(requests -> requests
                                                 .requestMatchers(WHITELIST).permitAll()
                                                 .requestMatchers("/cart/**").authenticated()
-                                                .requestMatchers("/admin/**").hasAuthority("ADMIN"))
+                                                .requestMatchers("/admin/**").hasAuthority("ADMIN")
+                                                .anyRequest().permitAll())
                                 .formLogin(login -> login
                                                 .loginPage("/login").loginProcessingUrl("/login")
                                                 .usernameParameter("username").passwordParameter("password")

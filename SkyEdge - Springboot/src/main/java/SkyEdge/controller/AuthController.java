@@ -33,7 +33,6 @@ public class AuthController {
     @Autowired
     private ProductRepository productRepository;
 
-
     @Autowired
     private UserRepository userRepository;
 
@@ -53,11 +52,6 @@ public class AuthController {
     @GetMapping("/contact-us")
     public String contact_us() {
         return "contact-us";
-    }
-
-    @GetMapping("/cart")
-    public String cart() {
-        return "cart";
     }
 
     @GetMapping("/shop")
@@ -134,6 +128,7 @@ public class AuthController {
 
     @Autowired
     SubscriberRepository subscriberRepository;
+
     @PostMapping("/sendEmail")
     public String sendEmail(@Valid @RequestParam String email) {
         Subscriber newSubscriber = new Subscriber();
