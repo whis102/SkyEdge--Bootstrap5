@@ -10,7 +10,7 @@ import SkyEdge.model.Subscriber;
 
 @Repository
 public interface SubscriberRepository extends JpaRepository<Subscriber, Integer> {
-    // List<Subscriber> findByNameContainingIgnoreCase(String query);
+    List<Subscriber> findByEmailContainingIgnoreCase(String query);
     @Query("SELECT COUNT(p) FROM Subscriber p")
     Long countSubscribers();
 }

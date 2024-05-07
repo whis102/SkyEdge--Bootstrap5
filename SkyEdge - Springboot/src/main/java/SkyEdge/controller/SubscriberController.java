@@ -31,15 +31,16 @@ public class SubscriberController {
 
         return "admin/subscriber/admin-subscriber";
     }
-    // @GetMapping("/admin/subscriber/search")
-    // public String searchSubscriber(@RequestParam("query") String query, Model model) {
-    //     // List<Subscriber> subscribers = subscriberRepository.findByNameContainingIgnoreCase(query);
-    //     // System.out.println(subscribers);
-    //     // model.addAttribute("subscribers", subscribers);
-    //     Long subscriberCount = subscriberService.getSubscriberCount();
-    //     model.addAttribute("subscriberCount", subscriberCount);
-    //     return "admin/subscriber/admin-subscriber";
-    // }
+
+    @GetMapping("/admin/subscriber/search")
+    public String searchSubscriber(@RequestParam("query") String query, Model model) {
+        List<Subscriber> subscribers = subscriberRepository.findByEmailContainingIgnoreCase(query);
+        System.out.println(subscribers);
+        model.addAttribute("subscribers", subscribers);
+        Long subscriberCount = subscriberService.getSubscriberCount();
+        model.addAttribute("subscriberCount", subscriberCount);
+        return "admin/subscriber/admin-subscriber";
+    }
 
     @GetMapping("/admin/subscriber/delete")
     public String deleteSubscriber(@RequestParam int id) {
