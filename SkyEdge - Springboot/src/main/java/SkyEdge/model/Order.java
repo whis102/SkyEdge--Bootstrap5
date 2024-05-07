@@ -1,36 +1,33 @@
 package SkyEdge.model;
 
-import java.time.LocalDate;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
 @Entity
-@NoArgsConstructor
+@Table(name = "product_order")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String orderID;
+    private Long orderID;
 
-    @Column(name = "order_date", columnDefinition = "DATE")
-    private LocalDate date;
+    // @Column(name = "order_date", columnDefinition = "DATE")
+    // private LocalDate date;
 
     @Column(name = "shipping_no")
     private String shippingNo;
 
-    @Column(name = "name")
-
+    @Column(name = "status")
     private String status;
-    private String address;
-    private String phone;
+    // private String address;
+    // private String phone;
 
     // @Embedded
     // private Money shippingFee;
