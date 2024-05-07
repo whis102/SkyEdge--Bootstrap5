@@ -23,7 +23,6 @@ import SkyEdge.repository.SubscriberRepository;
 import SkyEdge.repository.UserRepository;
 import SkyEdge.security.UserTemplate;
 import SkyEdge.service.AuthenticationService;
-import SkyEdge.service.ProductService;
 import jakarta.validation.Valid;
 
 @Controller
@@ -34,8 +33,6 @@ public class AuthController {
     @Autowired
     private ProductRepository productRepository;
 
-    @Autowired
-    private ProductService productService;
 
     @Autowired
     private UserRepository userRepository;
@@ -137,7 +134,6 @@ public class AuthController {
 
     @Autowired
     SubscriberRepository subscriberRepository;
-
     @PostMapping("/sendEmail")
     public String sendEmail(@Valid @RequestParam String email) {
         Subscriber newSubscriber = new Subscriber();
