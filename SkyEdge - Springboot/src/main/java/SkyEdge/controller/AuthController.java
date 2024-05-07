@@ -1,5 +1,6 @@
 package SkyEdge.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -100,9 +101,19 @@ public class AuthController {
     }
 
     @GetMapping("/admin")
-    public String admin() {
-
-        return "admin/admin";
+    public String admin(Model model) {
+        List<Product> products = productRepository.findAll();
+        int numOfProducts = products.size();
+        List<Object> productHistory = new ArrayList<>();
+        for (Product product : products) {
+            List<String> history = new ArrayList<>();
+            history.add(product.getCreatedBy().getUsername());
+            history.add(" has created a new product: " + product.getName() + ".");
+            productHistory.add(history);
+        }
+        model.addAttribute("productHistory", productHistory);
+        model.addAttribute("numOfProducts", numOfProducts);
+        return "admin/dashboard/admin-dashboard";
     }
 
     @RequestMapping("/about")
