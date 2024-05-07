@@ -24,7 +24,7 @@ public class WebSecurityConfig {
                         "/assets/**",
                         "/pages/**",
                         "/auth/**",
-                        "/static/**"
+                        "/static/**",
 
         };
 
@@ -45,10 +45,9 @@ public class WebSecurityConfig {
                 http
                                 .csrf(csrf -> csrf.disable())
                                 .authorizeHttpRequests(requests -> requests
-                                                // .requestMatchers(WHITELIST).permitAll()
-                                                // .requestMatchers("/cart/**").authenticated()
-                                                // .requestMatchers("/admin/**").hasAuthority("ADMIN")
-                                                .anyRequest().permitAll())
+                                                .requestMatchers(WHITELIST).permitAll()
+                                                .requestMatchers("/cart/**").authenticated()
+                                                .requestMatchers("/admin/**").hasAuthority("ADMIN"))
                                 .formLogin(login -> login
                                                 .loginPage("/login").loginProcessingUrl("/login")
                                                 .usernameParameter("username").passwordParameter("password")
