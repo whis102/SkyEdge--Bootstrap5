@@ -18,7 +18,10 @@ import SkyEdge.model.Product;
 import SkyEdge.model.Subscriber;
 import SkyEdge.model.VoucherDto;
 import SkyEdge.repository.ProductRepository;
+
 import SkyEdge.repository.SubscriberRepository;
+import SkyEdge.repository.RoleRepository;
+import SkyEdge.repository.UserRepository;
 import SkyEdge.security.UserTemplate;
 import SkyEdge.service.AuthenticationService;
 import SkyEdge.service.ProductService;
@@ -34,6 +37,12 @@ public class AuthController {
 
     @Autowired
     private ProductService productService;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private RoleRepository roleRepository;
 
     @GetMapping("/login")
     public String login() {
@@ -108,14 +117,17 @@ public class AuthController {
         List<Product> products = productRepository.findAll();
         int numOfProducts = products.size();
         List<Object> productHistory = new ArrayList<>();
+        Long numOfUsers = userRepository.countByAuthorities(roleRepository.findByAuthority("USER"));
         for (Product product : products) {
             List<String> history = new ArrayList<>();
             history.add(product.getCreatedBy().getUsername());
             history.add(" has created a new product: " + product.getName() + ".");
+            history.add(product.getImageFileName());
             productHistory.add(history);
         }
         model.addAttribute("productHistory", productHistory);
         model.addAttribute("numOfProducts", numOfProducts);
+        model.addAttribute("numOfUsers", numOfUsers);
         return "admin/dashboard/admin-dashboard";
     }
 
