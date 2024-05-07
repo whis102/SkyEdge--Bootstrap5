@@ -20,11 +20,11 @@
 </head>
 
 <body>
-    <!-- Start Nav Top -->
-    <nav id="nav-top" class="navbar navbar-expand-lg bg-dark navbar-light d-none d-lg-block"></nav>
+    <!-- Nav Top -->
+    <nav id="nav-top" class="navbar navbar-expand-lg bg-dark navbar-light d-none d-lg-block" th:replace="~{main/fragments/topnav :: topnav}"></nav>
 
     <!-- Header -->
-    <nav id="header" class="navbar navbar-expand-lg navbar-light shadow"></nav>
+    <nav id="header" class="navbar navbar-expand-lg navbar-light shadow" th:replace="~{main/fragments/header :: header}"></nav>
 
     <!-- Main -->
 
@@ -154,10 +154,10 @@
 
     <!-- Start Footer -->
     <footer class="bg-dark">
-        <div id="footer" class="container"></div>
+        <div id="footer" class="container"  th:replace="~{main/fragments/footer :: footer}"></div>
 
         <!-- Copyright -->
-        <div id="copyright" class="bg-black copy-right py-3 w-100"></div>
+        <div id="copyright" class="bg-black copy-right py-3 w-100" th:replace="~{main/fragments/copyright :: copyright}"></div>
     </footer>
     <!-- Close Footer -->
 

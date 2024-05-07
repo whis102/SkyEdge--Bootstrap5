@@ -3,7 +3,6 @@ package SkyEdge.model;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;

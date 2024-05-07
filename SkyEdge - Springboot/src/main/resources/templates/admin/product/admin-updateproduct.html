@@ -14,13 +14,13 @@
             <form enctype="multipart/form-data" th:object="${productDto}" method="post" class="col d-flex align-items-center bg-w rounded-3">
                 <!-- Left content -->
                 <div class="row p-4">
-                    <h2 class="col-12 fw-bold color-web-text">Edit Product <span th:text="'#' + ${product.id}"></span></h2>
+                    <h2 class="col-12 fw-bold color-edit-text">Edit Product <span th:text="'#' + ${product.id}"></span></h2>
                     <div class="col-6 left-content p-4">
                         <!-- Product Images -->
                         <div class="product-data">
                             <label>Product Images:</label>
-                            <div class="bg-white">
-                                <img th:src="@{'/images/' + ${product.imageFileName}}" width="120" height="120">
+                            <div >
+                                <img class="rounded-3" th:src="@{'/images/' + ${product.imageFileName}}" width="120" height="120">
                             </div>
                             <div>
                                 <input type="file"  class="form-control" name="imageFile" accept="image/*" th:field="${productDto.imageFile}" >
