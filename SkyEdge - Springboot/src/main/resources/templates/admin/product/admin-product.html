@@ -39,9 +39,9 @@
             <div class="list-product row gap-2">
                 <div th:each="product : ${products}"
                     class="product-box rounded-3 bg-white p-3 d-flex align-items-center gap-5">
-                    <input id="checkbox-product-input" type="checkbox" onchange="displayButton(this)">
+                    <input id="checkbox-product-input" type="checkbox" onchange="displayProductButton(this)">
                     <img width="50" height="50" style="border-radius: 50%;" th:src="@{'/images/' + ${product.imageFileName}}" alt="Product Image">
-                    <table class="product-info w-100">
+                    <table class="product-info justify-content-between w-100">
                         <thead class="fs-075 text-secondary">
                             <tr>
                                 <th>Product ID</th>
@@ -58,7 +58,7 @@
                                 <td th:text="${product.name}"></td>
                                 <td th:text="'$' + ${product.price}"></td>
                                 <td th:text="${product.category}"></td>
-                                <td th:text="${product.discount}"></td>
+                                <td th:text="${product.discount} + '%'"></td>
                                 <td th:text="${product.stock}"></td>
                             </tr>
                         </tbody>
@@ -88,6 +88,7 @@
                 <li class="page-item"><a class="page-link" href="#">Next</a></li>
             </ul>
         </div>
+    </div>
         <script th:replace="~{admin/fragments/script :: script}"></script>
 </body>
 

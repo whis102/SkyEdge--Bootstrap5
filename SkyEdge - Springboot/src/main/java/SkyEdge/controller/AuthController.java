@@ -15,7 +15,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import SkyEdge.model.Product;
+import SkyEdge.model.Subscriber;
+import SkyEdge.model.VoucherDto;
 import SkyEdge.repository.ProductRepository;
+import SkyEdge.repository.SubscriberRepository;
 import SkyEdge.security.UserTemplate;
 import SkyEdge.service.AuthenticationService;
 import SkyEdge.service.ProductService;
@@ -121,4 +124,22 @@ public class AuthController {
         return "about";
     }
 
+    
+
+    @Autowired
+    SubscriberRepository subscriberRepository;
+    
+    @PostMapping("/sendEmail")
+    public String sendEmail(@Valid @ModelAttribute Subscriber subscriber) {
+        Subscriber newSubscriber = new Subscriber();
+        newSubscriber.setEmail(subscriber.getEmail());
+        subscriberRepository.save(newSubscriber);
+        return "redirect:/";
+    }
+    @GetMapping("/sendEmail")
+    public String addVoucher(Model model) {
+        Subscriber subsccriber = new Subscriber();
+        model.addAttribute("subscriber", subsccriber);
+        return "redirect:/";
+    }
 }
