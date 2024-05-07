@@ -54,7 +54,7 @@ public class ProductController {
     }
 
     @PostMapping("/admin/product/add")
-    public String addNewProduct(@Valid @ModelAttribute ProductDto productDto, BindingResult result,
+    public String addNewProduct(@Valid @ModelAttribute ProductDto productDto,Product product, BindingResult result,
             @AuthenticationPrincipal User user) {
 
         MultipartFile image = productDto.getImageFile();
@@ -66,8 +66,7 @@ public class ProductController {
         if (result.hasErrors()) {
             return "admin/product/admin-addproduct";
         }
-        Date CreateAt = new Date();
-        String storageFileName = CreateAt.getTime() + "_" + image.getOriginalFilename();
+        String storageFileName = product.getId() + "_" + image.getOriginalFilename();
         try {
             String uploadDir = "public/images/";
             Path uploadPath = Paths.get(uploadDir);
@@ -81,23 +80,23 @@ public class ProductController {
             System.out.println("Exception: " + ex.getMessage());
         }
 
-        Product product = new Product();
-        product.setName(productDto.getName());
-        product.setDescription(productDto.getDescription());
-        product.setImageFileName(storageFileName);
-        product.setCountry(productDto.getCountry());
-        product.setManufacturer(productDto.getManufacturer());
-        product.setPrice(productDto.getPrice());
-        product.setStock(productDto.getStock());
-        product.setCategory(productDto.getCategory());
-        product.setCountry(productDto.getCountry());
-        product.setDiscount(productDto.getDiscount());
-        product.setFront(productDto.getFront());
-        product.setSide(productDto.getSide());
-        product.setWidth(productDto.getWidth());
-        product.setHeight(productDto.getHeight());
-        product.setCreatedBy(user);
-        productRepository.save(product);
+        Product newProduct = new Product();
+        newProduct.setName(productDto.getName());
+        newProduct.setDescription(productDto.getDescription());
+        newProduct.setImageFileName(storageFileName);
+        newProduct.setCountry(productDto.getCountry());
+        newProduct.setManufacturer(productDto.getManufacturer());
+        newProduct.setPrice(productDto.getPrice());
+        newProduct.setStock(productDto.getStock());
+        newProduct.setCategory(productDto.getCategory());
+        newProduct.setCountry(productDto.getCountry());
+        newProduct.setDiscount(productDto.getDiscount());
+        newProduct.setFront(productDto.getFront());
+        newProduct.setSide(productDto.getSide());
+        newProduct.setWidth(productDto.getWidth());
+        newProduct.setHeight(productDto.getHeight());
+        newProduct.setCreatedBy(user);
+        productRepository.save(newProduct);
         return "redirect:/admin/product";
     }
 
@@ -172,8 +171,7 @@ public class ProductController {
                 // Save new image file
 
                 MultipartFile image = productDto.getImageFile();
-                Date CreateAt = new Date();
-                String storageFileName = CreateAt.getTime() + "_" + image.getOriginalFilename();
+                String storageFileName = product.getId() + "_" + image.getOriginalFilename();
 
                 try (InputStream inputStream = image.getInputStream()) {
                     Files.copy(inputStream, Paths.get(uploadDir + storageFileName),
