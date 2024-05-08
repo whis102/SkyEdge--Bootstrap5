@@ -1,5 +1,5 @@
 // Kích hoạt sự kiện đóng menu
-
+document.body.style.overflow = "hidden";
 const body = document.querySelector("body"),
     sidebar = body.querySelector(".sidebar"),
     toggle = body.querySelector(".toggle");
