@@ -250,6 +250,8 @@
 //         listOrder.className = "list-order row rounded-3 p-0 gap-2";
 //         orderContainer.appendChild(listOrder); 
         
+
+
         for (let i = 0; i < orderData.length; i++){
             const order = orderData[i];
             const itemAmounts = order.items.map(item => item.priceItem.itemAmount);
@@ -266,6 +268,9 @@
             const orderBox = createOrder(order);
             listOrder.appendChild(orderBox);
         }
+
+
+
 //         // Function to create Orders
 //         function createOrder(order){
 //             const orderBox = document.createElement('div');
