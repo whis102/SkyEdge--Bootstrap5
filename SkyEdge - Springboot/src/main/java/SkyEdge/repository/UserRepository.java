@@ -16,7 +16,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
     @Query("SELECT COUNT(p) FROM User p")
 
-    User findByUsername(String username);
+    Optional<User> findByUsername(String username);
 
     Long countByAuthorities(Optional<Role> optional);
 
