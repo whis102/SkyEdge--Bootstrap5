@@ -21,10 +21,12 @@
 
 <body>
     <!-- Nav Top -->
-    <nav id="nav-top" class="navbar navbar-expand-lg bg-dark navbar-light d-none d-lg-block" th:replace="~{main/fragments/topnav :: topnav}"></nav>
+    <nav id="nav-top" class="navbar navbar-expand-lg bg-dark navbar-light d-none d-lg-block"
+        th:replace="~{main/fragments/topnav :: topnav}"></nav>
 
     <!-- Header -->
-    <nav id="header" class="navbar navbar-expand-lg navbar-light shadow" th:replace="~{main/fragments/header :: header}"></nav>
+    <nav id="header" class="navbar navbar-expand-lg navbar-light shadow"
+        th:replace="~{main/fragments/header :: header}"></nav>
 
     <!-- Main content-->
     <section class="bg-light">
@@ -96,14 +98,14 @@
                                 <li>Dark color - not too dazzle</li>
                             </ul>
 
-                            <form action="" method="GET">
-                                <input type="hidden" name="product-title" value="Darkglasses">
+                            <form action="/product-details/add" method="GET">
+                                <input type="hidden" name="product-id" th:value="${product.id}">
                                 <div class="row">
                                     <div class="col-auto">
                                         <ul class="list-inline pb-3">
                                             <li class="list-inline-item text-right">
                                                 <b>Quantity</b>
-                                                <input type="hidden" name="product-quanity" id="product-quanity"
+                                                <input type="hidden" name="product-quantity" id="product-quantity"
                                                     value="1">
                                             </li>
                                             <li class="list-inline-item"><span class="btn btn-success"
@@ -151,10 +153,11 @@
 
     <!-- Start Footer -->
     <footer class="bg-dark">
-        <div id="footer" class="container"  th:replace="~{main/fragments/footer :: footer}"></div>
+        <div id="footer" class="container" th:replace="~{main/fragments/footer :: footer}"></div>
 
         <!-- Copyright -->
-        <div id="copyright" class="bg-black copy-right py-3 w-100" th:replace="~{main/fragments/copyright :: copyright}"></div>
+        <div id="copyright" class="bg-black copy-right py-3 w-100"
+            th:replace="~{main/fragments/copyright :: copyright}"></div>
     </footer>
     <!-- Close Footer -->
 

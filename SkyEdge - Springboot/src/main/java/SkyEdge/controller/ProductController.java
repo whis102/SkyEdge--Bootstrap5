@@ -20,7 +20,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import SkyEdge.model.Product;
 import SkyEdge.model.ProductDto;
+import SkyEdge.model.ProductOrder;
 import SkyEdge.model.User;
+import SkyEdge.repository.ProductOrderRepository;
 import SkyEdge.repository.ProductRepository;
 import SkyEdge.service.ProductService;
 import jakarta.validation.Valid;
@@ -32,6 +34,26 @@ public class ProductController {
 
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private ProductOrderRepository productOrderRepository;
+
+    @GetMapping("/product-details/add")
+    public String buyProduct(@RequestParam("product-id") int productId,
+            @RequestParam("product-quantity") int quantity, @AuthenticationPrincipal User user, Model model) {
+        System.out.println(productId);
+        if (productRepository.findById(productId).isPresent()) {
+            Product product = productRepository.findById(productId).get();
+            if (product.getStock() >= quantity) {
+                ProductOrder productOrder = new ProductOrder(productId, quantity);
+                productOrder.setUser(user);
+                productOrderRepository.save(productOrder);
+
+                return "redirect:/cart";
+            }
+        }
+        return "redirect:/product-details/" + productId;
+    }
 
     @GetMapping("/admin/product")
     public String listProducts(Model model) {
@@ -53,7 +75,7 @@ public class ProductController {
     }
 
     @PostMapping("/admin/product/add")
-    public String addNewProduct(@Valid @ModelAttribute ProductDto productDto,Product product, BindingResult result,
+    public String addNewProduct(@Valid @ModelAttribute ProductDto productDto, Product product, BindingResult result,
             @AuthenticationPrincipal User user) {
 
         MultipartFile image = productDto.getImageFile();
