@@ -70,6 +70,9 @@ body {
 #page-title {
     font-weight: 500;
 }
+.rotate-180 {
+    transform: rotate(180deg);
+}
 /* ====== End Reuse ====== */
 
 /* ====== Start Menu ====== */
@@ -232,7 +235,7 @@ body {
 
 .navbar .number-notification{
     padding: 1px 2px 1px 2px;
-    right: 162px
+    right: 158px;
 }
 /* ====== End Navbar ====== */
 
@@ -246,174 +249,3 @@ body {
 }
 /* ====== End Content ====== */
 
-/* ====== Start Dashboard ====== */
-.dashboard-container .card:hover {
-    transform: scale(1.1);
-    background-color: var(--primary-color);
-    color: var(--content-color) !important;
-}
-.dashboard-container .custom-card-content {
-    display: flex;
-    align-items: center;
-}
-.dashboard-container .card-title {
-    margin-right: 10px;
-}
-.icon-container {
-    margin-left: auto;
-}
-.status-btn {
-    display: inline-block;
-    padding: 6px 12px;
-    border-radius: 10px;
-    text-align: center;
-    font-size: 0.9em;
-    line-height: 1;
-    width: 100%;
-}
-.status-pending {
-    color: #FFFFFF;
-    background-color: #FFC107;
-}
-.status-failed {
-    color: #FFFFFF;
-    background-color: #DC3545;
-}
-.status-success {
-    color: #FFFFFF;
-    background-color: #37fc48;
-}
-.status-completed {
-    color: #FFFFFF;
-    background-color: #03aa4e;
-}
-#recent {
-    padding-top: 50px;
-}
-#activity img {
-    margin-right: 5px;
-    border-radius: 50%;
-}
-.admin-name {
-    padding-left: 5px;
-}
-.activity {
-    padding-left: 5px;
-}
-.dashboard-container .avt{
-    height: 30px;
-    width: 30px;
-}
-/* ====== End Dashboard ====== */
-
-/* ====== Start Product ====== */
-.product-info tr {
-    display: flex;
-}
-.product-info th,
-.product-info td {
-    flex: 1;
-}
-.product-container .buttonGrp{
-    width: 300px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-.product-container .btn-update, .btn-delete{
-    border: none;
-    border-radius: 6px;
-    font-size: 0.75rem;
-    padding: 8px 16px;
-}
-.product-container .btn-update{
-    background: #198754;
-    color: #ddd;
-}
-.product-container .btn-delete{
-    background: red;
-    color: #ddd;
-}
-.img-fluid {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-}
-/* ====== End Product ====== */
-
-/* ====== Start Voucher ====== */
-.voucher-info tr {
-    display: flex;
-}
-.voucher-info th,
-.voucher-info td {
-    flex: 1;
-}
-.voucher-container .buttonGrp{
-    width: 300px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-.voucher-container .btn-update, .btn-delete{
-    border: none;
-    border-radius: 6px;
-    font-size: 0.75rem;
-    padding: 8px 16px;
-}
-.voucher-container .btn-update{
-    background: #198754;
-    color: #ddd;
-}
-.voucher-container .btn-delete{
-    background: red;
-    color: #ddd;
-}
-/* ====== End Voucher ====== */
-
-/* ====== Order ====== */
-.order_list .card.hide{
-    display: none;
-}
-.filter_buttons button.active{
-    border: none;
-    border-bottom: 3px solid #18A1D7;
-}
-.filter_buttons .all-order{
-    background: #18A1D7;
-}
-
-.filter_buttons .new-order{
-    background: #66CA29;
-}
-.filter_buttons .pending-order{
-    background: #EBAD0E;
-}
-.filter_buttons .delivered-order{
-    background: #9747FF;
-}
-/*
-.filter_buttons .new-btn.active{
-    border-radius: 0px;
-    border-bottom: 3px solid #66CA29;
-}
-.filter_buttons .pending-btn.active{
-    border-radius: 0px;
-    border-bottom: 3px solid #EBAD0E;
-}
-.filter_buttons .delivered-btn.active{
-    border-radius: 0px;
-    border-bottom: 3px solid #9747FF;
-}
-/* ====== Subscriber ====== */
-.search-box input:focus {
-        outline: none;
-        box-shadow: none;
-}
-
-.img-profile{
-    border-radius: 10px;
-    top: 37%;
-    left: 5%;
-    border: 4px solid whitesmoke;
-}

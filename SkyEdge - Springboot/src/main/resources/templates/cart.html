@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>SkyEdge</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="./assets/favicon.png" type="image/x-icon">
+        
+    <!-- CSS -->
+    <link rel="stylesheet" href="./displays/MainDisplay/main.css">
+    <link rel="stylesheet" href="./pages/Cart/cart.css">
+    <link rel="stylesheet" href="./assets/css/typo.css">
+    <link rel="stylesheet" href="./assets/css/colors.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+    <!-- Nav Top -->
+    <nav id="nav-top" class="navbar navbar-expand-lg bg-dark navbar-light d-none d-lg-block" th:replace="~{main/fragments/topnav :: topnav}"></nav>
+
+    <!-- Header -->
+    <nav id="header" class="navbar navbar-expand-lg navbar-light shadow" th:replace="~{main/fragments/header :: header}"></nav>
+
+    <!-- Main content -->
+    <div class="super-cart-container">
+        <div class="block-info">
+            <div class="container block-box">
+                <div class="nav" id="nav-items">
+                    <div class="nav-item-active nav-item" data-target="payment-block">
+                        <span>Information</span>
+                    </div>
+    
+                    <div class="nav-item" data-target="payment-block">
+                        <span>Payment</span>
+                    </div>
+                </div>
+    
+                <div class="view-list">
+                    <div class="view-list-wrapper">
+                        <div class="item">
+                            <img loading="lazy" src="./assets/images/category_img.jpg" class="item-img">
+    
+                            <div class="item-info">
+                                <p class="item-name">Sunglasses</p>
+                                <div class="item-price">
+                                    <p>$48</p>
+                                    <p>Quantity:
+                                        <span class="text-success">1</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="block-customer" id="payment-block">
+                    <p>Customer Information</p>
+                    <div class="block-customer-wrapper">
+                        <div class="row g-2">
+                            <div class="col-md">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="floatingInput" placeholder="Type here..">
+                                    <label for="floatingInput">Full name</label>
+                                </div>
+                            </div>
+        
+                            <div class="col-md">
+                                <div class="form-floating mb-3">
+                                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                                    <label for="floatingInput">Email address</label>
+                                </div>
+                            </div>
+        
+                            <div class="form-floating mb-3">
+                                <input type="tel" class="form-control" id="floatingInput" placeholder="Type here..">
+                                <label for="floatingInput">Phone number</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="block-payment">
+                    <p>Receiving Information</p>
+                    <div class="block-payment-wrapper">
+                        <div class="block-payment-method">
+                            <div>
+                                <input id="pickup" value="pickup" checked name="delivery" type="radio">
+                                <label for="pickup" class="mb-0">On Store</label>
+                            </div>
+                             
+                            <div>
+                                <input id="pickup" value="pickup" name="delivery" type="radio">
+                                <label for="pickup" class="mb-0">At home</label>
+                            </div>
+                        </div>
+                            
+                        <div class="block-payment-main">
+                            <div class="payment-main-cod payment-main-item">
+                                <div class="box-select">
+                                    
+                                </div>
+                                <div class="box-select">
+                                    <div class="box-input">
+                                        <input type="search" placeholder="Pick your closest store" class="box-input-main">
+                                        <label>Store</label>
+                                        <div class="box-input-line"></div>
+                                    </div>
+
+                                    <div class="box-input-arrow">
+                                        <i class="fa-solid fa-chevron-down"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bottom-bar container mt-auto">
+                <div class="total-box d-flex justify-content-between align-items-start">
+                    <p class="title-temp">Temporary Total:</p>
+
+                    <div class="price d-flex flex-column align-items-end">
+                        <span class="total">$48</span>
+                    </div>
+                </div>
+
+                <div class="btn-submit mt-2">
+                    <button class="button-go-next btn btn-success d-flex flex-column justify content-center align-items-center w-100">Continue</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <button id="backToTop" class="btn-back-to-top">
+        <strong>Up to head</strong>
+    </button> -->
+    <footer class="bg-dark">
+        <div id="footer" class="container"  th:replace="~{main/fragments/footer :: footer}"></div>
+
+        <!-- Copyright -->
+        <div id="copyright" class="bg-black copy-right py-3 w-100" th:replace="~{main/fragments/copyright :: copyright}"></div>
+    </footer>
+    <!-- Scripts -->
+    <script src="./pages/Cart/cart.js"></script>
+    <script src="./displays/MainDisplay/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

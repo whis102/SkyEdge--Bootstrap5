@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{admin/fragments/head :: head}"></head>
+
+<body>
+    <nav th:replace="~{admin/fragments/menu :: menu}"></nav>
+
+    <div th:replace="~{admin/fragments/navbar :: navbar}"></div>
+
+    <div id="content" class="bg-w p-3">
+        <div class="order-popup">
+            <div class="order-popup-content">
+                <span class="close-popup fs-2" role="button">×</span>
+                <div class="col d-flex rounded-3">
+                    <div class="col-8 d-flex flex-column left-content p-4">
+                        <span class="fw-bold fs-4 text-start mb-4">Order Details</span>
+                        <div class="item"></div>
+                        <div class="d-flex flex-column">
+                            <div class="d-flex justify-content-between">
+                                <span>Subtotal</span>
+                                <span class="fw-bold fs-6">CurrencyAmount</span>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <span>Shipping</span>
+                                <span class="fw-bold fs-6">CurrencyAmount</span>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <span>Discount</span>
+                                <span class="fw-bold fs-6">CurrencyAmount</span>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <span class="fw-bold">Total</span>
+                                <span class="fw-bold fs-6">CurrencyAmount</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4 right-content p-4 d-flex flex-column gap-4">
+                        <div class="d-flex flex-column">
+                            <span class="fw-bold fs-4 text-start mb-3">Customer Info</span>
+                            <div class="d-flex gap-3 mb-2 align-items-center">
+                                <img class="rounded-circle" height="60" width="60" src="" alt="User Avatar">
+                                <div class="d-flex flex-column h-100">
+                                    <span class="text-start fw-bold">UserName</span>
+                                    <span class="text-start">Email: UserEmail</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-column">
+                            <span class="fw-bold fs-4 text-start mb-3">Delivery Details</span>
+                            <div class="d-flex flex-column h-100">
+                                <span class="text-start">Address: OrderAddress</span>
+                                <span class="text-start">Phone: OrderPhone</span>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-column">
+                            <span class="fw-bold fs-4 text-start mb-3">Payment Info</span>
+                            <div class="d-flex flex-column h-100">
+                                <span class="text-start">Payment Method: PaymentMethod</span>
+                                <span class="text-start">Transaction No: TransactionNo</span>
+                            </div>
+                        </div>
+                        <buttonGrp class="buttonGrp">
+                            <button class="btn px-3 py-2 btn-outline-secondary rounded-3">Cancel</button>
+                            <button class="btn px-3 py-2 btn-outline-primary rounded-3">Save Changes</button>
+                        </buttonGrp>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script th:replace="~{admin/fragments/script :: script}"></script>
+</body>
+
+</html>
