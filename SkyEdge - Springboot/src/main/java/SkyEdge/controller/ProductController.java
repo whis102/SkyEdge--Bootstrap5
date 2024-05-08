@@ -198,4 +198,9 @@ public class ProductController {
 
         return "redirect:/admin/product";
     }
+    
+    @GetMapping("/*")
+    public String defaultPage(){
+        return "redirect:/admin/product";
+    }
 }

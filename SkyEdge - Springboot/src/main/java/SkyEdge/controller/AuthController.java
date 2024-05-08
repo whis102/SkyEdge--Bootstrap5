@@ -148,4 +148,5 @@ public class AuthController {
         model.addAttribute("subscriber", subsccriber);
         return "redirect:/";
     }
+
 }

@@ -101,35 +101,14 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-// The 2 buttons
-const buyButton = document.createElement('button');
-buyButton.id = 'buy-button';
-buyButton.classList.add('btn', 'btn-success', 'btn-lg');
-buyButton.name = 'submit';
-buyButton.value = 'buy';
-buyButton.innerText = 'Buy';
-
-const addToCartButton = document.createElement('button');
-addToCartButton.type = 'submit';
-addToCartButton.classList.add('btn', 'btn-success', 'btn-lg');
-addToCartButton.name = 'submit';
-addToCartButton.value = 'addtocard';
-addToCartButton.innerText = 'Add To Cart';
-
-const buyButtonContainer = document.querySelector('.col.d-grid:first-child');
-const addToCartButtonContainer = document.querySelector('.col.d-grid:nth-child(2)');
-
-buyButtonContainer.appendChild(buyButton);
-addToCartButtonContainer.appendChild(addToCartButton);
-
 // Navigate to cart.html when click "Buy"
-document.addEventListener('DOMContentLoaded', function () {
-    const buyButton = document.getElementById('buy-button');
-    buyButton.addEventListener('click', function (event) {
-        event.preventDefault();
-        window.location.href = 'cart.html';
-    });
-});
+// document.addEventListener('DOMContentLoaded', function () {
+//     const buyButton = document.getElementById('buy-button');
+//     buyButton.addEventListener('click', function (event) {
+//         event.preventDefault();
+//         window.location.href = 'cart.html';
+//     });
+// });
 
 // Page wrapper
 const products = [
