@@ -1,17 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
-<head th:replace="admin/fragments/head :: head"></head>
-
+<head th:replace="~{admin/fragments/head :: head}"></head>
 <body>
-    <nav th:replace="admin/fragments/menu :: menu"></nav>
-
-    <div th:replace="admin/fragments/navbar :: navbar"></div>
-
+    <nav th:replace="~{admin/fragments/menu :: menu}"></nav>
+    <div th:replace="~{admin/fragments/navbar :: navbar}"></div>
     <div id="content" class="bg-w p-3">
-
         <div class="container product-container p-4">
-            <!-- Search Bar -->
+            <!-- Top bar -->
             <div class="row d-flex align-items-center rounded-3 p-3 mb-4 bg-white">
                 <div class="col-12 d-flex align-items-center">
                     <!-- Management -->
@@ -19,7 +14,7 @@
                         <i class="fa-solid fa-cart-shopping fa-2x mb-4"></i>
                         <div class="d-flex flex-column ml-5">
                             <span class="fs-2">Product Management</span>
-                            <span id="total-product" class="text-secondary">0 products</span>
+                            <span id="total-product" class="text-secondary"><span th:text="${productCount}"></span> products</span>
                         </div>
                     </div>
                     <!-- Search -->
@@ -33,7 +28,7 @@
                     <!-- Add Product Button -->
                     <div class="col-2 px-4">
                         <a th:href="@{/admin/product/add}" id="add-product-button"
-                            class="rounded-pill text-white bg-success py-2 px-3 d-flex align-items-center gap-2 border-0 outline-0">
+                            class="rounded-pill text-white bg-success py-2 px-3 d-flex align-items-center gap-2 border-0 outline-0 text-decoration-none">
                             <i class="fas fa-plus-circle"></i>
                             <span class="mt-0">Add product</span>
                         </a>
@@ -44,17 +39,16 @@
             <div class="list-product row gap-2">
                 <div th:each="product : ${products}"
                     class="product-box rounded-3 bg-white p-3 d-flex align-items-center gap-5">
-                    <input id="checkbox-product-input" type="checkbox" onchange="displayButton(this)">
-                    <img width="50" , height="50" style="border-radius: 50%;" th:src="@{/assets/favicon.png}">
-                    <table class="product-info w-100">
+                    <input id="checkbox-product-input" type="checkbox" onchange="displayProductButton(this)">
+                    <img width="50" height="50" style="border-radius: 50%;" th:src="@{'/images/' + ${product.imageFileName}}" alt="Product Image">
+                    <table class="product-info justify-content-between w-100">
                         <thead class="fs-075 text-secondary">
                             <tr>
-
                                 <th>Product ID</th>
                                 <th>Product Name</th>
                                 <th>Price</th>
                                 <th>Type</th>
-                                <th>Origin</th>
+                                <th>Discount</th>
                                 <th>Stock</th>
                             </tr>
                         </thead>
@@ -62,37 +56,26 @@
                             <tr id="tr-product">
                                 <td th:text="${product.id}"></td>
                                 <td th:text="${product.name}"></td>
-                                <td th:text="${product.description}"></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td th:text="'$' + ${product.price}"></td>
+                                <td th:text="${product.category}"></td>
+                                <td th:text="${product.discount} + '%'"></td>
+                                <td th:text="${product.stock}"></td>
                             </tr>
                         </tbody>
                     </table>
                     <!-- Các nút Update và Delete -->
                     <div class="buttonGrp d-none">
-                        <a th:href="'/admin/product/update/' + ${product.id}"
-                            class="btn-update d-flex align-items-center gap-1" onclick="openPopup()">
+                        <a th:href="@{/admin/product/edit(id=${product.id})}"
+                            class="btn btn-outline-primary d-flex align-items-center gap-1" >
                             <i class="fa-solid fa-pen-to-square"></i>
-                            <span>Update</span>
+                            <span>Edit</span>
                         </a>
-                        <a th:href="'/admin/product/delete/' + ${product.id}"
-                            class="btn-delete d-flex align-items-center text-decoration-none gap-1">
+                        <a th:href="@{/admin/product/delete(id=${product.id})}"
+                            class="btn btn-outline-danger d-flex align-items-center text-decoration-none gap-1" onclick="return confirm('Are you sure?')">
                             <i class="fa-regular fa-trash-can"></i>
                             <span>Delete</span>
                         </a>
                     </div>
-                </div>
-            </div>
-            <!-- Overlay -->
-            <div class="overlay d-none"></div>
-
-            <!-- Popup -->
-            <div class="product-popup d-none">
-                <div class="product-popup-content">
-                    <!-- Close button -->
-                    <span class="close-popup fs-2" role="button" onclick="closePopup()">×</span>
-
                 </div>
             </div>
 
@@ -105,7 +88,8 @@
                 <li class="page-item"><a class="page-link" href="#">Next</a></li>
             </ul>
         </div>
-        <script th:replace="admin/fragments/script :: script"></script>
+    </div>
+        <script th:replace="~{admin/fragments/script :: script}"></script>
 </body>
 
 </html>

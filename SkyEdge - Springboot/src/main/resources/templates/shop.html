@@ -20,11 +20,11 @@
 </head>
 
 <body>
-    <!-- Start Nav Top -->
-    <nav id="nav-top" class="navbar navbar-expand-lg bg-dark navbar-light d-none d-lg-block"></nav>
+    <!-- Nav Top -->
+    <nav id="nav-top" class="navbar navbar-expand-lg bg-dark navbar-light d-none d-lg-block" th:replace="~{main/fragments/topnav :: topnav}"></nav>
 
     <!-- Header -->
-    <nav id="header" class="navbar navbar-expand-lg navbar-light shadow"></nav>
+    <nav id="header" class="navbar navbar-expand-lg navbar-light shadow" th:replace="~{main/fragments/header :: header}"></nav>
 
     <!-- Main -->
     <div id="products" class="container py-5">
@@ -103,7 +103,7 @@
                         <!-- Card -->
                         <div class="card mt-4 m-2" style="width: 18rem; height: 34rem;">
                             <div class="position-relative">
-                                <img src="./assets/images/category_img.jpg" class="card-img-top img" alt="...">
+                                <img th:src="@{'/images/' + ${product.imageFileName}}"class="card-img-top img" alt="...">
                                 <div
                                     class="img-overlay position-absolute top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center">
                                     <div class="card-btn flex-row d-flex gap-3">
@@ -131,7 +131,7 @@
                                         <i class="text-warning fa fa-star"></i>
                                         <i class="text-muted fa fa-star"></i>
                                     </li>
-                                    <li class="text-muted text-right">$48.00</li>
+                                    <li class="text-muted text-right" th:text="'$' + ${product.price}"></li>
                                 </ul>
                                 <a th:href="@{/product-details/} + ${product.id}"
                                     class="h3 text-decoration-none text-dark" th:text="${product.name}">
@@ -139,9 +139,6 @@
                                 </a>
 
                                 <p class="card-text pt-1" th:text="${product.description}">
-                                    Aenean gravida dignissim finibus. Nullam ipsum diam, posuere vitae pharetra
-                                    sed,
-                                    commodo ullamcorper.
                                 </p>
                                 <p class="text-muted">Reviews (48)</p>
                             </div>
@@ -170,10 +167,10 @@
 
     <!-- Start Footer -->
     <footer class="bg-dark">
-        <div id="footer" class="container"></div>
+        <div id="footer" class="container"  th:replace="~{main/fragments/footer :: footer}"></div>
 
         <!-- Copyright -->
-        <div id="copyright" class="bg-black copy-right py-3 w-100"></div>
+        <div id="copyright" class="bg-black copy-right py-3 w-100" th:replace="~{main/fragments/copyright :: copyright}"></div>
     </footer>
     <!-- Close Footer -->
 

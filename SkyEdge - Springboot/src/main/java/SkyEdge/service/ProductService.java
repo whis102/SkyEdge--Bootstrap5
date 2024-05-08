@@ -20,18 +20,23 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public Product findByProductId(Long id) throws NotFoundException {
-        return productRepository.findOneById(id);
+    public Product findByProductId(int id) throws NotFoundException {
+        return productRepository.findById(id).get();
     }
-    public Optional<Product> getProductById(Long id) {
+
+    public Optional<Product> getProductById(int id) {
         return productRepository.findById(id);
+    }
+
+    public Long getProductCount() {
+        return productRepository.countProducts();
     }
 
     public Product saveProduct(Product product) {
         return productRepository.save(product);
     }
 
-    public void deleteProduct(Long id) {
+    public void deleteProduct(int id) {
         productRepository.deleteById(id);
     }
 }

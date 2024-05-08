@@ -21,10 +21,10 @@ public class SeedData implements CommandLineRunner {
         Optional<Role> userRole = roleRepository.findByAuthority("USER");
         System.out.println(adminRole);
         if (adminRole.isEmpty()) {
-            roleRepository.save(new Role(0, "ADMIN"));
+            roleRepository.save(new Role("ADMIN"));
         }
         if (userRole.isEmpty()) {
-            roleRepository.save(new Role(1, "USER"));
+            roleRepository.save(new Role("USER"));
         }
 
     }

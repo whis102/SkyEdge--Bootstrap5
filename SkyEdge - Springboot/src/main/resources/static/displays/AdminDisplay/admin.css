@@ -58,6 +58,11 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+.color-edit-text{
+    background: linear-gradient(to right, #004cda, #90b7d8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
 /* ====== End Custom ====== */
 
 /* ====== Start Reuse ====== */
