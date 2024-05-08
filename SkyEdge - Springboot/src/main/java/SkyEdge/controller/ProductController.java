@@ -45,9 +45,15 @@ public class ProductController {
         if (productRepository.findById(productId).isPresent()) {
             Product product = productRepository.findById(productId).get();
             if (product.getStock() >= quantity) {
-                ProductOrder productOrder = new ProductOrder(productId, quantity);
-                productOrder.setUser(user);
-                productOrderRepository.save(productOrder);
+                if (productOrderRepository.findByProductId(productId).isEmpty()) {
+                    ProductOrder productOrder = new ProductOrder(productId, quantity);
+                    productOrder.setUser(user);
+                    productOrderRepository.save(productOrder);
+                } else {
+                    ProductOrder productOrder = productOrderRepository.findOneByProductId(productId);
+                    productOrder.setQuantity(productOrder.getQuantity() + quantity);
+                    productOrderRepository.save(productOrder);
+                }
 
                 return "redirect:/cart";
             }
@@ -220,9 +226,9 @@ public class ProductController {
 
         return "redirect:/admin/product";
     }
-    
+
     @GetMapping("/*")
-    public String defaultPage(){
+    public String defaultPage() {
         return "redirect:/admin/product";
     }
 }

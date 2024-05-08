@@ -30,19 +30,22 @@
 
     <!-- Main content -->
     <div class="super-cart-container">
-        <form class="block-info p-4 mb-4" >
+        <form class="block-info p-4 mb-4" method="post" th:action="@{/cart/payment/add}" th:object="${productInCart}">
             <div class="container block-box gap-2">
                 <div class="cart-header d-flex justify-content-between align-items-center p-2">
-                    <a role="button" class="fas fa-arrow-left fs-2 fw-bold text-decoration-none text-dark" th:href="@{/cart/payment-info}"></a>
+                    <a role="button" class="fas fa-arrow-left fs-2 fw-bold text-decoration-none text-dark"
+                        th:href="@{/cart/payment-info}"></a>
                     <p class="title fs-2 fw-bold ms-2">Payment</p>
                     <div></div>
                 </div>
                 <div class="nav d-flex justify-content-between">
                     <div class="nav-item d-flex justify-content-center w-50">
-                        <a onclick="toggleNav(this)" th:href="@{/cart/payment-info}" class="text-decoration-none">1. Information</a>
+                        <a onclick="toggleNav(this)" th:href="@{/cart/payment-info}" class="text-decoration-none">1.
+                            Information</a>
                     </div>
                     <div class="nav-item nav-item-active d-flex justify-content-center w-50">
-                        <a  onclick="toggleNav(this)" th:href="@{/cart/payment}" class="text-decoration-none">2. Payment</a>
+                        <a onclick="toggleNav(this)" th:href="@{/cart/payment}" class="text-decoration-none">2.
+                            Payment</a>
                     </div>
                 </div>
                 <div class="block-customer mt-3" id="payment-block">
@@ -51,12 +54,12 @@
                             <div class="w-100 d-flex">
                                 <div class="popup-overlay" onclick="hidePopup()"></div>
                                 <div class="input-wrapper flex-grow-1">
-                                    <input type="text" id="voucher-input" class="form-control" placeholder="Enter voucher code" onclick="showPopup()">
+                                    <input type="text" id="voucher-input" class="form-control"
+                                        placeholder="Enter voucher code" onclick="showPopup()">
                                     <div id="popup" class="popup">
-                                        <ul>
-                                            <li onclick="selectVoucher('Voucher 1')">Voucher 1</li>
-                                            <li onclick="selectVoucher('Voucher 2')">Voucher 2</li>
-                                            <li onclick="selectVoucher('Voucher 3')">Voucher 3</li>
+                                        <ul th:each="voucher: ${vouchers}">
+                                            <li onclick="selectVoucher('Voucher 1')" th:text="${voucher.name}">Voucher 1
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
@@ -64,31 +67,35 @@
                             </div>
                             <div class="d-flex flex-column">
                                 <div class="d-flex">
-                                    <p class="flex-grow-1 text-secondary">Number of products</p> 
+                                    <p class="flex-grow-1 text-secondary">Number of products</p>
                                     <p></p>
                                 </div>
                                 <div class="d-flex">
-                                    <p class="flex-grow-1 text-secondary">Products money (Temporary)</p> 
-                                    <p>th:text="'$' +${productInCart.cost}"</p>
-                                </div> 
+                                    <p class="flex-grow-1 text-secondary">Products money (Temporary)</p>
+                                    <p th:text="'$' +${productInCart.cost}">th:text="'$' +${productInCart.cost}"</p>
+                                </div>
                                 <div class="d-flex">
-                                    <p class="flex-grow-1 text-secondary">Transport fee</p> 
+                                    <p class="flex-grow-1 text-secondary">Transport fee</p>
                                     <p>Free</p>
                                 </div>
                             </div>
                             <div class="d-flex">
-                                <p class="flex-grow-1 text-secondary">Reduce SkyMember <span class="badge border border-success text-success">S-MEM</span></p>
-                                <p class="fw-bold">th:text="'$' +${totalproductInCart.cost}"</p>
+                                <p class="flex-grow-1 text-secondary">Reduce SkyMember <span
+                                        class="badge border border-success text-success">S-MEM</span></p>
+                                <p class="fw-bold" th:text="'$' +${productInCart.cost}*0.99">th:text="'$'
+                                    +${totalproductInCart.cost}"</p>
                             </div>
                         </div>
                         <div class="py-2">
                             <p class="fw-bold">Billing Information</p>
-                            
+
                             <div class="input-wrapper flex-grow-1 p-2">
-                                <button type="button" id="method-input" class="border-0 bg-white d-flex w-100" onclick="showMethodPopup()">
+                                <button type="button" id="method-input" class="border-0 bg-white d-flex w-100"
+                                    onclick="showMethodPopup()">
                                     <div class="flex-grow-1 d-flex align-items-center gap-2">
-                                        <i class="fas fa-credit-card text-success icon-method"></i> 
-                                        <p class="text-secondary text-center mb-0 text-method">Select a payment method</p> 
+                                        <i class="fas fa-credit-card text-success icon-method"></i>
+                                        <p class="text-secondary text-center mb-0 text-method">Select a payment method
+                                        </p>
                                     </div>
                                     <i class="fas fa-chevron-right  text-success"></i>
                                 </button>
@@ -105,21 +112,29 @@
                             <p class="fw-bold">Delivery Details</p>
                             <div class="p-2">
                                 <div class="d-flex flex-column">
+                                    <input type="hidden" th:field="${productInCart.customerName}"></input>
+                                    <input type="hidden" th:field="${productInCart.email}"></input>
+                                    <input type="hidden" th:field="${productInCart.phone}"></input>
+                                    <input type="hidden" th:field="${productInCart.address}"></input>
+                                    <input type="hidden" th:field="${productInCart.cost}"></input>
+                                    <input type="hidden" th:field="${productInCart.products}"></input>
                                     <div class="d-flex">
-                                        <p class="flex-grow-1 text-secondary">Customer</p> 
-                                        <p><span class="badge border border-success text-success">S-MEM</span> th:text="${user.userName}"</p>
+                                        <p class="flex-grow-1 text-secondary">Customer</p>
+                                        <p><span class="badge border border-success text-success">S-MEM</span>
+                                        <p th:text="${productInCart.customerName}"></p>
+                                        </p>
                                     </div>
                                     <div class="d-flex">
-                                        <p class="flex-grow-1 text-secondary">Phone number</p> 
-                                        <p>th:text="${user.phone}"</p>
-                                    </div> 
-                                    <div class="d-flex">
-                                        <p class="flex-grow-1 text-secondary">Email</p> 
-                                        <p>th:text="${user.email}"</p>
+                                        <p class="flex-grow-1 text-secondary">Phone number</p>
+                                        <p th:text="${productInCart.phone}"></p>
                                     </div>
                                     <div class="d-flex">
-                                        <p class="flex-grow-1 text-secondary">Delivery Address</p> 
-                                        <p>th:text="${user.address}"</p>
+                                        <p class="flex-grow-1 text-secondary">Email</p>
+                                        <p th:text="${productInCart.email}"></p>
+                                    </div>
+                                    <div class="d-flex">
+                                        <p class="flex-grow-1 text-secondary">Delivery Address</p>
+                                        <p th:text="${productInCart.address}">th:text="${user.address}"</p>
                                     </div>
                                 </div>
                             </div>
@@ -129,7 +144,7 @@
                 <div class="p-3 mt-2 d-flex flex-column rounded-3">
                     <div class="total-box d-flex justify-content-between">
                         <p class="title-temp">Temporary Total:</p>
-                        <span class="total text-success fw-bold" >$48</span>
+                        <span class="total text-success fw-bold" th:text="'$' +${productInCart.cost}">$48</span>
                     </div>
 
                     <div class="btn-submit mt-0 d-grid">

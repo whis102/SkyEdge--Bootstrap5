@@ -29,10 +29,7 @@ public class Order {
     private int orderId;
 
     @Column(name = "order_date", columnDefinition = "DATE")
-    private LocalDate date;
-
-    @Column(name = "shipping_no")
-    private String shippingNo;
+    private LocalDate date = LocalDate.now();
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     @JoinTable(name = "order_product_junction", joinColumns = {
@@ -44,6 +41,7 @@ public class Order {
     private String phone;
     private double cost;
     private String customerName;
+    private String email;
     // @Embedded
     // private Money shippingFee;
 

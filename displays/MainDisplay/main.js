@@ -399,16 +399,6 @@ function createFooterLinks(links) {
     return ul;
 }
 
-const footerLinks = [
-    { text: 'Luxury', href: '#' },
-    { text: 'Trending', href: '#' },
-    { text: 'Men\'s Glass', href: '#' },
-    { text: 'Women\'s Glass', href: '#' },
-    { text: 'Sunglasses', href: '#' },
-    { text: 'Accessories', href: '#' },
-    { text: 'Eyeglass Frames', href: '#' }
-];
-
 // const footerLinksElement = createFooterLinks(footerLinks);
 // const footer = document.querySelector('.col-md-4');
 // footer.appendChild(footerLinksElement);
