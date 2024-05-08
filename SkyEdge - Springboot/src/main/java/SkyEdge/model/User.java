@@ -44,6 +44,9 @@ public class User implements UserDetails {
     @Column
     private String email;
 
+    @Column
+    private String phone;
+
     public User(String username, String password, Set<Role> authorities) {
         this.username = username;
         this.password = password;
