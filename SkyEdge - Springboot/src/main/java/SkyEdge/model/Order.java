@@ -3,6 +3,7 @@ package SkyEdge.model;
 import java.time.LocalDate;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -33,7 +34,7 @@ public class Order {
     @Column(name = "shipping_no")
     private String shippingNo;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     @JoinTable(name = "order_product_junction", joinColumns = {
             @JoinColumn(name = "order_id") }, inverseJoinColumns = {
                     @JoinColumn(name = "product_order_id") })

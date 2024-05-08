@@ -30,115 +30,50 @@
 
     <!-- Main content -->
     <div class="super-cart-container">
-        <form class="block-info" method="post" th:action="@{/submitCart}" th:object="${myOrder}">
+        <form class="block-info p-4 mb-4" method="post" th:action="@{/cart/payment-info}" th:object="${productInCart}">
             <div class="container block-box">
-                <div class="nav" id="nav-items">
-                    <div class="nav-item-active nav-item" data-target="payment-block">
-                        <span>Information</span>
-                    </div>
-
-                    <div class="nav-item" data-target="payment-block">
-                        <span>Payment</span>
-                    </div>
+                <div class="cart-header d-flex justify-content-between align-items-center p-2">
+                    <a role="button" class="fas fa-arrow-left fs-2 fw-bold text-decoration-none text-dark"></a>
+                    <p class="title fs-2 fw-bold mb-0 ms-2">Your cart</p>
+                    <div></div>
                 </div>
-
-                <div class="view-list">
-                    <div class="view-list-wrapper" th:each="order: ${orders}">
+                <div class="view-list ">
+                    <div class="view-list-wrapper mb-2" th:each="order: ${orders}">
                         <div class="item">
-                            <img loading="lazy" src="./assets/images/category_img.jpg" class="item-img">
-
-                            <div class="item-info">
-                                <p class="item-name" th:text="${order.product.name}">Sunglasses</p>
-                                <div class="item-price">
-                                    <p th:text="'$' + ${order.product.price}">$48</p>
-                                    <p>Quantity:
-                                        <span class="text-success" th:text="${order.quantity}">1</span>
-                                    </p>
+                            <div class=" d-inline-block">
+                                <img loading="lazy" src="./assets/images/Huan.png" class=" item-img rounded-3" width="100" height="100">
+                            </div>
+                            <div class="item-info  text-start">
+                                <div class="d-flex flex-column">
+                                    <p class="item-name" th:text="${order.product.name}"></p>
+                                    <p class="text-success" th:text="'$' + ${order.product.price}"></p>
                                 </div>
+                            </div>
+                            <div class="d-flex flex-column gap-2 p-2 temp-total">
+                                <a role="button" class="fa-regular fa-trash-can text-danger text-end"  th:href="@{/cart/delete(id=${order.product.id})}"></a>
+                                <ul class="list-inline d-flex align-items-center justify-content-end gap-1">
+                                    <li id="btn-minus" class="list-inline-item btn btn-sm btn-outline-secondary " >
+                                        <span>-</span></li>
+                                    <li class="list-inline-item"><span class="text-secondary"
+                                            id="var-value" th:text="${order.quantity}"></span></li>
+                                    <li id="btn-plus" class="list-inline-item btn btn-sm btn-outline-secondary ">
+                                        <span>+</span></li>
+                                </ul>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="block-customer" id="payment-block">
-                    <p>Customer Information</p>
-                    <div class="block-customer-wrapper">
-                        <div class="row g-2">
-                            <div class="col-md">
-                                <div class="form-floating mb-3">
-                                    <input type="text" class="form-control" id="floatingInput" placeholder="Type here.."
-                                        th:field="${myOrder.customerName}">
-                                    <label for="floatingInput">Full name</label>
-                                </div>
-                            </div>
-
-                            <div class="col-md">
-                                <div class="form-floating mb-3">
-                                    <input type="email" class="form-control" id="floatingInput" name="email"
-                                        th:field="${myOrder.address}" placeholder="name@example.com">
-                                    <label for="floatingInput">Email address</label>
-                                </div>
-                            </div>
-
-                            <div class="form-floating mb-3">
-                                <input type="tel" class="form-control" id="floatingInput" placeholder="Type here.."
-                                    th:field="${myOrder.phone}">
-                                <label for="floatingInput">Phone number</label>
-                            </div>
-                        </div>
+                <div class="p-3 mt-2 d-flex flex-column rounded-3">
+                    <div class="total-box d-flex justify-content-between">
+                        <p class="title-temp">Temporary Total:</p>
+                        <span class="total text-success fw-bold" th:text="'$' +${productInCart.cost}">$48</span>
                     </div>
-                </div>
 
-                <div class="block-payment">
-                    <p>Receiving Information</p>
-                    <div class="block-payment-wrapper">
-                        <div class="block-payment-method">
-                            <div>
-                                <input id="pickup" value="pickup" checked name="delivery" type="radio">
-                                <label for="pickup" class="mb-0">On Store</label>
-                            </div>
-
-                            <div>
-                                <input id="pickup" value="pickup" name="delivery" type="radio">
-                                <label for="pickup" class="mb-0">At home</label>
-                            </div>
-                        </div>
-
-                        <div class="block-payment-main">
-                            <div class="payment-main-cod payment-main-item">
-                                <div class="box-select">
-
-                                </div>
-                                <div class="box-select">
-                                    <div class="box-input">
-                                        <input type="search" placeholder="Pick your closest store"
-                                            class="box-input-main">
-                                        <label>Store</label>
-                                        <div class="box-input-line"></div>
-                                    </div>
-
-                                    <div class="box-input-arrow">
-                                        <i class="fa-solid fa-chevron-down"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="btn-submit mt-0 d-grid">
+                        <button type="submit" th:href="@{/cart/payment-info}"
+                            class="button-go-next btn btn-success d-flex flex-column justify content-center align-items-center">Continue<span class="badge bg-danger">4</span>
+                        </button>
                     </div>
-                </div>
-            </div>
-
-            <div class="bottom-bar container mt-auto">
-                <div class="total-box d-flex justify-content-between align-items-start">
-                    <p class="title-temp">Temporary Total:</p>
-
-                    <div class="price d-flex flex-column align-items-end">
-                        <span class="total" th:text="'$' +${myOrder.cost}">$48</span>
-                    </div>
-                </div>
-
-                <div class="btn-submit mt-2">
-                    <button type="submit" th:href="@{/}"
-                        class="button-go-next btn btn-success d-flex flex-column justify content-center align-items-center w-100">Continue</button>
                 </div>
             </div>
         </form>

@@ -1,20 +1,55 @@
-const navItems = document.querySelectorAll('#nav-items .nav-item');
+function toggleNav(clickedNav) {
+    // Loại bỏ lớp nav-item-active từ tất cả các nút
+    const navItems = document.querySelectorAll('.nav-item, .nav-item-active');
+    navItems.forEach(item => {
+        item.classList.remove('nav-item-active');
+    });
 
-navItems.forEach((item) => {
-item.addEventListener('click', () => {
-    navItems.forEach((navItem) => navItem.classList.remove('nav-item-active'));
+    // Thêm lớp nav-item-active cho nút được nhấp
+    clickedNav.parentElement.classList.add('nav-item-active');
+}
+function showPopup() {
+    var popup = document.getElementById("popup");
+    var overlay = document.querySelector(".popup-overlay");
+    popup.style.display = "block";
+    overlay.style.display = "block";
+    document.body.style.overflow = "hidden"; /* Ngăn cuộn trang */
+}
 
-    item.classList.add('nav-item-active');
+function hidePopup() {
+    var popup = document.getElementById("popup");
+    var overlay = document.querySelector(".popup-overlay");
+    popup.style.display = "none";
+    overlay.style.display = "none";
+    document.body.style.overflow = ""; /* Cho phép cuộn trang lại */
+}
 
-    const contentBlocks = document.querySelectorAll('.block-box .block-customer');
-    contentBlocks.forEach((block) => block.style.display = 'none');
+function selectVoucher(voucher) {
+    var input = document.getElementById("voucher-input");
+    input.value = voucher; // Điền voucher code vào input
+    hidePopup(); // Tắt popup
+}
 
-    const targetBlockId = item.dataset.target;
-    if (targetBlockId) {
-    const targetBlock = document.getElementById(targetBlockId);
-    if (targetBlock) {
-        targetBlock.style.display = 'block';
-    }
-    }
-});
-});
+function showMethodPopup() {
+    var popup = document.getElementById("method-popup");
+    var overlay = document.querySelector(".popup-overlay");
+    popup.style.display = "block";
+    overlay.style.display = "block";
+    document.body.style.overflow = "hidden"; /* Ngăn cuộn trang */
+}
+
+function hideMethodPopup() {
+    var popup = document.getElementById("method-popup");
+    var overlay = document.querySelector(".popup-overlay");
+    popup.style.display = "none";
+    overlay.style.display = "none";
+    document.body.style.overflow = ""; /* Cho phép cuộn trang lại */
+}
+
+function selectPaymentMethod(method) {
+    var icon = document.querySelector(".icon-method");
+    var text = document.querySelector(".text-method");
+    text.innerText  = method; // Điền voucher code vào input
+    hideMethodPopup(); // Tắt popup
+}
+

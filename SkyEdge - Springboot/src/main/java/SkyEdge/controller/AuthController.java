@@ -84,7 +84,7 @@ public class AuthController {
             return "/register";
         }
         authenticationService.registerUser(ut.getUsername(), ut.getPassword());
-        return "redirect:/";
+        return "login";
     }
 
     @GetMapping("/")
