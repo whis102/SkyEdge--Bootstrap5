@@ -33,16 +33,19 @@
         <form class="block-info p-4 mb-4" method="get" th:action="@{/cart/payment}">
             <div class="container block-box gap-2">
                 <div class="cart-header d-flex justify-content-between align-items-center p-2">
-                    <a role="button" class="fas fa-arrow-left fs-2 fw-bold text-decoration-none text-dark" th:href="@{/cart}"></a>
+                    <a role="button" class="fas fa-arrow-left fs-2 fw-bold text-decoration-none text-dark"
+                        th:href="@{/cart}"></a>
                     <p class="title fs-2 fw-bold ms-2">Payment</p>
                     <div></div>
                 </div>
                 <div class="nav d-flex justify-content-between">
                     <div class="nav-item nav-item-active d-flex justify-content-center w-50">
-                        <a onclick="toggleNav(this)" th:href="@{/cart/payment-info}" class="text-decoration-none">1. Information</a>
+                        <a onclick="toggleNav(this)" th:href="@{/cart/payment-info}" class="text-decoration-none">1.
+                            Information</a>
                     </div>
                     <div class="nav-item d-flex justify-content-center w-50">
-                        <a  onclick="toggleNav(this)" th:href="@{/cart/payment}" class="text-decoration-none">2. Payment</a>
+                        <a onclick="toggleNav(this)" th:href="@{/cart/payment}" class="text-decoration-none">2.
+                            Payment</a>
                     </div>
                 </div>
                 <div class="view-list">
@@ -50,7 +53,8 @@
                         <div class="view-list-wrapper mb-2" th:each="order: ${orders}">
                             <div class="item">
                                 <div class=" d-inline-block">
-                                    <img loading="lazy" src="./assets/images/Huan.png" class=" item-img rounded-3" width="100" height="100">
+                                    <img loading="lazy" src="./assets/images/Huan.png" class=" item-img rounded-3"
+                                        width="100" height="100">
                                 </div>
                                 <div class="item-info  text-start">
                                     <div class="d-flex flex-column">
@@ -59,14 +63,17 @@
                                     </div>
                                 </div>
                                 <div class="d-flex flex-column gap-2 p-2 temp-total">
-                                    <a role="button" class="fa-regular fa-trash-can text-danger text-end"  th:href="@{/cart/delete(id=${order.product.id})}"></a>
+                                    <a role="button" class="fa-regular fa-trash-can text-danger text-end"
+                                        th:href="@{/cart/delete(id=${order.product.id})}"></a>
                                     <ul class="list-inline d-flex align-items-center justify-content-end gap-1">
-                                        <li id="btn-minus" class="list-inline-item btn btn-sm btn-outline-secondary " >
-                                            <span>-</span></li>
-                                        <li class="list-inline-item"><span class="text-secondary"
-                                                id="var-value" th:text="${order.quantity}"></span></li>
+                                        <li id="btn-minus" class="list-inline-item btn btn-sm btn-outline-secondary ">
+                                            <span>-</span>
+                                        </li>
+                                        <li class="list-inline-item"><span class="text-secondary" id="var-value"
+                                                th:text="${order.quantity}"></span></li>
                                         <li id="btn-plus" class="list-inline-item btn btn-sm btn-outline-secondary ">
-                                            <span>+</span></li>
+                                            <span>+</span>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -80,21 +87,25 @@
                             <div class="d-flex justify-content-between gap-2">
                                 <div class="w-100">
                                     <label for="floatingInput">Full name</label>
-                                    <input type="text" class="form-control" id="floatingInput" placeholder="Enter your name">
+                                    <input th:field="${productInCart.customerName}" type="text" class="form-control"
+                                        id="floatingInput" placeholder="Enter your name">
                                 </div>
                                 <div class="w-100">
                                     <label for="floatingInput">Email address</label>
-                                    <input type="email" class="form-control" id="floatingInput" placeholder="Enter your email">
+                                    <input th:field="${productInCart.email}" type="email" class="form-control"
+                                        id="floatingInput" placeholder="Enter your email">
                                 </div>
                             </div>
                             <div class="d-flex justify-content-between gap-2">
                                 <div class="w-100">
                                     <label for="floatingInput">Phone number</label>
-                                    <input type="number" class="form-control" id="floatingInput" placeholder="Enter your phone">
+                                    <input th:field="${productInCart.phone}" type="number" class="form-control"
+                                        id="floatingInput" placeholder="Enter your phone">
                                 </div>
                                 <div class="w-100">
                                     <label for="floatingInput">Address to delivery</label>
-                                    <input type="text" class="form-control" id="floatingInput" placeholder="Enter your address">
+                                    <input th:field="${productInCart.address}" type="text" class="form-control"
+                                        id="floatingInput" placeholder="Enter your address">
                                 </div>
                             </div>
                         </div>
@@ -103,7 +114,7 @@
                 <div class="p-3 mt-2 d-flex flex-column rounded-3">
                     <div class="total-box d-flex justify-content-between">
                         <p class="title-temp">Temporary Total:</p>
-                        <span class="total text-success fw-bold" >$48</span>
+                        <span class="total text-success fw-bold" th:text="${productInCart.cost}">$48</span>
                     </div>
 
                     <div class="btn-submit mt-0 d-grid">

@@ -1,20 +1,18 @@
 package SkyEdge.service;
 
-import SkyEdge.model.Order;
-import SkyEdge.model.Product;
-import SkyEdge.repository.OrderRepository;
-
-import java.math.BigDecimal;
-import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import SkyEdge.model.Order;
+import SkyEdge.model.Product;
+import SkyEdge.repository.OrderRepository;
+
 @Service
 @Transactional
 public class OrderService {
-     private final OrderRepository orderRepository;
+    private final OrderRepository orderRepository;
 
     public OrderService(OrderRepository orderRepository) {
         this.orderRepository = orderRepository;
