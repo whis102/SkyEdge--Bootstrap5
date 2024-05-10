@@ -103,7 +103,9 @@
                         <!-- Card -->
                         <div class="card mt-4 m-2" style="width: 18rem; height: 34rem;">
                             <div class="position-relative">
-                                <img th:src="@{'/images/' + ${product.imageFileName}}"class="card-img-top img" alt="...">
+                                <div class="d-inline-block">
+                                    <img th:src="@{'/images/' + ${product.imageFileName}}" class="card-img-top img" alt="...">
+                                </div>
                                 <div
                                     class="img-overlay position-absolute top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center">
                                     <div class="card-btn flex-row d-flex gap-3">
