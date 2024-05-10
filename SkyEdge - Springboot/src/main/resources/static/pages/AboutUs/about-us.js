@@ -11,11 +11,11 @@ itemsContainer.innerHTML = `
             <div class="col md-5 border-start border-end p-3">
                 <img src="./assets/images/Huan.png" class="img" style="width: 14rem; height: 14rem" alt="Avatar">
                 <h4 class="fs-5 pt-2">Nguyen Van Huan</h4>
-                <p class="fs-6">Front-end, UX-UI designer</p>
+                <p class="fs-6">Full-stack developer, UX-UI designer</p>
             </div>
             <div class="col md-5 border-start border-end p-3">
-                <img class="img" src="./assets/images/AnhMinh.png" style="width: 14rem; height: 14rem" alt="Avatar">
-                <h4 class="fs-5 pt-2">Nguyen Anh Minh</h4>
+                <img class="img" src="./assets/images/Long.png" style="width: 14rem; height: 14rem" alt="Avatar">
+                <h4 class="fs-5 pt-2">Nguyen Thanh Long</h4>
                 <p class="fs-6">Full-stack developer</p>
             </div>
         </div>
@@ -27,14 +27,14 @@ itemsContainer.innerHTML = `
     <div class="carousel-item">
         <div class="row">
             <div class="col md-5 border-start border-end p-3">
-                <img src="./assets/images/Long.png" class="img" style="width: 14rem; height: 14rem" alt="Avatar" >
-                <h4 class="fs-5 pt-2">Nguyen Thanh Long</h4>
-                <p class="fs-6">Full-stack developer</p>
+                <img src="./assets/images/AnhMinh.png" class="img" style="width: 14rem; height: 14rem" alt="Avatar" >
+                <h4 class="fs-5 pt-2">Nguyen Anh Minh</h4>
+                <p class="fs-6">Fontend developer</p>
             </div>
             <div class="col md-5 border-start border-end p-3">
                 <img src="./assets/images/PhamMinh.png" class="img" style="width: 14rem; height: 14rem" alt="Avatar">
                 <h4 class="fs-5 pt-2">Pham Anh Minh</h4>
-                <p class="fs-6">BA, UX-UI designer</p>
+                <p class="fs-6">Fontend developer</p>
             </div>
             <div class="col md-5 border-start border-end p-3">
                 <img src="./assets/login_background.png" class="img" style="width: 14rem; height: 14rem" alt="Avatar">

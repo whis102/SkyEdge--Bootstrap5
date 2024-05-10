@@ -53,8 +53,8 @@
                         <div class="view-list-wrapper mb-2" th:each="order: ${orders}">
                             <div class="item">
                                 <div class=" d-inline-block">
-                                    <img loading="lazy" src="./assets/images/Huan.png" class=" item-img rounded-3"
-                                        width="100" height="100">
+                                    <img loading="lazy" th:src="@{'/images/' + ${order.product.imageFileName}}" class=" item-img rounded-3"
+                                    width="100" height="100">
                                 </div>
                                 <div class="item-info  text-start">
                                     <div class="d-flex flex-column">
