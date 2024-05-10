@@ -15,6 +15,7 @@ import SkyEdge.model.CartOrder;
 import SkyEdge.model.Order;
 import SkyEdge.model.ProductOrder;
 import SkyEdge.repository.OrderRepository;
+import SkyEdge.repository.ProductOrderRepository;
 import SkyEdge.repository.ProductRepository;
 
 @Controller
@@ -25,6 +26,9 @@ public class OrderController {
 
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private ProductOrderRepository productOrderRepository;
 
     @GetMapping
     public String order(Model model) {
@@ -37,13 +41,16 @@ public class OrderController {
     @GetMapping("/order-details")
     public String orderDetails(Model model, @RequestParam("id") int id) {
         Optional<Order> order = orderRepository.findById(id);
-        List<ProductOrder> productOrders = order.get().getProducts();
+        List<Integer> productOrderIds = order.get().getProductOrderId();
         List<CartOrder> cartOrders = new ArrayList<>();
-        for (ProductOrder productOrder : productOrders) {
-            cartOrders.add(new CartOrder(productRepository.findById(productOrder.getProductId()).get(),
-                    productOrder.getQuantity()));
+        for (int productOrderId : productOrderIds) {
+            ProductOrder productOrder = productOrderRepository.findByProductOrderId(productOrderId).get();
+            // CartOrder cartOrder = new CartOrder(
+            // productRepository.findById(productOrder.getProductId()).get(),
+            // productOrder.getQuantity());
+            // cartOrders.add(cartOrder);
         }
-        model.addAttribute("products", cartOrders);
+
         model.addAttribute("order", order.get());
         return "admin/order/admin-orderdetails";
     }

@@ -7,12 +7,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import SkyEdge.model.ProductOrder;
-import SkyEdge.model.User;
 
 @Repository
 public interface ProductOrderRepository extends JpaRepository<ProductOrder, Integer> {
-
-    List<ProductOrder> findAllByUser(User user);
 
     ProductOrder findOneByProductId(int id);
 
@@ -23,5 +20,9 @@ public interface ProductOrderRepository extends JpaRepository<ProductOrder, Inte
     Optional<ProductOrder> findByProductId(int id);
 
     void deleteByProductId(int id);
+
+    List<ProductOrder> findAllByUserId(int userId);
+
+    Optional<ProductOrder> findByProductOrderId(int productOrderId);
 
 }
