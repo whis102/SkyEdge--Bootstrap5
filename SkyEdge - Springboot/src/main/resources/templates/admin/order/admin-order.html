@@ -70,9 +70,9 @@
                             <!-- Price -->
                             <div class="d-flex align-items-center gap-3">
                                 <span class="fs-4 fw-bold price-value"></span>
-                                <button
+                                <a th:href="@{/admin/order/order-details(id=${order.orderId})}"
                                     class="viewDetails btn btn-outline-primary rounded-pill fs-075 px-3 py-2 d-none">View
-                                    details</button>
+                                    details</a>
                             </div>
                         </div>
                         <!-- Date and Ship -->

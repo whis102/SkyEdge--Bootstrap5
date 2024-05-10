@@ -48,7 +48,7 @@
             <div class="card-body">
               <div class="custom-card-content">
                 <div class="quantity">
-                  <h2 class="card-title">36</h2>
+                  <h2 class="card-title" th:text="${orders.size()}">36</h2>
                   <p class="card-text">Orders</p>
                 </div>
                 <div class="icon-container">
@@ -64,7 +64,7 @@
             <div class="card-body">
               <div class="custom-card-content">
                 <div class="quantity">
-                  <h2 class="card-title">$38K</h2>
+                  <h2 class="card-title" th:text="'$' + ${totalRevenue}">$38K</h2>
                   <p class="card-text">Income</p>
                 </div>
                 <div class="icon-container">
@@ -92,62 +92,13 @@
                 <th scope="col">Status</th>
               </tr>
             </thead>
-            <tbody class="purchase-table">
+            <tbody class="purchase-table" th:each="order: ${orders}">
               <tr>
-                <td>78959</td>
-                <td>Albert Flores</td>
-                <td>$1345</td>
-                <td>Mar 26, 2024</td>
-                <td class="status"><span class="status-btn status-pending">PENDING</span></td>
-              </tr>
-              <tr>
-                <td>78959</td>
-                <td>Albert Flores</td>
-                <td>$1345</td>
-                <td>Mar 26, 2024</td>
-                <td class="status"><span class="status-btn status-failed">FAILED</span></td>
-              </tr>
-              <tr>
-                <td>78959</td>
-                <td>Albert Flores</td>
-                <td>$1345</td>
-                <td>Mar 26, 2024</td>
-                <td class="status"><span class="status-btn status-success">SUCCESS</span></td>
-              </tr>
-              <tr>
-                <td>78959</td>
-                <td>Albert Flores</td>
-                <td>$1345</td>
-                <td>Mar 26, 2024</td>
-                <td class="status"><span class="status-btn status-completed">COMPLETED</span></td>
-              </tr>
-              <tr>
-                <td>78959</td>
-                <td>Albert Flores</td>
-                <td>$1345</td>
-                <td>Mar 26, 2024</td>
-                <td class="status"><span class="status-btn status-pending">PENDING</span></td>
-              </tr>
-              <tr>
-                <td>78959</td>
-                <td>Albert Flores</td>
-                <td>$1345</td>
-                <td>Mar 26, 2024</td>
-                <td class="status"><span class="status-btn status-failed">FAILED</span></td>
-              </tr>
-              <tr>
-                <td>78959</td>
-                <td>Albert Flores</td>
-                <td>$1345</td>
-                <td>Mar 26, 2024</td>
-                <td class="status"><span class="status-btn status-success">SUCCESS</span></td>
-              </tr>
-              <tr>
-                <td>78959</td>
-                <td>Albert Flores</td>
-                <td>$1345</td>
-                <td>Mar 26, 2024</td>
-                <td class="status"><span class="status-btn status-completed">COMPLETED</span></td>
+                <td th:text="${order.orderId}">78959</td>
+                <td th:text="${order.customerName}">Albert Flores</td>
+                <td th:text="'$' + ${order.cost}">$1345</td>
+                <td th:text="${order.date}">Mar 26, 2024</td>
+                <td class="status"><span class="status-btn status-pending" th:text="${order.status}">PENDING</span></td>
               </tr>
             </tbody>
           </table>
