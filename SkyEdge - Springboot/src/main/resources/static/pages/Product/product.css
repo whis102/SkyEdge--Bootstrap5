@@ -50,7 +50,6 @@
 }
 
 .product-box .buttonGrp {
-    width: 300px;
     display: flex;
     align-items: center;
     gap: 10px;

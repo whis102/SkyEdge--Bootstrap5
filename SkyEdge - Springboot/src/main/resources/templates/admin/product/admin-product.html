@@ -36,33 +36,37 @@
             <!-- List Product -->
             <div class="list-product row gap-2">
                 <div th:each="product : ${products}"
-                    class="product-box rounded-3 bg-white p-3 d-flex align-items-center gap-5">
-                    <input id="checkbox-product-input" type="checkbox" onchange="displayProductButton(this)">
-                    <img width="50" height="50" style="border-radius: 50%;" th:src="@{'/images/' + ${product.imageFileName}}" alt="Product Image">
-                    <table class="product-info justify-content-between w-100">
-                        <thead class="fs-075 text-secondary">
-                            <tr>
-                                <th>Product ID</th>
-                                <th>Product Name</th>
-                                <th>Price</th>
-                                <th>Type</th>
-                                <th>Discount</th>
-                                <th>Stock</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr id="tr-product">
-                                <td th:text="${product.id}"></td>
-                                <td th:text="${product.name}"></td>
-                                <td th:text="'$' + ${product.price}"></td>
-                                <td th:text="${product.category}"></td>
-                                <td th:text="${product.discount} + '%'"></td>
-                                <td th:text="${product.stock}"></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    class="product-box rounded-3 bg-white p-3 d-flex align-items-center">
+                    <div class="d-flex align-items-center gap-5 flex-grow-1">
+                        <input id="checkbox-product-input" type="checkbox" onchange="displayProductButton(this)">
+                        <div class="d-inline-block">
+                            <img width="60" height="60" style="border-radius: 50%;" th:src="@{'/images/' + ${product.imageFileName}}" >
+                        </div>
+                        <table class="product-info  w-100">
+                            <thead class="fs-075 text-secondary">
+                                <tr>
+                                    <th>Product ID</th>
+                                    <th>Product Name</th>
+                                    <th>Price</th>
+                                    <th>Type</th>
+                                    <th>Discount</th>
+                                    <th>Stock</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr id="tr-product">
+                                    <td th:text="${product.id}"></td>
+                                    <td th:text="${product.name}"></td>
+                                    <td th:text="'$' + ${product.price}"></td>
+                                    <td th:text="${product.category}"></td>
+                                    <td th:text="${product.discount} + '%'"></td>
+                                    <td th:text="${product.stock}"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                     <!-- Các nút Update và Delete -->
-                    <div class="buttonGrp d-none">
+                    <div class="buttonGrp d-none align-items-center">
                         <a th:href="@{/admin/product/edit(id=${product.id})}"
                             class="btn btn-outline-primary d-flex align-items-center gap-1" >
                             <i class="fa-solid fa-pen-to-square"></i>

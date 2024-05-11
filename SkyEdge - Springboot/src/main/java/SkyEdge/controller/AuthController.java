@@ -21,6 +21,7 @@ import SkyEdge.model.Subscriber;
 import SkyEdge.repository.OrderRepository;
 import SkyEdge.repository.ProductRepository;
 import SkyEdge.repository.RoleRepository;
+import SkyEdge.repository.ProductDAO;
 import SkyEdge.repository.SubscriberRepository;
 import SkyEdge.repository.UserRepository;
 import SkyEdge.security.UserTemplate;
@@ -42,6 +43,9 @@ public class AuthController {
     private RoleRepository roleRepository;
 
     @Autowired
+    private ProductDAO productDAO;
+  
+    @Autowired
     private OrderRepository orderRepository;
 
     @GetMapping("/login")
@@ -59,9 +63,16 @@ public class AuthController {
         return "contact-us";
     }
 
-    @GetMapping("/shop")
-    public String shop(Model model) {
-        List<Product> products = productRepository.findAll();
+    @RequestMapping("/shop")
+    public String shop(
+        @RequestParam(value = "id", required = false, defaultValue = "0") int id,
+        @RequestParam(value = "category", required = false, defaultValue = "Luxury") String category,
+        @RequestParam(value = "sort", required = false, defaultValue = "0") int sortMode,
+        Model model) {
+            model.addAttribute("category", id);
+            model.addAttribute("category", category);
+            model.addAttribute("sortMode", sortMode);
+        List<Product> products = productDAO.applyFilter(id, sortMode, category);
         model.addAttribute("products", products);
         return "shop";
     }

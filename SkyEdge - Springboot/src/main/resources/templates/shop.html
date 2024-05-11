@@ -34,11 +34,11 @@
                 <div class="container mt-3">
                     <h2 class="pb-4 fs-3">Categories</h2>
                     <a class="d-flex justify-content-between h3 text-decoration-none" data-bs-toggle="collapse"
-                        data-bs-target="#Gender" href="#">
-                        Gender
+                        data-bs-target="#category" href="#">
+                        category
                         <i class="fa fa-fw fa-chevron-circle-down mt-1"></i>
                     </a>
-                    <ul id="Gender" class="collapse show list-unstyled pl-3">
+                    <ul id="category" class="collapse show list-unstyled pl-3">
                         <li><a class="text-decoration-none text-muted fs-6" href="#">Men</a></li>
                         <li><a class="text-decoration-none text-muted fs-6" href="#">Women</a></li>
                     </ul>
@@ -56,10 +56,10 @@
                         Product
                         <i class="fa fa-fw fa-chevron-circle-down mt-1"></i>
                     </a>
-                    <ul id="Product" class="collapse show list-unstyled pl-3">
-                        <li><a class="text-decoration-none text-muted fs-6" href="#">Weather</a></li>
-                        <li><a class="text-decoration-none text-muted fs-6" href="#">Sunglasses</a></li>
-                    </ul>
+                    <select id="filter-category" class="collapse show list-unstyled pl-3">
+                        <option value="0">All categories</option>
+                        <option th:each = "product: ${products}" th:value = "${product.category}" th:text = "${product.category}"></option>
+                    </select>
                 </div>
             </div>
             <!-- End categories -->
@@ -103,7 +103,9 @@
                         <!-- Card -->
                         <div class="card mt-4 m-2" style="width: 18rem; height: 34rem;">
                             <div class="position-relative">
-                                <img th:src="@{'/images/' + ${product.imageFileName}}"class="card-img-top img" alt="...">
+                                <div class="d-inline-block">
+                                    <img th:src="@{'/images/' + ${product.imageFileName}}" class="card-img-top img" alt="...">
+                                </div>
                                 <div
                                     class="img-overlay position-absolute top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center">
                                     <div class="card-btn flex-row d-flex gap-3">
@@ -137,7 +139,7 @@
                                     class="h3 text-decoration-none text-dark" th:text="${product.name}">
                                     Sunglasses
                                 </a>
-
+                                <p class="card-text pt-1" th:text="${product.category}"></p>
                                 <p class="card-text pt-1" th:text="${product.description}">
                                 </p>
                                 <p class="text-muted">Reviews (48)</p>
@@ -175,6 +177,22 @@
     <!-- Close Footer -->
 
     <!-- Scripts -->
+    <script>
+    window.addEventListener("load", function () {
+    let category = [[$,{category}]]; // add this variable
+    let sortMode = [[$,{sortMode}]];
+    const categoryFilter = document.getElementById("filter-category");
+    categoryFilter.value = category;
+    categoryFilter.addEventListener("change", function () {
+    category = categoryFilter.value;
+    filterRedirect();
+    });
+    })
+    function filterRedirect() {
+        let url = "/shop?" + "&category=" + category + "&sort=" + sortMode;
+        window.location.href = url; // redirect
+        }
+    </script>
     <script src="home.js"></script>
     <script src="./displays/MainDisplay/main.js"></script>
     <script src="./pages/Shop/shop.js"></script>
