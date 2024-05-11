@@ -18,17 +18,17 @@ public class OrderService {
         this.orderRepository = orderRepository;
     }
 
-    public void deleteOrderAndProductOrders(int orderId) {
-        Order order = orderRepository.findById(orderId).orElse(null);
-        if (order != null) {
-            // Xóa tất cả các product orders của order
-            order.getProducts().clear();
-            // Lưu lại để cập nhật cơ sở dữ liệu
-            orderRepository.save(order);
-            // Xóa order
-            orderRepository.delete(order);
-        }
-    }
+    // public void deleteOrderAndProductOrders(int orderId) {
+    // Order order = orderRepository.findById(orderId).orElse(null);
+    // if (order != null) {
+    // // Xóa tất cả các product orders của order
+    // order.getProducts().clear();
+    // // Lưu lại để cập nhật cơ sở dữ liệu
+    // orderRepository.save(order);
+    // // Xóa order
+    // orderRepository.delete(order);
+    // }
+    // }
 
     public Optional<Product> findById(int id) {
         // TODO Auto-generated method stub

@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import SkyEdge.model.Order;
 import SkyEdge.model.Product;
 import SkyEdge.model.Subscriber;
+import SkyEdge.repository.OrderRepository;
 import SkyEdge.repository.ProductRepository;
 import SkyEdge.repository.RoleRepository;
 import SkyEdge.repository.ProductDAO;
@@ -42,6 +44,9 @@ public class AuthController {
 
     @Autowired
     private ProductDAO productDAO;
+  
+    @Autowired
+    private OrderRepository orderRepository;
 
     @GetMapping("/login")
     public String login() {
@@ -116,9 +121,14 @@ public class AuthController {
     @GetMapping("/admin")
     public String admin(Model model) {
         List<Product> products = productRepository.findAll();
+        List<Order> orders = orderRepository.findAll();
         int numOfProducts = products.size();
         List<Object> productHistory = new ArrayList<>();
         Long numOfUsers = userRepository.countByAuthorities(roleRepository.findByAuthority("USER"));
+        Double totalRevenue = 0.0;
+        for (Order order : orders) {
+            totalRevenue += order.getCost();
+        }
         for (Product product : products) {
             List<String> history = new ArrayList<>();
             history.add(product.getCreatedBy().getUsername());
@@ -126,6 +136,8 @@ public class AuthController {
             history.add(product.getImageFileName());
             productHistory.add(history);
         }
+        model.addAttribute("totalRevenue", totalRevenue);
+        model.addAttribute("orders", orders);
         model.addAttribute("productHistory", productHistory);
         model.addAttribute("numOfProducts", numOfProducts);
         model.addAttribute("numOfUsers", numOfUsers);

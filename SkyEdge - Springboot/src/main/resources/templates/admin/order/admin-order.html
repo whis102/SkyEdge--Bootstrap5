@@ -64,15 +64,15 @@
                                 <h5 class="order-id mb-0">#<span class="order-id-value"
                                         th:text="${order.orderId}"></span></h5>
                                 <h5 class="text-secondary mb-0">Cost: </h5>
-                                <h5 class="order-id mb-0">$<span class="order-id-value"
-                                        th:text="${order.cost}">/span></h5>
+                                <h5 class="order-id mb-0">$<span class="order-id-value" th:text="${order.cost}">/span>
+                                </h5>
                             </div>
                             <!-- Price -->
                             <div class="d-flex align-items-center gap-3">
                                 <span class="fs-4 fw-bold price-value"></span>
-                                <button
+                                <a th:href="@{/admin/order/order-details(id=${order.orderId})}"
                                     class="viewDetails btn btn-outline-primary rounded-pill fs-075 px-3 py-2 d-none">View
-                                    details</button>
+                                    details</a>
                             </div>
                         </div>
                         <!-- Date and Ship -->
@@ -109,7 +109,7 @@
                             <select class="status-select rounded-pill p-2-5 text-success"></select>
                         </div> -->
                         <!-- Items -->
-                        <div class="item mx-4" th:each="product: ${order.products}">
+                        <div class="item mx-4" th:each="product: ${order.productOrderId}">
                             <div class="d-flex mb-2 align-items-center justify-content-between w-100">
                                 <div class="d-flex align-items-center">
                                     <!-- <img loading="lazy" th:src="@{'/images/' + ${order.products.product.imageFileName}}" class=" item-img rounded-3"

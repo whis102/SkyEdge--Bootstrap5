@@ -18,10 +18,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import SkyEdge.model.CartOrder;
 import SkyEdge.model.Product;
 import SkyEdge.model.ProductDto;
-import SkyEdge.model.ProductOrder;
 import SkyEdge.model.User;
+import SkyEdge.repository.CartOrderRepository;
 import SkyEdge.repository.ProductOrderRepository;
 import SkyEdge.repository.ProductRepository;
 import SkyEdge.service.ProductService;
@@ -38,6 +39,9 @@ public class ProductController {
     @Autowired
     private ProductOrderRepository productOrderRepository;
 
+    @Autowired
+    private CartOrderRepository cartOrderRepository;
+
     @GetMapping("/product-details/add")
     public String buyProduct(@RequestParam("product-id") int productId,
             @RequestParam("product-quantity") int quantity, @AuthenticationPrincipal User user, Model model) {
@@ -45,14 +49,14 @@ public class ProductController {
         if (productRepository.findById(productId).isPresent()) {
             Product product = productRepository.findById(productId).get();
             if (product.getStock() >= quantity) {
-                if (productOrderRepository.findByProductId(productId).isEmpty()) {
-                    ProductOrder productOrder = new ProductOrder(productId, quantity);
-                    productOrder.setUser(user);
-                    productOrderRepository.save(productOrder);
+                if (cartOrderRepository.findByProductId(productId).isEmpty()) {
+                    CartOrder cartOrder = new CartOrder(productId, quantity);
+                    cartOrder.setUserId(user.getUserId());
+                    cartOrderRepository.save(cartOrder);
                 } else {
-                    ProductOrder productOrder = productOrderRepository.findOneByProductId(productId);
-                    productOrder.setQuantity(productOrder.getQuantity() + quantity);
-                    productOrderRepository.save(productOrder);
+                    CartOrder cartOrder = cartOrderRepository.findOneByProductIdAndUserId(productId, user.getUserId());
+                    cartOrder.setQuantity(cartOrder.getQuantity() + quantity);
+                    cartOrderRepository.save(cartOrder);
                 }
 
                 return "redirect:/cart";
