@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import SkyEdge.model.CartOrder;
+import SkyEdge.model.CartOrderDTO;
 import SkyEdge.model.Order;
 import SkyEdge.model.ProductOrder;
 import SkyEdge.repository.OrderRepository;
@@ -42,16 +42,32 @@ public class OrderController {
     public String orderDetails(Model model, @RequestParam("id") int id) {
         Optional<Order> order = orderRepository.findById(id);
         List<Integer> productOrderIds = order.get().getProductOrderId();
-        List<CartOrder> cartOrders = new ArrayList<>();
+        List<CartOrderDTO> cartOrders = new ArrayList<>();
         for (int productOrderId : productOrderIds) {
             ProductOrder productOrder = productOrderRepository.findByProductOrderId(productOrderId).get();
-            // CartOrder cartOrder = new CartOrder(
-            // productRepository.findById(productOrder.getProductId()).get(),
-            // productOrder.getQuantity());
-            // cartOrders.add(cartOrder);
+            CartOrderDTO cartOrder = new CartOrderDTO(
+                    productRepository.findById(productOrder.getProductId()).get(),
+                    productOrder.getQuantity());
+            cartOrders.add(cartOrder);
         }
-
+        model.addAttribute("products", cartOrders);
         model.addAttribute("order", order.get());
         return "admin/order/admin-orderdetails";
+    }
+
+    @GetMapping("/approve")
+    public String approveOrder(Model model, @RequestParam("id") int id) {
+        Optional<Order> order = orderRepository.findById(id);
+        order.get().setStatus("APPROVED");
+        orderRepository.save(order.get());
+        return "redirect:/admin/order";
+    }
+
+    @GetMapping("/reject")
+    public String rejectOrder(Model model, @RequestParam("id") int id) {
+        Optional<Order> order = orderRepository.findById(id);
+        order.get().setStatus("REJECTED");
+        orderRepository.save(order.get());
+        return "redirect:/admin/order";
     }
 }

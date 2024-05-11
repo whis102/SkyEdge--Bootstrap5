@@ -1,7 +1,7 @@
 package SkyEdge.util.constants;
 
 public enum Roles {
-    USER("ROLE_USER"), ADMIN("ROLE_ADMIN");
+    USER("ROLE_USER"), ADMIN("ROLE_ADMIN"), SUPERADMIN("ROLE_SUPERADMIN");
 
     private String role;
 

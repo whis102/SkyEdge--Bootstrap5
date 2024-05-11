@@ -98,7 +98,14 @@
                 <td th:text="${order.customerName}">Albert Flores</td>
                 <td th:text="'$' + ${order.cost}">$1345</td>
                 <td th:text="${order.date}">Mar 26, 2024</td>
-                <td class="status"><span class="status-btn status-pending" th:text="${order.status}">PENDING</span></td>
+                <td class="status"><span class="status-btn status-pending" th:if="${order.status}==PENDING"
+                    th:text="${order.status}">PENDING</span>
+                  <span class="status-btn status-success" th:if="${order.status}==APPROVED"
+                    th:text="${order.status}">APPROVED</span>
+                  <span class="status-btn status-failed" th:if="${order.status}==REJECTED"
+                    th:text="${order.status}">REJECTED</span>
+                </td>
+
               </tr>
             </tbody>
           </table>

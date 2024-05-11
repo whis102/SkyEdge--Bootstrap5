@@ -113,6 +113,7 @@ public class CartController {
         List<Integer> productOrderIds = new ArrayList<>();
         List<CartOrderDTO> cartOrderDTOs = new ArrayList<>();
         List<Voucher> vouchers = voucherRepository.findAll();
+        List<ProductOrder> productOrders = productOrderRepository.findAllByUserId(user.getUserId());
         int total = 0;
         for (CartOrder cartOrder : cartOrders) {
             Product product = productRepository.findOneById(cartOrder.getProductId());
@@ -124,9 +125,6 @@ public class CartController {
             productOrder.setQuantity(cartOrder.getQuantity());
             productOrder.setUserId(user.getUserId());
             productOrderRepository.save(productOrder);
-        }
-        List<ProductOrder> productOrders = productOrderRepository.findAllByUserId(user.getUserId());
-        for (ProductOrder productOrder : productOrders) {
             productOrderIds.add(productOrder.getProductOrderId());
         }
         Order productInCart = new Order();
@@ -153,6 +151,7 @@ public class CartController {
         order.setStatus("PENDING");
         order.setProductOrderId(productInCart.getProductOrderId());
         orderRepository.save(order);
+        cartOrderRepository.deleteAll();
         return "redirect:/cart";
     }
 }

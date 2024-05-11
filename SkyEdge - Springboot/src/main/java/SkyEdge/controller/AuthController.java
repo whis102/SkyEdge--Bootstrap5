@@ -116,7 +116,8 @@ public class AuthController {
         Long numOfUsers = userRepository.countByAuthorities(roleRepository.findByAuthority("USER"));
         Double totalRevenue = 0.0;
         for (Order order : orders) {
-            totalRevenue += order.getCost();
+            if (order.getStatus().equals("APPROVED"))
+                totalRevenue += order.getCost();
         }
         for (Product product : products) {
             List<String> history = new ArrayList<>();
