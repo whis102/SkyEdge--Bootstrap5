@@ -52,3 +52,8 @@
     border-radius: 0px;
     border-bottom: 3px solid #9747FF;
 }
+*/
+.list-order {
+    max-height: 600px;
+    overflow-y: scroll;
+}
