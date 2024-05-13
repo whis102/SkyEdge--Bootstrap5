@@ -1,8 +1,12 @@
 package SkyEdge.controller;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,21 +17,29 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import SkyEdge.model.Product;
 import SkyEdge.model.Subscriber;
-import SkyEdge.repository.OrderRepository;
+import SkyEdge.model.User;
 import SkyEdge.repository.ProductDAO;
 import SkyEdge.repository.ProductRepository;
-import SkyEdge.repository.RoleRepository;
 import SkyEdge.repository.SubscriberRepository;
 import SkyEdge.repository.UserRepository;
 import SkyEdge.security.UserTemplate;
 import SkyEdge.service.AuthenticationService;
+import SkyEdge.service.EmailService;
+import SkyEdge.service.UserService;
+import SkyEdge.util.email.EmailDetails;
 import jakarta.validation.Valid;
 
 @Controller
 public class AuthController {
+    @Value("${token.reset.timeout.minutes}")
+    private int reset_token_timeout;
+
+    @Value("${site.domain}")
+    private String site_domain;
     @Autowired
     private AuthenticationService authenticationService;
 
@@ -38,13 +50,15 @@ public class AuthController {
     private UserRepository userRepository;
 
     @Autowired
-    private RoleRepository roleRepository;
-
-    @Autowired
     private ProductDAO productDAO;
 
     @Autowired
-    private OrderRepository orderRepository;
+    private UserService userService;
+
+    @Autowired
+    private EmailService emailService;
+    // @Autowired
+    // private JavaMailSender mailSender;
 
     @GetMapping("/login")
     public String login() {
@@ -97,8 +111,70 @@ public class AuthController {
                     "Password must be at least 6 characters long and contain at least one digit and one uppercase letter.");
             return "/register";
         }
-        authenticationService.registerUser(ut.getUsername(), ut.getPassword());
+        authenticationService.registerUser(ut.getEmail(), ut.getUsername(), ut.getPassword());
         return "login";
+    }
+
+    @GetMapping("/forgot-password")
+    public String forgotPassword(Model model) {
+        return "forgot-password";
+    }
+
+    @PostMapping("/forgot-password")
+    public String resetPassword(@RequestParam("email") String requestEmail, Model model,
+            RedirectAttributes attributes) {
+        Optional<User> optionalUser = userRepository.findOneByEmail(requestEmail);
+        if (optionalUser.isPresent()) {
+            User user = userRepository.findById(optionalUser.get().getUserId()).get();
+            String resetToken = UUID.randomUUID().toString();
+            user.setResetToken(resetToken);
+            user.setTokenExpiryDate(LocalDateTime.now().plusMinutes(reset_token_timeout));
+            userRepository.save(user);
+            String reset_message = "This is the reset password link: " + site_domain + "change-password?token="
+                    + resetToken;
+            EmailDetails emailDetails = new EmailDetails(user.getEmail(), reset_message,
+                    "Reset password for your SkyEdge account.");
+            if (emailService.sendSimpleEmail(emailDetails) == false) {
+                attributes.addFlashAttribute("error", "Error while sending email!");
+            }
+            attributes.addFlashAttribute("message", "Password reset email sent!");
+            return "redirect:/login";
+        } else {
+            attributes.addFlashAttribute("message", "No user found with the email supplied!");
+            return "redirect:/forgot-password";
+        }
+
+    }
+
+    @GetMapping("/change-password")
+    public String changePassword(Model model, @RequestParam("token") String token, RedirectAttributes attributes) {
+        Optional<User> optionalUser = userService.findByToken(token);
+        if (token.equals("")) {
+            attributes.addFlashAttribute("error", "Invalid Token!");
+            return "redirect:/forgot-password";
+        }
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            LocalDateTime now = LocalDateTime.now();
+            if (now.isAfter(optionalUser.get().getTokenExpiryDate())) {
+                attributes.addFlashAttribute("error", "Token Expired!");
+                return "redirect:/forgot-password";
+            }
+            model.addAttribute("user", user);
+            return "change-password";
+        }
+        attributes.addFlashAttribute("error", "Invalid Token!");
+        return "redirect:/forgot-password";
+    }
+
+    @PostMapping("/change-password")
+    public String handleChangePassword(@ModelAttribute User user, RedirectAttributes attributes) {
+        Optional<User> newUser = userRepository.findById(user.getUserId());
+        newUser.get().setPassword(user.getPassword());
+        newUser.get().setResetToken("");
+        userService.save(newUser.get());
+        attributes.addFlashAttribute("message", "Password changed successfully!");
+        return "redirect:/login";
     }
 
     @GetMapping("/")

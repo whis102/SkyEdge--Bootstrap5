@@ -20,5 +20,8 @@ public class UserTemplate {
     @Pattern(regexp = "^(?=.*\\d)(?=.*[A-Z]).{6,60}$", message = "6 chars min (at least 1" +
             "digit & 1 uppercase letter)")
     private String password;
+
+    @Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$", message = "Invalid email format")
+    private String email;
     // getter & setter methods
 }

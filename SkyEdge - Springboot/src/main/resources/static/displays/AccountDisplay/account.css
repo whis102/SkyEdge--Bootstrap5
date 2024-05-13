@@ -128,14 +128,9 @@ a {
     width: 400px;
     background: #ffff;
     border-radius: 6px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0, 1);
     text-align: center;
     padding: 0 30px 30px;
     color: #333;
-    visibility: hidden;
     transition: transform 0.4s, top 0.4s;
 }
 
@@ -151,8 +146,9 @@ a {
     top: 50%;
     transform: translate(-50%, -50%) scale(1);
 }
+
 .form-container {
-    margin: 100px auto auto auto ;
+    margin: 100px auto auto auto;
 }
 
 .logo-skyedge {

@@ -1,5 +1,6 @@
 package SkyEdge.model;
 
+import java.time.LocalDateTime;
 import java.util.Set;
 
 import org.springframework.security.core.userdetails.UserDetails;
@@ -47,7 +48,14 @@ public class User implements UserDetails {
     @Column
     private String phone;
 
-    public User(String username, String password, Set<Role> authorities) {
+    @Column
+    private String resetToken;
+
+    @Column
+    private LocalDateTime tokenExpiryDate;
+
+    public User(String email, String username, String password, Set<Role> authorities) {
+        this.email = email;
         this.username = username;
         this.password = password;
         this.authorities = authorities;
