@@ -23,7 +23,6 @@ import SkyEdge.model.Product;
 import SkyEdge.model.ProductDto;
 import SkyEdge.model.User;
 import SkyEdge.repository.CartOrderRepository;
-import SkyEdge.repository.ProductOrderRepository;
 import SkyEdge.repository.ProductRepository;
 import SkyEdge.service.ProductService;
 import jakarta.validation.Valid;
@@ -35,9 +34,6 @@ public class ProductController {
 
     @Autowired
     private ProductRepository productRepository;
-
-    @Autowired
-    private ProductOrderRepository productOrderRepository;
 
     @Autowired
     private CartOrderRepository cartOrderRepository;

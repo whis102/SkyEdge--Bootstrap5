@@ -24,11 +24,6 @@ function hidePopup() {
     document.body.style.overflow = ""; /* Cho phép cuộn trang lại */
 }
 
-function selectVoucher(voucher) {
-    var input = document.getElementById("voucher-input");
-    input.value = voucher; // Điền voucher code vào input
-    hidePopup(); // Tắt popup
-}
 
 function showMethodPopup() {
     var popup = document.getElementById("method-popup");
@@ -52,4 +47,33 @@ function selectPaymentMethod(method) {
     text.innerText  = method; // Điền voucher code vào input
     hideMethodPopup(); // Tắt popup
 }
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.voucher-item').forEach(function(item) {
+        item.addEventListener('click', function() {
+            var voucher = this.getAttribute('data-voucher');
+            var discount = this.getAttribute('data-discount');
+            selectVoucher(voucher, discount);
+        });
+    });
 
+    document.getElementById("voucher-input").addEventListener('keyup', function() {
+        calculateTotal();
+    });
+});
+
+function calculateTotal() {
+    var productCost = parseFloat(document.getElementById("product-cost").innerText.replace('$', ''));
+    var discount = parseFloat(document.getElementById("voucher-input").getAttribute("data-discount")) || 0;
+    var discountAmount = productCost * (discount / 100);
+    var totalMoney = productCost - discountAmount;
+    document.getElementById("total-money").textContent = '$' + totalMoney.toFixed(1);
+}
+
+function selectVoucher(voucher, discount) {
+    var input = document.getElementById("voucher-input");
+    input.value = voucher; 
+    input.setAttribute('data-voucher', voucher);
+    input.setAttribute('data-discount', discount);
+    calculateTotal();
+    hidePopup(); // Tắt popup
+}
