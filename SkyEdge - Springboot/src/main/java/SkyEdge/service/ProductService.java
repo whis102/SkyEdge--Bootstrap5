@@ -17,7 +17,7 @@ public class ProductService {
     private ProductRepository productRepository;
 
     public List<Product> getAllProducts() {
-        return productRepository.findAll();
+        return productRepository.findAllByDeleted(false);
     }
 
     public Product findByProductId(int id) throws NotFoundException {
@@ -38,5 +38,9 @@ public class ProductService {
 
     public void deleteProduct(int id) {
         productRepository.deleteById(id);
+    }
+
+    public List<Product> getProductsByCategory(String category) {
+        return productRepository.findAllByCategoryAndDeleted(category, false);
     }
 }

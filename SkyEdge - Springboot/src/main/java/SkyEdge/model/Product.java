@@ -1,5 +1,7 @@
 package SkyEdge.model;
 
+import java.time.LocalDate;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -64,4 +66,10 @@ public class Product {
             @JoinColumn(name = "product_id") }, inverseJoinColumns = {
                     @JoinColumn(name = "user_id") })
     private User createdBy;
+
+    @Column
+    private LocalDate createdAt = LocalDate.now();
+
+    @Column
+    private Boolean deleted;
 }

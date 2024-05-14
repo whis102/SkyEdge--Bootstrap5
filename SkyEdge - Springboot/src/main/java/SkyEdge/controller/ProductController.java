@@ -112,6 +112,7 @@ public class ProductController {
         }
 
         Product newProduct = new Product();
+        newProduct.setDeleted(false);
         newProduct.setName(productDto.getName());
         newProduct.setDescription(productDto.getDescription());
         newProduct.setImageFileName(storageFileName);
@@ -145,7 +146,8 @@ public class ProductController {
     public String deleteProduct(@RequestParam int id) {
         if (productRepository.findById(id).isPresent()) {
             Product product = productRepository.findById(id).get();
-            productRepository.delete(product);
+            product.setDeleted(true);
+            productRepository.save(product);
         }
         return "redirect:/admin/product";
     }

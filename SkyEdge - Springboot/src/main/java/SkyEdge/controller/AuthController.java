@@ -1,6 +1,8 @@
 package SkyEdge.controller;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -29,7 +31,9 @@ import SkyEdge.repository.UserRepository;
 import SkyEdge.security.UserTemplate;
 import SkyEdge.service.AuthenticationService;
 import SkyEdge.service.EmailService;
+import SkyEdge.service.ProductService;
 import SkyEdge.service.UserService;
+import SkyEdge.util.constants.Categories;
 import SkyEdge.util.email.EmailDetails;
 import jakarta.validation.Valid;
 
@@ -56,6 +60,9 @@ public class AuthController {
     private UserService userService;
 
     @Autowired
+    private ProductService productService;
+
+    @Autowired
     private EmailService emailService;
     // @Autowired
     // private JavaMailSender mailSender;
@@ -75,18 +82,44 @@ public class AuthController {
         return "contact-us";
     }
 
-    @RequestMapping("/shop")
+    @GetMapping("/shop")
     public String shop(
-            @RequestParam(value = "id", required = false, defaultValue = "0") int id,
-            @RequestParam(value = "category", required = false, defaultValue = "Luxury") String category,
-            @RequestParam(value = "sort", required = false, defaultValue = "0") int sortMode,
+            @RequestParam(value = "category", required = false, defaultValue = "default") String category,
+            @RequestParam(value = "sortMode", required = false, defaultValue = "0") int sortMode,
             Model model) {
-        model.addAttribute("category", id);
+        List<String> categories = Categories.getAllCategories();
+        model.addAttribute("categories", categories);
         model.addAttribute("category", category);
         model.addAttribute("sortMode", sortMode);
-        List<Product> products = productDAO.applyFilter(id, sortMode, category);
+        List<Product> products = productService.getAllProducts();
+        if (!category.equals("default")) {
+            products = productService.getProductsByCategory(category);
+        }
+        if (products.isEmpty()) {
+            model.addAttribute("message", "No products available in the selected category.");
+        } else {
+            sortProducts(products, sortMode);
+
+        }
         model.addAttribute("products", products);
+
         return "shop";
+    }
+
+    private void sortProducts(List<Product> products, int sortMode) {
+        switch (sortMode) {
+            case 1:
+                Collections.sort(products, Comparator.comparingInt(Product::getId));
+                break;
+            case 2:
+                Collections.sort(products, Comparator.comparing(Product::getName));
+                break;
+            case 3:
+                Collections.sort(products, Comparator.comparing(Product::getPrice));
+                break;
+            default:
+                break;
+        }
     }
 
     @GetMapping("/product-details/{id}")
