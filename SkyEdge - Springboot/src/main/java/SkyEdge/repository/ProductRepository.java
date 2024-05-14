@@ -2,6 +2,8 @@ package SkyEdge.repository;
 
 import java.util.List;
 
+// import org.springframework.data.domain.Page;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -10,6 +12,9 @@ import SkyEdge.model.Product;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Integer> {
+    // List<Product> getAll();
+    List<Product> findAll(Specification<Product> specification);
+
     List<Product> findByNameContainingIgnoreCase(String query);
 
     @Query("SELECT COUNT(p) FROM Product p")
@@ -22,5 +27,4 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     List<Product> findAllByCategory(String category);
 
     List<Product> findAllByCategoryAndDeleted(String category, boolean b);
-
 }
