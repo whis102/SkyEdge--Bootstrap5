@@ -15,6 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -23,7 +24,7 @@ import SkyEdge.model.Product;
 import SkyEdge.model.ProductDto;
 import SkyEdge.model.User;
 import SkyEdge.repository.CartOrderRepository;
-import SkyEdge.repository.ProductOrderRepository;
+// import SkyEdge.repository.ProductOrderRepository;
 import SkyEdge.repository.ProductRepository;
 import SkyEdge.service.ProductService;
 import jakarta.validation.Valid;
@@ -36,8 +37,8 @@ public class ProductController {
     @Autowired
     private ProductRepository productRepository;
 
-    @Autowired
-    private ProductOrderRepository productOrderRepository;
+    // @Autowired
+    // private ProductOrderRepository productOrderRepository;
 
     @Autowired
     private CartOrderRepository cartOrderRepository;
@@ -63,6 +64,30 @@ public class ProductController {
             }
         }
         return "redirect:/product-details/" + productId;
+    }
+
+    @RequestMapping("/shop")
+    public String shop(
+            // @RequestParam(value = "id", required = false, defaultValue = "0") int id,
+            // @RequestParam(value = "category", required = false, defaultValue = "Luxury") String category,
+            // @RequestParam(value = "sort", required = false, defaultValue = "0") int sortMode,
+            Model model) {
+        // model.addAttribute("category", id);
+        // model.addAttribute("category", category);
+        // model.addAttribute("sortMode", sortMode);
+        // List<Product> products = productRepository.findAll(); // applyFilter(id, sortMode, category);
+        List<Product> products = productService.getAllProducts();
+        model.addAttribute("products", products);
+        
+        return "shop";
+    }
+
+    @GetMapping("/shop/search")
+    public String searchShop(@RequestParam("query") String query, Model model) {
+        List<Product> products = productRepository.findByNameContainingIgnoreCase(query);
+        System.out.println(products);
+        model.addAttribute("products", products);
+        return "redirect:/shop";
     }
 
     @GetMapping("/admin/product")

@@ -74,7 +74,7 @@ public class UsersController {
         return "redirect:/admin/users";
     }
     @GetMapping("/admin/users/search")
-    public String searchProduct(@RequestParam("query") String query, Model model) {
+    public String searchUser(@RequestParam("query") String query, Model model) {
         List<User> users = userRepository.findByUsernameContainingIgnoreCase(query);
         model.addAttribute("users", users);
         Long userCount = userService.countByAuthorities();
