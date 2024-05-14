@@ -89,7 +89,7 @@ public class AuthController {
             @RequestParam(value = "category", required = false, defaultValue = "default") String category,
             @RequestParam(value = "sortMode", required = false, defaultValue = "0") int sortMode,
             @RequestParam(value = "page", required = false, defaultValue = "0") int page,
-            @RequestParam(value = "size", required = false, defaultValue = "1") int size,
+            @RequestParam(value = "size", required = false, defaultValue = "10") int size,
             @RequestParam(value = "direction", required = false, defaultValue = "asc") String direction,
             @RequestParam(value = "query", required = false) String query,
             Model model) {
