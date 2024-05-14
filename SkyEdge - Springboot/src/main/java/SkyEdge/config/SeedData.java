@@ -45,7 +45,9 @@ public class SeedData implements CommandLineRunner {
             roleRepository.save(role);
             Set<Role> authorities = new HashSet<>();
             authorities.add(role);
-            userRepository.save(new User("superadmin", passwordEncoder.encode("123456aA"), authorities));
+            userRepository.save(
+                    new User("skyedgespringboot@gmail.com", "superadmin", passwordEncoder.encode("123456aA"),
+                            authorities));
         }
     }
 

@@ -22,6 +22,9 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 
     Product findOneById(int productId);
 
-    
-    // Page<Product> getAll(Integer pageNo);
+    List<Product> findAllByDeleted(boolean deleted);
+
+    List<Product> findAllByCategory(String category);
+
+    List<Product> findAllByCategoryAndDeleted(String category, boolean b);
 }

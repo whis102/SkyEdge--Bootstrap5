@@ -25,14 +25,14 @@ public class AuthenticationService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public User registerUser(String username, String password) {
+    public User registerUser(String email, String username, String password) {
         String encodedPassword = passwordEncoder.encode(password);
         Role userRole = roleRepository.findByAuthority("ADMIN").get();
 
         Set<Role> authorities = new HashSet<>();
         authorities.add(userRole);
         System.out.println("role added");
-        return userRepository.save(new User(username, encodedPassword, authorities));
+        return userRepository.save(new User(email, username, encodedPassword, authorities));
     }
 
 }

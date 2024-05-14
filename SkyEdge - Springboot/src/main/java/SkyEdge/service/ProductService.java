@@ -20,7 +20,7 @@ public class ProductService {
     private ProductRepository productRepository;
 
     public List<Product> getAllProducts() {
-        return productRepository.findAll();
+        return productRepository.findAllByDeleted(false);
     }
 
     public Product findByProductId(int id) throws NotFoundException {
@@ -43,8 +43,7 @@ public class ProductService {
         productRepository.deleteById(id);
     }
 
-    // public Page<Product> getAll(Integer pageNo){
-    //     Pageable pageable = PageRequest.of(pageNo-1, 2);
-    //     return this.productRepository.findAll(pageable);
-    // }
+    public List<Product> getProductsByCategory(String category) {
+        return productRepository.findAllByCategoryAndDeleted(category, false);
+    }
 }

@@ -21,10 +21,12 @@
 
 <body>
     <!-- Nav Top -->
-    <nav id="nav-top" class="navbar navbar-expand-lg bg-dark navbar-light d-none d-lg-block" th:replace="~{main/fragments/topnav :: topnav}"></nav>
+    <nav id="nav-top" class="navbar navbar-expand-lg bg-dark navbar-light d-none d-lg-block"
+        th:replace="~{main/fragments/topnav :: topnav}"></nav>
 
     <!-- Header -->
-    <nav id="header" class="navbar navbar-expand-lg navbar-light shadow" th:replace="~{main/fragments/header :: header}"></nav>
+    <nav id="header" class="navbar navbar-expand-lg navbar-light shadow"
+        th:replace="~{main/fragments/header :: header}"></nav>
 
     <!-- Main -->
     <div id="products" class="container py-5">
@@ -32,24 +34,16 @@
             <!-- Categories -->
             <div class="col-lg-3">
                 <div class="container mt-3">
-                    <h2 class="pb-4 fs-3">Categories</h2>
                     <a class="d-flex justify-content-between h3 text-decoration-none" data-bs-toggle="collapse"
-                        data-bs-target="#category" href="#">
-                        category
+                        data-bs-target="#categories" href="#">
+                        Categories
                         <i class="fa fa-fw fa-chevron-circle-down mt-1"></i>
                     </a>
-                    <ul id="category" class="collapse show list-unstyled pl-3">
-                        <li><a class="text-decoration-none text-muted fs-6" href="#">Men</a></li>
-                        <li><a class="text-decoration-none text-muted fs-6" href="#">Women</a></li>
-                    </ul>
-                    <a class="d-flex justify-content-between h3 text-decoration-none" data-bs-toggle="collapse"
-                        data-bs-target="#Sale" href="#">
-                        Sale
-                        <i class="fa fa-fw fa-chevron-circle-down mt-1"></i>
-                    </a>
-                    <ul id="Sale" class="collapse show list-unstyled pl-3">
-                        <li><a class="text-decoration-none text-muted fs-6" href="#">Sport</a></li>
-                        <li><a class="text-decoration-none text-muted fs-6" href="#">Luxury</a></li>
+
+                    <ul id="categories" class="collapse show list-unstyled pl-3" th:each="a_category : ${categories}">
+                        <li><a class="text-decoration-none text-muted fs-6"
+                                th:href="@{/shop(category=${a_category}, sortMode=${sortMode})}"
+                                th:text="${a_category}"></a></li>
                     </ul>
                     <a class="d-flex justify-content-between h3 text-decoration-none" data-bs-toggle="collapse"
                         data-bs-target="#Product" href="#">
@@ -63,19 +57,20 @@
             <!-- Products -->
 
             <div class="col-lg-9">
-
-                <!-- Filter -->
                 <div class="row container px-4">
                     <div class="col-md-6">
                         <ul class="list-inline shop-top-menu pb-3 pt-1">
                             <li class="list-inline-item">
-                                <a class="h3 text-dark text-decoration-none mr-3" href="#">All</a>
+                                <a class="h3 text-dark text-decoration-none mr-3"
+                                    th:href="@{/shop(sortMode=1, category=default)}">Default</a>
                             </li>
                             <li class="list-inline-item">
-                                <a class="h3 text-dark text-decoration-none mr-3" href="#">Men's</a>
+                                <a class="h3 text-dark text-decoration-none mr-3"
+                                    th:href="@{/shop(sortMode=2, category=${category})}">Name</a>
                             </li>
                             <li class="list-inline-item">
-                                <a class="h3 text-dark text-decoration-none" href="#">Women's</a>
+                                <a class="h3 text-dark text-decoration-none"
+                                    th:href="@{/shop(sortMode=3, category=${category})}">Price</a>
                             </li>
                         </ul>
                     </div>
@@ -96,9 +91,8 @@
                         <!-- Card -->
                         <div class="card mt-4 m-2" style="width: 18rem; height: 34rem;">
                             <div class="position-relative">
-                                <div class="d-inline-block">
-                                    <img th:src="@{'/images/' + ${product.imageFileName}}" class="card-img-top img" alt="...">
-                                </div>
+                                <img th:src="@{'/images/' + ${product.imageFileName}}" class="card-img-top img"
+                                    alt="...">
                                 <div
                                     class="img-overlay position-absolute top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center">
                                     <div class="card-btn flex-row d-flex gap-3">
@@ -132,7 +126,7 @@
                                     class="h3 text-decoration-none text-dark" th:text="${product.name}">
                                     Sunglasses
                                 </a>
-                                <p class="card-text pt-1" th:text="${product.category}"></p>
+
                                 <p class="card-text pt-1" th:text="${product.description}">
                                 </p>
                                 <p class="text-muted">Reviews (48)</p>
@@ -162,10 +156,11 @@
 
     <!-- Start Footer -->
     <footer class="bg-dark">
-        <div id="footer" class="container"  th:replace="~{main/fragments/footer :: footer}"></div>
+        <div id="footer" class="container" th:replace="~{main/fragments/footer :: footer}"></div>
 
         <!-- Copyright -->
-        <div id="copyright" class="bg-black copy-right py-3 w-100" th:replace="~{main/fragments/copyright :: copyright}"></div>
+        <div id="copyright" class="bg-black copy-right py-3 w-100"
+            th:replace="~{main/fragments/copyright :: copyright}"></div>
     </footer>
     <!-- Close Footer -->
 

@@ -1,6 +1,7 @@
 package SkyEdge.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -32,13 +33,30 @@ public class UserService implements UserDetailsService {
         return userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not valid"));
     }
+
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
+
     public void deleteUser(int id) {
         userRepository.deleteById(id);
     }
+
     public Long countByAuthorities() {
         return userRepository.count();
+    }
+
+    public Optional<User> findByToken(String token) {
+        return userRepository.findByResetToken(token);
+    }
+
+    public User save(User user) {
+        user.setPassword(encoder.encode(user.getPassword()));
+        // if (user.getPhoto() == null) {
+        // String path = photo_prefix.replace("**", "images/person.png");
+        // user.setPhoto(path);
+        // }
+
+        return userRepository.save(user);
     }
 }
