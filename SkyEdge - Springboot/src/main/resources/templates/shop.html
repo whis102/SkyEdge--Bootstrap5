@@ -58,8 +58,9 @@
                         <ul class="list-inline shop-top-menu pb-3 pt-1">
                             <li class="list-inline-item">
                                 <a class="h3 text-dark text-decoration-none mr-3"
-                                    th:href="@{/shop(sortMode=1, category=default)}">Default</a>
+                                    th:href="@{/shop(sortMode=1, category=${category}, page=0)}">Default</a>
                             </li>
+
                             <li class="list-inline-item">
                                 <a class="h3 text-dark text-decoration-none mr-3"
                                     th:href="@{/shop(sortMode=2, category=${category})}">Name</a>
@@ -70,22 +71,23 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="col-md-6 pb-4">
-                        <div class="input-group mb-3">
+                    <div class="col-md-6 ">
+                        <form class="input-group mb-3">
                             <span class="input-group-text" id="basic-addon1">
                                 <i class="fa-solid fa-magnifying-glass text-dark"></i>
                             </span>
-                            <input type="text" class="form-control" placeholder="Search for products"
+                            <input type="search" name="query" class="form-control" placeholder="Search for products"
                                 aria-label="Search" aria-describedby="basic-addon1">
-                        </div>
-                        <!-- <div class="d-flex">
-                            <input placeholder=" Search for items" class="border border-1 control w-100"></input>
-                        </div> -->
+                        </form>
                     </div>
+
                 </div>
                 <!-- End Filter -->
                 <!-- Cards -->
                 <div class="row">
+                    <div th:if="${products.content.empty}" class="alert alert-warning" role="alert">
+                        No products available in the selected category or search query.
+                    </div>
                     <div class="col-md-4" th:each="product : ${products}">
                         <!-- Card -->
                         <div class="card mt-4 m-2" style="width: 18rem; height: 34rem;">
@@ -142,13 +144,28 @@
             </div>
             <!-- End products -->
         </div>
+        <!-- Pagination -->
+        <div class="d-flex justify-content-center mt-4">
+            <ul class="pagination">
+                <li th:if="${products.hasPrevious()}" class="page-item">
+                    <a th:href="@{/shop(page=${products.number - 1}, size=${products.size}, category=${category}, sortMode=${sortMode})}"
+                        class="page-link">Previous</a>
+                </li>
+                <li th:if="${products.totalPages} - 1 >0"
+                    th:each="pageNum : ${#numbers.sequence(0, products.totalPages - 1)}" class="page-item"
+                    th:classappend="${pageNum == products.number} ? 'active'">
+                    <a th:href="@{/shop(page=${pageNum}, size=${products.size}, category=${category}, sortMode=${sortMode})}"
+                        th:text="${pageNum + 1}" class="page-link"></a>
+                </li>
+                <li th:if="${products.hasNext()}" class="page-item">
+                    <a th:href="@{/shop(page=${products.number + 1}, size=${products.size}, category=${category}, sortMode=${sortMode})}"
+                        class="page-link">Next</a>
+                </li>
+            </ul>
 
-        <div>
-            <div class="d-flex justify-content-end mt-4">
-                <ul class="pagination" id="pagination">
-                </ul>
-            </div>
+
         </div>
+        <!-- End Pagination -->
     </div>
     <!-- Close Main -->
 
