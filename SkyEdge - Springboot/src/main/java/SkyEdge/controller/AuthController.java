@@ -1,8 +1,6 @@
 package SkyEdge.controller;
 
 import java.time.LocalDateTime;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -10,6 +8,10 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -82,40 +84,51 @@ public class AuthController {
     public String shop(
             @RequestParam(value = "category", required = false, defaultValue = "default") String category,
             @RequestParam(value = "sortMode", required = false, defaultValue = "0") int sortMode,
+            @RequestParam(value = "page", required = false, defaultValue = "0") int page,
+            @RequestParam(value = "size", required = false, defaultValue = "10") int size,
+            @RequestParam(value = "direction", required = false, defaultValue = "asc") String direction,
+            @RequestParam(value = "query", required = false) String query,
             Model model) {
+
         List<String> categories = Categories.getAllCategories();
         model.addAttribute("categories", categories);
         model.addAttribute("category", category);
         model.addAttribute("sortMode", sortMode);
-        List<Product> products = productService.getAllProducts();
-        if (!category.equals("default")) {
-            products = productService.getProductsByCategory(category);
-        }
-        if (products.isEmpty()) {
-            model.addAttribute("message", "No products available in the selected category.");
-        } else {
-            sortProducts(products, sortMode);
 
+        Pageable pageable = PageRequest.of(page, size, Sort.by(getSortDirection(direction), getSortProperty(sortMode)));
+        Page<Product> productsPage = productService.getAllProducts(pageable);
+
+        if (!category.equals("default")) {
+            productsPage = productService.getProductsByCategory(category, pageable);
         }
-        model.addAttribute("products", products);
+
+        if (query != null && !query.isEmpty()) {
+            productsPage = productService.searchProducts(query, pageable);
+        }
+
+        model.addAttribute("products", productsPage);
+        if (productsPage.isEmpty()) {
+            model.addAttribute("message", "No products available in the selected category.");
+        }
 
         return "shop";
     }
 
-    private void sortProducts(List<Product> products, int sortMode) {
+    private String getSortProperty(int sortMode) {
         switch (sortMode) {
             case 1:
-                Collections.sort(products, Comparator.comparingInt(Product::getId));
-                break;
+                return "id";
             case 2:
-                Collections.sort(products, Comparator.comparing(Product::getName));
-                break;
+                return "name";
             case 3:
-                Collections.sort(products, Comparator.comparing(Product::getPrice));
-                break;
+                return "price";
             default:
-                break;
+                return "id";
         }
+    }
+
+    private Sort.Direction getSortDirection(String dir) {
+        return "desc".equalsIgnoreCase(dir) ? Sort.Direction.DESC : Sort.Direction.ASC;
     }
 
     @GetMapping("/product-details/{id}")

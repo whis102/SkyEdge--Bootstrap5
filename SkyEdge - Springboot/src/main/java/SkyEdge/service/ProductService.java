@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import SkyEdge.model.Product;
@@ -42,5 +44,17 @@ public class ProductService {
 
     public List<Product> getProductsByCategory(String category) {
         return productRepository.findAllByCategoryAndDeleted(category, false);
+    }
+
+    public Page<Product> getAllProducts(Pageable pageable) {
+        return productRepository.findAll(pageable);
+    }
+
+    public Page<Product> getProductsByCategory(String category, Pageable pageable) {
+        return productRepository.findByCategory(category, pageable);
+    }
+
+    public Page<Product> searchProducts(String query, Pageable pageable) {
+        return productRepository.findByNameContainingIgnoreCase(query, pageable);
     }
 }
