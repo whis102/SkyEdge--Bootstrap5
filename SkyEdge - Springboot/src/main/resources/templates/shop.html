@@ -56,10 +56,6 @@
                         Product
                         <i class="fa fa-fw fa-chevron-circle-down mt-1"></i>
                     </a>
-                    <select id="filter-category" class="collapse show list-unstyled pl-3">
-                        <option value="0">All categories</option>
-                        <option th:each = "product: ${products}" th:value = "${product.category}" th:text = "${product.category}"></option>
-                    </select>
                 </div>
             </div>
             <!-- End categories -->
@@ -83,18 +79,15 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="col-md-6 pb-4">
+                    <form th:action="'/shop/search'" method="GET" class="col-md-6 pb-4">
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="basic-addon1">
                                 <i class="fa-solid fa-magnifying-glass text-dark"></i>
                             </span>
-                            <input type="text" class="form-control" placeholder="Search for products"
-                                aria-label="Search" aria-describedby="basic-addon1">
+                            <input class="form-control" type="search"
+                                name="query" placeholder="Search">
                         </div>
-                        <!-- <div class="d-flex">
-                            <input placeholder=" Search for items" class="border border-1 control w-100"></input>
-                        </div> -->
-                    </div>
+                    </form>
                 </div>
                 <!-- End Filter -->
                 <!-- Cards -->
@@ -177,22 +170,6 @@
     <!-- Close Footer -->
 
     <!-- Scripts -->
-    <script>
-    window.addEventListener("load", function () {
-    let category = [[$,{category}]]; // add this variable
-    let sortMode = [[$,{sortMode}]];
-    const categoryFilter = document.getElementById("filter-category");
-    categoryFilter.value = category;
-    categoryFilter.addEventListener("change", function () {
-    category = categoryFilter.value;
-    filterRedirect();
-    });
-    })
-    function filterRedirect() {
-        let url = "/shop?" + "&category=" + category + "&sort=" + sortMode;
-        window.location.href = url; // redirect
-        }
-    </script>
     <script src="home.js"></script>
     <script src="./displays/MainDisplay/main.js"></script>
     <script src="./pages/Shop/shop.js"></script>

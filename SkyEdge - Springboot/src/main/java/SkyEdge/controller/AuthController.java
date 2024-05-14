@@ -61,19 +61,7 @@ public class AuthController {
         return "contact-us";
     }
 
-    @RequestMapping("/shop")
-    public String shop(
-            @RequestParam(value = "id", required = false, defaultValue = "0") int id,
-            @RequestParam(value = "category", required = false, defaultValue = "Luxury") String category,
-            @RequestParam(value = "sort", required = false, defaultValue = "0") int sortMode,
-            Model model) {
-        model.addAttribute("category", id);
-        model.addAttribute("category", category);
-        model.addAttribute("sortMode", sortMode);
-        List<Product> products = productDAO.applyFilter(id, sortMode, category);
-        model.addAttribute("products", products);
-        return "shop";
-    }
+   
 
     @GetMapping("/product-details/{id}")
     public String product_details(@PathVariable(value = "id") int id, Model model) throws NotFoundException {
