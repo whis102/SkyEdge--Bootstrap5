@@ -38,7 +38,7 @@
                         <img class="card-img img-fluid" th:src="@{'/images/' + ${product.imageFileName}}"
                             alt="Dark Glasses" id="product-detail">
                     </div>
-                    <div class="row">
+                    <!-- <div class="row">
                         <div id="multi-item-example" class="col-10 carousel slide carousel-multi-item"
                             data-bs-ride="carousel">
                             <div class="carousel-inner product-links-wap" role="listbox">
@@ -54,7 +54,7 @@
                                 <span class="visually-hidden">Next</span>
                             </button>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
 
                 <!-- Start Glasses Information-->
@@ -76,18 +76,18 @@
                                     <h6><b>Category:</b></h6>
                                 </li>
                                 <li class="list-inline-item">
-                                    <p class="text-muted" th:text="${product.category}">Easy Wear</p>
+                                    <p class="text-muted" th:text="${product.category}"></p>
                                 </li>
                             </ul>
 
                             <h6><b>Description:</b></h6>
-                            <p th:text="${product.description}"></p>
+                            <p class="text-secondary" th:text="${product.description}"></p>
                             <ul class="list-inline">
                                 <li class="list-inline-item">
-                                    <h6><b>Avaliable Color :</b></h6>
+                                    <h6><b>Remaining products:</b></h6>
                                 </li>
                                 <li class="list-inline-item">
-                                    <p class="text-muted"><strong>Gray / Black</strong></p>
+                                    <p class="text-muted" th:text="${product.stock}"><strong></strong></p>
                                 </li>
                             </ul>
 

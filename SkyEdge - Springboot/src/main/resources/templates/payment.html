@@ -49,19 +49,17 @@
                 <div class="block-customer mt-3" id="payment-block">
                     <div class="block-customer-wrapper p-2">
                         <div class="d-flex flex-column gap-2 p-2">
-                            <div class="w-100 d-flex">
+                            <!-- <div class="w-100 d-flex">
                                 <div class="popup-overlay" onclick="hidePopup()"></div>
                                 <div class="input-wrapper flex-grow-1">
                                     <input type="text" id="voucher-input" class="form-control"
                                         placeholder="Enter voucher code" onclick="showPopup()">
                                     <div id="popup" class="popup">
                                         <ul class="d-flex" th:each="voucher : ${vouchers}">
-                                            <li class="d-flex align-items-center w-100" >
+                                            <li class="d-flex align-items-center w-100">
                                                 <div class="w-100">
                                                     <i th:classappend="${voucher.icon}"></i>
-                                                    <span th:text="${voucher.name}" 
-                                                        th:attr="data-voucher=${voucher.name}, data-discount=${voucher.discount}" 
-                                                        class="voucher-item flex-grow-1"></span>
+                                                    <span th:text="${voucher.name}" th:attr="data-voucher=${voucher.name}, data-discount=${voucher.discount}" class="voucher-item flex-grow-1"></span>
                                                 </div>
                                                 <div class="p-1">
                                                     <span class="badge text-success" th:text="${voucher.discount + '%'}"></span>
@@ -70,7 +68,13 @@
                                         </ul>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
+                            <!-- <div>
+                                <label for="voucher">Voucher:</label>
+                                <select class="form-select mt-2" id="voucher" >
+                                    <option th:value="${voucher.code}" th:text="${voucher.name}" th:each="voucher : ${vouchers}"></option>
+                                </select>
+                            </div> -->
                             <div class="d-flex flex-column">
                                 <div class="d-flex mt-2">
                                     <p class="flex-grow-1 text-secondary">Products money (Temporary)</p>

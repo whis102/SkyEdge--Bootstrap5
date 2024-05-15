@@ -13,4 +13,5 @@ public interface VoucherRepository extends JpaRepository<Voucher, Integer> {
     List<Voucher> findByNameContainingIgnoreCase(String query);
     @Query("SELECT COUNT(p) FROM Voucher p")
     Long countVouchers();
+    Voucher findByCode(String code);
 }
