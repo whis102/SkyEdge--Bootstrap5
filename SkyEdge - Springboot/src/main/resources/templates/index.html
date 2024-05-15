@@ -1,16 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="~{main/fragments/head :: head}">
-    <title>SkyEdge</title>
-</head>
+<head th:replace="~{fragments/main/head :: head}"></head>
 
 <body >
     <!-- Nav Top -->
-    <nav id="nav-top" class="navbar navbar-expand-lg bg-dark navbar-light d-none d-lg-block" th:replace="~{main/fragments/topnav :: topnav}"></nav>
+    <nav id="nav-top" th:replace="~{fragments/main/topnav :: topnav}"></nav>
 
     <!-- Header -->
-    <nav id="header" class="navbar navbar-expand-lg navbar-light shadow" th:replace="~{main/fragments/header :: header}"></nav>
+    <nav id="header" th:replace="~{fragments/main/header :: header}"></nav>
 
     <!-- Start Banner -->
     <div id="banner-carousel" class="carousel slide" data-bs-ride="carousel">
@@ -26,7 +24,7 @@
                 <div class="container">
                     <div class="row p-5">
                         <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                            <img class="img-fluid" src="./assets/images/category_img.jpg" alt="">
+                            <img th:src="@{/assets/images/category_img.jpg}" class="img-fluid" alt="">
                         </div>
 
                         <div class="col-lg-6 mb-0 d-flex align-items-center">
@@ -249,10 +247,10 @@
 
     <!-- Start Footer -->
     <footer class="bg-dark">
-        <div id="footer" class="container"  th:replace="~{main/fragments/footer :: footer}"></div>
+        <div id="footer" class="container"  th:replace="~{fragments/main/footer :: footer}"></div>
 
         <!-- Copyright -->
-        <div id="copyright" class="bg-black copy-right py-3 w-100" th:replace="~{main/fragments/copyright :: copyright}"></div>
+        <div id="copyright" class="bg-black copy-right py-3 w-100" th:replace="~{fragments/main/copyright :: copyright}"></div>
     </footer>
     <!-- Close Footer -->
 

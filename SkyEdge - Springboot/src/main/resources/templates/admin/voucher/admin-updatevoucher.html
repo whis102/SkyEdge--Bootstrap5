@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="~{admin/fragments/head :: head}"></head>
+<head th:replace="~{fragments/admin/head :: head}"></head>
 
 <body>
-    <nav th:replace="~{admin/fragments/menu :: menu}"></nav>
+    <nav th:replace="~{fragments/admin/menu :: menu}"></nav>
 
-    <div th:replace="~{admin/fragments/navbar :: navbar}"></div>
+    <div th:replace="~{fragments/admin/navbar :: navbar}"></div>
 
     <div id="content" class="bg-w p-3 py-5">
         <!-- Form -->
@@ -78,7 +78,8 @@
             </form>
         </div>
     </div>
-        <script th:replace="~{admin/fragments/script :: script}"></script>
+
+    <script th:replace="~{fragments/admin/script :: script}"></script>
 </body>
 
 </html>
