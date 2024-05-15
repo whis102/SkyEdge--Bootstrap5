@@ -1,6 +1,5 @@
 package SkyEdge.model;
 
-
 import org.springframework.web.multipart.MultipartFile;
 
 import jakarta.validation.constraints.NotEmpty;
@@ -16,7 +15,6 @@ public class ProductDto {
     @NotEmpty(message = "Name is required")
     private String name;
 
-    @Size(min = 10, message = "The description should be at least 10 characters")
     @Size(max = 1000, message = "The description cannot exceed 2000 characters")
     private String description;
 

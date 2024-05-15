@@ -5,48 +5,41 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import SkyEdge.model.Role;
 import SkyEdge.model.User;
-import SkyEdge.repository.RoleRepository;
-import SkyEdge.repository.SubscriberRepository;
-import SkyEdge.repository.UserRepository;
+import SkyEdge.service.RoleService;
+import SkyEdge.service.UserService;
 
 @Component
 public class SeedData implements CommandLineRunner {
     @Autowired
-    private RoleRepository roleRepository;
-    @Autowired
-    private SubscriberRepository subscriberRepository;
+    private RoleService roleService;
 
     @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    private UserService userService;
 
     @Override
     public void run(String... args) throws Exception {
-        if (roleRepository.findByAuthority("USER").isEmpty()) {
+        if (roleService.findByAuthority("USER").isEmpty()) {
             Role role = new Role();
             role.setAuthority("USER");
-            roleRepository.save(role);
+            roleService.save(role);
         }
-        if (roleRepository.findByAuthority("ADMIN").isEmpty()) {
+        if (roleService.findByAuthority("ADMIN").isEmpty()) {
             Role role = new Role();
             role.setAuthority("ADMIN");
-            roleRepository.save(role);
+            roleService.save(role);
         }
-        if (roleRepository.findByAuthority("SUPERADMIN").isEmpty()) {
+        if (roleService.findByAuthority("SUPERADMIN").isEmpty()) {
             Role role = new Role();
             role.setAuthority("SUPERADMIN");
-            roleRepository.save(role);
+            roleService.save(role);
             Set<Role> authorities = new HashSet<>();
             authorities.add(role);
-            userRepository.save(
-                    new User("skyedgespringboot@gmail.com", "superadmin", passwordEncoder.encode("123456aA"),
+            userService.save(
+                    new User("skyedgespringboot@gmail.com", "Super Admin", "superadmin", "123456aA",
                             authorities));
         }
     }

@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
-<head th:replace="~{fragments/admin/head :: head}"></head>
-
+<head th:replace="~{admin/fragments/head :: head}"></head>
 <body>
-    <nav th:replace="~{fragments/admin/menu :: menu}"></nav>
-    <div th:replace="~{fragments/admin/navbar :: navbar}"></div>
+    <nav th:replace="~{admin/fragments/menu :: menu}"></nav>
+    <div th:replace="~{admin/fragments/navbar :: navbar}"></div>
     <div id="content" class="bg-w p-3">
         <div class="container voucher-container p-4">
             <!-- Top bar -->
@@ -89,8 +87,7 @@
             </ul>
         </div>
     </div>
-
-    <script th:replace="~{fragments/admin/script :: script}"></script>
+        <script th:replace="~{admin/fragments/script :: script}"></script>
 </body>
 
 </html>

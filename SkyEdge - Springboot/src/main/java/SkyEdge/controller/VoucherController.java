@@ -12,10 +12,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import SkyEdge.model.User;
 import SkyEdge.model.Voucher;
 import SkyEdge.model.VoucherDto;
-import SkyEdge.model.User;
-import SkyEdge.repository.VoucherRepository;
 import SkyEdge.service.VoucherService;
 import jakarta.validation.Valid;
 
@@ -23,9 +22,6 @@ import jakarta.validation.Valid;
 public class VoucherController {
     @Autowired
     private VoucherService voucherService;
-
-    @Autowired
-    private VoucherRepository voucherRepository;
 
     @GetMapping("/admin/voucher")
     public String listVouchers(Model model) {
@@ -47,9 +43,8 @@ public class VoucherController {
     }
 
     @PostMapping("/admin/voucher/add")
-    public String addNewVoucher(@Valid @ModelAttribute VoucherDto voucherDto,Voucher voucher, BindingResult result,
+    public String addNewVoucher(@Valid @ModelAttribute VoucherDto voucherDto, Voucher voucher, BindingResult result,
             @AuthenticationPrincipal User user) {
-
 
         Voucher newVoucher = new Voucher();
         newVoucher.setName(voucherDto.getName());
@@ -60,13 +55,13 @@ public class VoucherController {
         newVoucher.setStock(voucherDto.getStock());
         newVoucher.setCode(voucherDto.getCode());
         newVoucher.setDiscount(voucherDto.getDiscount());
-        voucherRepository.save(newVoucher);
+        voucherService.save(newVoucher);
         return "redirect:/admin/voucher";
     }
 
     @GetMapping("/admin/voucher/search")
     public String searchVoucher(@RequestParam("query") String query, Model model) {
-        List<Voucher> vouchers = voucherRepository.findByNameContainingIgnoreCase(query);
+        List<Voucher> vouchers = voucherService.findByNameContainingIgnoreCase(query);
         System.out.println(vouchers);
         model.addAttribute("vouchers", vouchers);
         Long voucherCount = voucherService.getVoucherCount();
@@ -76,9 +71,9 @@ public class VoucherController {
 
     @GetMapping("/admin/voucher/delete")
     public String deleteVoucher(@RequestParam int id) {
-        if (voucherRepository.findById(id).isPresent()) {
-            Voucher voucher = voucherRepository.findById(id).get();
-            voucherRepository.delete(voucher);
+        if (voucherService.findById(id).isPresent()) {
+            Voucher voucher = voucherService.findById(id).get();
+            voucherService.delete(voucher);
         }
         return "redirect:/admin/voucher";
     }
@@ -86,7 +81,7 @@ public class VoucherController {
     @GetMapping("/admin/voucher/edit")
     public String showUpdateVoucher(Model model, @RequestParam int id) {
         try {
-            Voucher voucher = voucherRepository.findById(id).get();
+            Voucher voucher = voucherService.findById(id).get();
             model.addAttribute("voucher", voucher);
 
             VoucherDto voucherDto = new VoucherDto();
@@ -108,7 +103,7 @@ public class VoucherController {
     public String updateVoucher(Model model, @RequestParam int id, @Valid @ModelAttribute VoucherDto voucherDto,
             BindingResult result) {
         try {
-            Voucher voucher = voucherRepository.findById(id).get();
+            Voucher voucher = voucherService.findById(id).get();
             model.addAttribute("voucher", voucher);
 
             voucher.setIcon(voucherDto.getIcon());
@@ -117,7 +112,7 @@ public class VoucherController {
             voucher.setDiscount(voucherDto.getDiscount());
             voucher.setType(voucherDto.getType());
             voucher.setStock(voucherDto.getStock());
-            voucherRepository.save(voucher);
+            voucherService.save(voucher);
         } catch (Exception ex) {
             System.out.println("Exception: " + ex.getMessage());
         }

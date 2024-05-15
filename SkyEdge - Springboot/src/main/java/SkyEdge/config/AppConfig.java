@@ -52,5 +52,7 @@ public class AppConfig {
         props.put("mail.smtp.ssl.trust", smtp_ssl_trust);
 
         return mailSender;
+
     }
+
 }

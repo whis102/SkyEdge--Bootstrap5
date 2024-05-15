@@ -9,30 +9,27 @@ import org.springframework.stereotype.Service;
 
 import SkyEdge.model.Role;
 import SkyEdge.model.User;
-import SkyEdge.repository.RoleRepository;
-import SkyEdge.repository.UserRepository;
 import jakarta.transaction.Transactional;
 
 @Service
 @Transactional
 public class AuthenticationService {
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
 
     @Autowired
-    private RoleRepository roleRepository;
+    private RoleService roleService;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public User registerUser(String email, String username, String password) {
-        String encodedPassword = passwordEncoder.encode(password);
-        Role userRole = roleRepository.findByAuthority("ADMIN").get();
+    public User registerUser(String email, String name, String username, String password) {
+        Role userRole = roleService.findByAuthority("USER").get();
 
         Set<Role> authorities = new HashSet<>();
         authorities.add(userRole);
         System.out.println("role added");
-        return userRepository.save(new User(email, username, encodedPassword, authorities));
+        return userService.save(new User(email, name, username, password, authorities));
     }
 
 }

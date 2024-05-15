@@ -24,4 +24,5 @@ public class UserTemplate {
     @Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$", message = "Invalid email format")
     private String email;
     // getter & setter methods
+    private String name;
 }

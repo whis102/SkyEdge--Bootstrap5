@@ -49,6 +49,7 @@ public class WebSecurityConfig {
                                 .authorizeHttpRequests(requests -> requests
                                                 .requestMatchers(WHITELIST).permitAll()
                                                 .requestMatchers("/cart/**").authenticated()
+                                                .requestMatchers("/profile/**").authenticated()
                                                 .requestMatchers("/admin/users/**").hasAuthority("SUPERADMIN")
                                                 .requestMatchers("/admin/**").hasAnyAuthority("ADMIN", "SUPERADMIN")
                                                 .anyRequest().permitAll())

@@ -23,8 +23,7 @@ import SkyEdge.model.CartOrder;
 import SkyEdge.model.Product;
 import SkyEdge.model.ProductDto;
 import SkyEdge.model.User;
-import SkyEdge.repository.CartOrderRepository;
-import SkyEdge.repository.ProductRepository;
+import SkyEdge.service.CartOrderService;
 import SkyEdge.service.ProductService;
 import jakarta.validation.Valid;
 
@@ -34,26 +33,23 @@ public class ProductController {
     private ProductService productService;
 
     @Autowired
-    private ProductRepository productRepository;
-
-    @Autowired
-    private CartOrderRepository cartOrderRepository;
+    private CartOrderService cartOrderService;
 
     @GetMapping("/product-details/add")
     public String buyProduct(@RequestParam("product-id") int productId,
             @RequestParam("product-quantity") int quantity, @AuthenticationPrincipal User user, Model model) {
         System.out.println(productId);
-        if (productRepository.findById(productId).isPresent()) {
-            Product product = productRepository.findById(productId).get();
+        if (productService.findById(productId).isPresent()) {
+            Product product = productService.findById(productId).get();
             if (product.getStock() >= quantity) {
-                if (cartOrderRepository.findByProductId(productId).isEmpty()) {
+                if (cartOrderService.findByProductId(productId).isEmpty()) {
                     CartOrder cartOrder = new CartOrder(productId, quantity);
                     cartOrder.setUserId(user.getUserId());
-                    cartOrderRepository.save(cartOrder);
+                    cartOrderService.save(cartOrder);
                 } else {
-                    CartOrder cartOrder = cartOrderRepository.findOneByProductIdAndUserId(productId, user.getUserId());
+                    CartOrder cartOrder = cartOrderService.findOneByProductIdAndUserId(productId, user.getUserId());
                     cartOrder.setQuantity(cartOrder.getQuantity() + quantity);
-                    cartOrderRepository.save(cartOrder);
+                    cartOrderService.save(cartOrder);
                 }
 
                 return "redirect:/cart";
@@ -125,13 +121,13 @@ public class ProductController {
         newProduct.setWidth(productDto.getWidth());
         newProduct.setHeight(productDto.getHeight());
         newProduct.setCreatedBy(user);
-        productRepository.save(newProduct);
+        productService.save(newProduct);
         return "redirect:/admin/product";
     }
 
     @GetMapping("/admin/product/search")
     public String searchProduct(@RequestParam("query") String query, Model model) {
-        List<Product> products = productRepository.findByNameContainingIgnoreCase(query);
+        List<Product> products = productService.findByNameContainingIgnoreCase(query);
         System.out.println(products);
         model.addAttribute("products", products);
         Long productCount = productService.getProductCount();
@@ -141,10 +137,10 @@ public class ProductController {
 
     @GetMapping("/admin/product/delete")
     public String deleteProduct(@RequestParam int id) {
-        if (productRepository.findById(id).isPresent()) {
-            Product product = productRepository.findById(id).get();
+        if (productService.findById(id).isPresent()) {
+            Product product = productService.findById(id).get();
             product.setDeleted(true);
-            productRepository.save(product);
+            productService.save(product);
         }
         return "redirect:/admin/product";
     }
@@ -152,7 +148,7 @@ public class ProductController {
     @GetMapping("/admin/product/edit")
     public String showUpdateProduct(Model model, @RequestParam int id) {
         try {
-            Product product = productRepository.findById(id).get();
+            Product product = productService.findById(id).get();
             model.addAttribute("product", product);
 
             ProductDto productDto = new ProductDto();
@@ -181,7 +177,7 @@ public class ProductController {
     public String updateProduct(Model model, @RequestParam int id, @Valid @ModelAttribute ProductDto productDto,
             BindingResult result) {
         try {
-            Product product = productRepository.findById(id).get();
+            Product product = productService.findById(id).get();
             model.addAttribute("product", product);
 
             // if (result.hasErrors()){
@@ -222,7 +218,7 @@ public class ProductController {
             product.setSide(productDto.getSide());
             product.setWidth(productDto.getWidth());
             product.setHeight(productDto.getHeight());
-            productRepository.save(product);
+            productService.save(product);
         } catch (Exception ex) {
             System.out.println("Exception: " + ex.getMessage());
         }

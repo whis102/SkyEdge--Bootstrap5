@@ -10,33 +10,33 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import SkyEdge.model.Order;
 import SkyEdge.model.Product;
-import SkyEdge.repository.OrderRepository;
-import SkyEdge.repository.ProductRepository;
-import SkyEdge.repository.RoleRepository;
-import SkyEdge.repository.UserRepository;
+import SkyEdge.service.OrderService;
+import SkyEdge.service.ProductService;
+import SkyEdge.service.RoleService;
+import SkyEdge.service.UserService;
 
 @Controller
 public class AdminController {
 
     @Autowired
-    private ProductRepository productRepository;
+    private ProductService productService;
 
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
 
     @Autowired
-    private RoleRepository roleRepository;
+    private RoleService roleService;
 
     @Autowired
-    private OrderRepository orderRepository;
+    private OrderService orderService;
 
     @GetMapping("/admin")
     public String admin(Model model) {
-        List<Product> products = productRepository.findAll();
-        List<Order> orders = orderRepository.findAll();
+        List<Product> products = productService.findAll();
+        List<Order> orders = orderService.findAll();
         int numOfProducts = products.size();
         List<Object> productHistory = new ArrayList<>();
-        Long numOfUsers = userRepository.countByAuthorities(roleRepository.findByAuthority("USER"));
+        Long numOfUsers = userService.countByAuthorities(roleService.findByAuthority("USER"));
         Double totalRevenue = 0.0;
         for (Order order : orders) {
             if (order.getStatus().equals("APPROVED"))

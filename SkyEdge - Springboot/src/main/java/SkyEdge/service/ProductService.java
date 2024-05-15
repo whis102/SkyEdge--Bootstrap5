@@ -57,4 +57,24 @@ public class ProductService {
     public Page<Product> searchProducts(String query, Pageable pageable) {
         return productRepository.findByNameContainingIgnoreCase(query, pageable);
     }
+
+    public List<Product> findAll() {
+        return productRepository.findAll();
+    }
+
+    public Product findOneById(int productId) {
+        return productRepository.findOneById(productId);
+    }
+
+    public Optional<Product> findById(int productId) {
+        return productRepository.findById(productId);
+    }
+
+    public void save(Product newProduct) {
+        productRepository.save(newProduct);
+    }
+
+    public List<Product> findByNameContainingIgnoreCase(String query) {
+        return productRepository.findByNameContainingIgnoreCase(query);
+    }
 }

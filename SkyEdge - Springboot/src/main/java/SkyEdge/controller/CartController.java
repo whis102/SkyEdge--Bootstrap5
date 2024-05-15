@@ -20,46 +20,39 @@ import SkyEdge.model.Product;
 import SkyEdge.model.ProductOrder;
 import SkyEdge.model.User;
 import SkyEdge.model.Voucher;
-import SkyEdge.repository.CartOrderRepository;
-import SkyEdge.repository.OrderRepository;
-import SkyEdge.repository.ProductOrderRepository;
-import SkyEdge.repository.ProductRepository;
-import SkyEdge.repository.VoucherRepository;
+import SkyEdge.service.CartOrderService;
 import SkyEdge.service.OrderService;
+import SkyEdge.service.ProductOrderService;
+import SkyEdge.service.ProductService;
 import SkyEdge.service.VoucherService;
 
 @Controller
 public class CartController {
 
     @Autowired
-    private ProductRepository productRepository;
+    private ProductService productService;
 
     @Autowired
-    private ProductOrderRepository productOrderRepository;
+    private ProductOrderService productOrderService;
 
     @Autowired
-    private CartOrderRepository cartOrderRepository;
-
-    @Autowired
-    private VoucherRepository voucherRepository;
+    private CartOrderService cartOrderService;
 
     @Autowired
     private VoucherService voucherService;
 
-    private final OrderService orderService;
-
     @Autowired
-    private OrderRepository orderRepository;
+    private OrderService orderService;
 
     @GetMapping("/cart")
     public String cart(Model model, @AuthenticationPrincipal User user) {
-        List<CartOrder> cartOrders = cartOrderRepository.findAllByUserId(user.getUserId());
+        List<CartOrder> cartOrders = cartOrderService.findAllByUserId(user.getUserId());
         List<Integer> cartOrderIds = new ArrayList<>();
         List<CartOrderDTO> cartOrderDTOs = new ArrayList();
         int total = 0;
         for (CartOrder cartOrder : cartOrders) {
             cartOrderIds.add(cartOrder.getCartOrderId());
-            Product product = productRepository.findOneById(cartOrder.getProductId());
+            Product product = productService.findOneById(cartOrder.getProductId());
             CartOrderDTO cartOrderDTO = new CartOrderDTO(product, cartOrder.getQuantity());
             cartOrderDTOs.add(cartOrderDTO);
             total += product.getPrice() * (cartOrder.getQuantity());
@@ -72,33 +65,22 @@ public class CartController {
         return "cart";
     }
 
-    public CartController(OrderService orderService) {
-        this.orderService = orderService;
-    }
-
-    // Endpoint to delete an order and its associated product orders
-
     @GetMapping("/cart/delete")
     public String deleteProductInCart(@RequestParam("id") int id, @AuthenticationPrincipal User user) {
-        int cartOrderId = cartOrderRepository.findByProductIdAndUserId(id, user.getUserId()).get().getCartOrderId();
-        cartOrderRepository.deleteById(cartOrderId);
+        int cartOrderId = cartOrderService.findByProductIdAndUserId(id, user.getUserId()).get().getCartOrderId();
+        cartOrderService.deleteById(cartOrderId);
         return "redirect:/cart";
     }
-    // @GetMapping("/cart/delete")
-    // public String deleteProductInCart2(@RequestParam int id) {
-
-    // return "redirect:/cart";
-    // }
 
     @GetMapping("/cart/payment-info")
     public String showPaymentInfo(Model model, @AuthenticationPrincipal User user) {
-        List<CartOrder> cartOrders = cartOrderRepository.findAllByUserId(user.getUserId());
+        List<CartOrder> cartOrders = cartOrderService.findAllByUserId(user.getUserId());
         List<Integer> cartOrderIds = new ArrayList<>();
         List<CartOrderDTO> cartOrderDTOs = new ArrayList<>();
         int total = 0;
         for (CartOrder cartOrder : cartOrders) {
             cartOrderIds.add(cartOrder.getCartOrderId());
-            Product product = productRepository.findOneById(cartOrder.getProductId());
+            Product product = productService.findOneById(cartOrder.getProductId());
             CartOrderDTO cartOrderDTO = new CartOrderDTO(product, cartOrder.getQuantity());
             cartOrderDTOs.add(cartOrderDTO);
             total += product.getPrice() * (cartOrder.getQuantity());
@@ -116,15 +98,15 @@ public class CartController {
             @RequestParam("customerName") String customerName, @RequestParam("email") String email,
             @RequestParam("phone") String phone, @RequestParam("address") String address,
             @RequestParam(value = "voucherCode", required = false, defaultValue = "") String voucherCode) {
-        List<CartOrder> cartOrders = cartOrderRepository.findAllByUserId(user.getUserId());
+        List<CartOrder> cartOrders = cartOrderService.findAllByUserId(user.getUserId());
         List<Integer> productOrderIds = new ArrayList<>();
         List<CartOrderDTO> cartOrderDTOs = new ArrayList<>();
-        List<Voucher> vouchers = voucherRepository.findAll();
-        List<ProductOrder> productOrders = productOrderRepository.findAllByUserId(user.getUserId());
+        List<Voucher> vouchers = voucherService.findAll();
+        List<ProductOrder> productOrders = productOrderService.findAllByUserId(user.getUserId());
         String newVoucherCode = voucherCode;
         double total = 0.0;
         for (CartOrder cartOrder : cartOrders) {
-            Product product = productRepository.findOneById(cartOrder.getProductId());
+            Product product = productService.findOneById(cartOrder.getProductId());
             CartOrderDTO cartOrderDTO = new CartOrderDTO(product, cartOrder.getQuantity());
             cartOrderDTOs.add(cartOrderDTO);
             total += product.getPrice() * (cartOrder.getQuantity());
@@ -132,7 +114,7 @@ public class CartController {
             productOrder.setProductId(product.getId());
             productOrder.setQuantity(cartOrder.getQuantity());
             productOrder.setUserId(user.getUserId());
-            productOrderRepository.save(productOrder);
+            productOrderService.save(productOrder);
             productOrderIds.add(productOrder.getProductOrderId());
         }
         Order productInCart = new Order();
@@ -164,17 +146,6 @@ public class CartController {
         return "payment";
     }
 
-    // @PostMapping("/cart/payment/applyVoucher")
-    // public String applyVoucher(@RequestParam("voucherCode") String voucherCode,
-    // Model model, @AuthenticationPrincipal User user) {
-    // Voucher voucher = voucherRepository.findByCode(voucherCode);
-    // if (voucher != null) {
-    // Order currentOrder = orderRepository.findCurrentOrder(user.getUserId());
-    // currentOrder.applyVoucher(voucher);
-    // orderRepository.save(currentOrder);
-    // }
-    // return "redirect:/cart/payment";
-    // }
     @PostMapping("/cart/payment/add")
     public String sendOrder(@ModelAttribute Order productInCart) {
         Order order = new Order();
@@ -186,8 +157,8 @@ public class CartController {
         order.setStatus("PENDING");
         order.setProductOrderId(productInCart.getProductOrderId());
         order.setDiscount(productInCart.getDiscount());
-        orderRepository.save(order);
-        cartOrderRepository.deleteAll();
+        orderService.save(order);
+        cartOrderService.deleteAll();
         return "redirect:/cart";
     }
 }

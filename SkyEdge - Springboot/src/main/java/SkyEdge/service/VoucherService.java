@@ -43,4 +43,24 @@ public class VoucherService {
     public Optional<Voucher> findVoucherByVoucherCode(String code) {
         return voucherRepository.findByCode(code);
     }
+
+    public List<Voucher> findAll() {
+        return voucherRepository.findAll();
+    }
+
+    public void save(Voucher newVoucher) {
+        voucherRepository.save(newVoucher);
+    }
+
+    public List<Voucher> findByNameContainingIgnoreCase(String query) {
+        return voucherRepository.findByNameContainingIgnoreCase(query);
+    }
+
+    public Optional<Voucher> findById(int id) {
+        return voucherRepository.findById(id);
+    }
+
+    public void delete(Voucher voucher) {
+        voucherRepository.delete(voucher);
+    }
 }

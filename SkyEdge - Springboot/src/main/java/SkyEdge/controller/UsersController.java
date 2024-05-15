@@ -15,33 +15,28 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import SkyEdge.model.Role;
 import SkyEdge.model.User;
-import SkyEdge.repository.RoleRepository;
-import SkyEdge.repository.UserRepository;
+import SkyEdge.service.RoleService;
 import SkyEdge.service.UserService;
 import jakarta.validation.Valid;
 
 @Controller
 public class UsersController {
     @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
     private UserService userService;
 
     @Autowired
-    private RoleRepository roleRepository;
-
+    private RoleService roleService;
 
     @GetMapping("admin/users")
     public String manageUsers(Model model) {
-        List<User> users = userRepository.findAll();
+        List<User> users = userService.findValidUsers();
         model.addAttribute("users", users);
         return "admin/profile/admin-manageusers";
     }
 
     @GetMapping("admin/users/edit")
     public String manageUser(@RequestParam int id, Model model) {
-        Optional<User> user = userRepository.findById(id);
+        Optional<User> user = userService.findById(id);
         if (user.isPresent()) {
             User newUser = user.get();
             String authority = newUser.getAuthorities().iterator().next().getAuthority();
@@ -56,33 +51,34 @@ public class UsersController {
     public String handleManageUser(Model model, @Valid @ModelAttribute User user,
             @RequestParam String authority) {
         System.out.println(user.getUsername());
-        User newUser = userRepository.findOneByUserId(user.getUserId());
+        User newUser = userService.findOneByUserId(user.getUserId());
         Set<Role> authorities = new HashSet<>();
-        authorities.add(roleRepository.findByAuthority(authority).get());
+        authorities.add(roleService.findByAuthority(authority).get());
         newUser.setAuthorities(authorities);
         newUser.setEmail(user.getEmail());
-        userRepository.save(newUser);
+        newUser.setName(user.getName());
+        userService.saveExisting(newUser);
         return "redirect:/admin/users";
     }
+
     @GetMapping("/admin/users/search")
     public String searchProduct(@RequestParam("query") String query, Model model) {
-        List<User> users = userRepository.findByUsernameContainingIgnoreCase(query);
+        List<User> users = userService.findByUsernameContainingIgnoreCase(query);
         model.addAttribute("users", users);
         Long userCount = userService.countByAuthorities();
         model.addAttribute("userCount", userCount);
         return "admin/profile/admin-manageusers";
     }
 
-    // @GetMapping("/admin/users/delete")
-    // public String deleteUser(@RequestParam int id) {
-    //     if (userRepository.findById(id).isPresent()) {
-    //         ProductOrder productOrder = productOrderRepository.findById(id).get();
-    //         productOrderRepository.delete(productOrder);
-    //         Order order = orderRepository.findById(id).get();
-    //         orderRepository.delete(order);
-    //         User user = userRepository.findById(id).get();
-    //         userRepository.delete(user);
-    //     }
-    //     return "redirect:/admin/admin-manageusers";
-    // }
+    @GetMapping("admin/users/lock")
+    public String lockUser(@RequestParam int id, Model model) {
+        Optional<User> user = userService.findById(id);
+        if (user.isPresent()) {
+            User newUser = user.get();
+            newUser.setIsLocked(true);
+            userService.saveExisting(newUser);
+            return "redirect:/admin/users";
+        }
+        return "redirect:/admin/users";
+    }
 }

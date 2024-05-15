@@ -1,40 +1,25 @@
 package SkyEdge.controller;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import SkyEdge.model.Product;
-import SkyEdge.model.Subscriber;
 import SkyEdge.model.User;
-import SkyEdge.repository.ProductRepository;
-import SkyEdge.repository.SubscriberRepository;
-import SkyEdge.repository.UserRepository;
 import SkyEdge.security.UserTemplate;
 import SkyEdge.service.AuthenticationService;
 import SkyEdge.service.EmailService;
-import SkyEdge.service.ProductService;
 import SkyEdge.service.UserService;
-import SkyEdge.util.constants.Categories;
 import SkyEdge.util.email.EmailDetails;
 import jakarta.validation.Valid;
 
@@ -49,16 +34,7 @@ public class AuthController {
     private AuthenticationService authenticationService;
 
     @Autowired
-    private ProductRepository productRepository;
-
-    @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
     private UserService userService;
-
-    @Autowired
-    private ProductService productService;
 
     @Autowired
     private EmailService emailService;
@@ -68,74 +44,6 @@ public class AuthController {
     @GetMapping("/login")
     public String login() {
         return "login";
-    }
-
-    @GetMapping("/about-us")
-    public String about_us() {
-        return "about-us";
-    }
-
-    @GetMapping("/contact-us")
-    public String contact_us() {
-        return "contact-us";
-    }
-
-    @GetMapping("/shop")
-    public String shop(
-            @RequestParam(value = "category", required = false, defaultValue = "default") String category,
-            @RequestParam(value = "sortMode", required = false, defaultValue = "0") int sortMode,
-            @RequestParam(value = "page", required = false, defaultValue = "0") int page,
-            @RequestParam(value = "size", required = false, defaultValue = "9") int size,
-            @RequestParam(value = "direction", required = false, defaultValue = "asc") String direction,
-            @RequestParam(value = "query", required = false) String query,
-            Model model) {
-
-        List<String> categories = Categories.getAllCategories();
-        model.addAttribute("categories", categories);
-        model.addAttribute("category", category);
-        model.addAttribute("sortMode", sortMode);
-
-        Pageable pageable = PageRequest.of(page, size, Sort.by(getSortDirection(direction), getSortProperty(sortMode)));
-        Page<Product> productsPage = productService.getAllProducts(pageable);
-
-        if (!category.equals("default")) {
-            productsPage = productService.getProductsByCategory(category, pageable);
-        }
-
-        if (query != null && !query.isEmpty()) {
-            productsPage = productService.searchProducts(query, pageable);
-        }
-
-        model.addAttribute("products", productsPage);
-        if (productsPage.isEmpty()) {
-            model.addAttribute("message", "No products available in the selected category.");
-        }
-
-        return "shop";
-    }
-
-    private String getSortProperty(int sortMode) {
-        switch (sortMode) {
-            case 1:
-                return "id";
-            case 2:
-                return "name";
-            case 3:
-                return "price";
-            default:
-                return "id";
-        }
-    }
-
-    private Sort.Direction getSortDirection(String dir) {
-        return "desc".equalsIgnoreCase(dir) ? Sort.Direction.DESC : Sort.Direction.ASC;
-    }
-
-    @GetMapping("/product-details/{id}")
-    public String product_details(@PathVariable(value = "id") int id, Model model) throws NotFoundException {
-        Product product = productRepository.findById(id).get();
-        model.addAttribute("product", product);
-        return "product-details";
     }
 
     @GetMapping("/register")
@@ -153,7 +61,7 @@ public class AuthController {
                     "Password must be at least 6 characters long and contain at least one digit and one uppercase letter.");
             return "/register";
         }
-        authenticationService.registerUser(ut.getEmail(), ut.getUsername(), ut.getPassword());
+        authenticationService.registerUser(ut.getEmail(), ut.getName(), ut.getUsername(), ut.getPassword());
         return "login";
     }
 
@@ -165,13 +73,13 @@ public class AuthController {
     @PostMapping("/forgot-password")
     public String resetPassword(@RequestParam("email") String requestEmail, Model model,
             RedirectAttributes attributes) {
-        Optional<User> optionalUser = userRepository.findOneByEmail(requestEmail);
+        Optional<User> optionalUser = userService.findOneByEmail(requestEmail);
         if (optionalUser.isPresent()) {
-            User user = userRepository.findById(optionalUser.get().getUserId()).get();
+            User user = userService.findById(optionalUser.get().getUserId()).get();
             String resetToken = UUID.randomUUID().toString();
             user.setResetToken(resetToken);
             user.setTokenExpiryDate(LocalDateTime.now().plusMinutes(reset_token_timeout));
-            userRepository.save(user);
+            userService.saveExisting(user);
             String reset_message = "This is the reset password link: " + site_domain + "change-password?token="
                     + resetToken;
             EmailDetails emailDetails = new EmailDetails(user.getEmail(), reset_message,
@@ -211,68 +119,12 @@ public class AuthController {
 
     @PostMapping("/change-password")
     public String handleChangePassword(@ModelAttribute User user, RedirectAttributes attributes) {
-        Optional<User> newUser = userRepository.findById(user.getUserId());
+        Optional<User> newUser = userService.findById(user.getUserId());
         newUser.get().setPassword(user.getPassword());
         newUser.get().setResetToken("");
         userService.save(newUser.get());
         attributes.addFlashAttribute("message", "Password changed successfully!");
         return "redirect:/login";
-    }
-
-    @GetMapping("/")
-    public String home() {
-        return "index";
-    }
-
-    // @GetMapping("/admin")
-    // public String admin(Model model) {
-    // List<Product> products = productRepository.findAll();
-    // List<Order> orders = orderRepository.findAll();
-    // int numOfProducts = products.size();
-    // List<Object> productHistory = new ArrayList<>();
-    // Long numOfUsers =
-    // userRepository.countByAuthorities(roleRepository.findByAuthority("USER"));
-    // Double totalRevenue = 0.0;
-    // for (Order order : orders) {
-    // if (order.getStatus().equals("APPROVED"))
-    // totalRevenue += order.getCost();
-    // }
-    // for (Product product : products) {
-    // List<String> history = new ArrayList<>();
-    // history.add(product.getCreatedBy().getUsername());
-    // history.add(" has created a new product: " + product.getName() + ".");
-    // history.add(product.getImageFileName());
-    // productHistory.add(history);
-    // }
-    // model.addAttribute("totalRevenue", totalRevenue);
-    // model.addAttribute("orders", orders);
-    // model.addAttribute("productHistory", productHistory);
-    // model.addAttribute("numOfProducts", numOfProducts);
-    // model.addAttribute("numOfUsers", numOfUsers);
-    // return "admin/dashboard/admin-dashboard";
-    // }
-
-    @RequestMapping("/about")
-    public String requestMethodName() {
-        return "about";
-    }
-
-    @Autowired
-    SubscriberRepository subscriberRepository;
-
-    @PostMapping("/sendEmail")
-    public String sendEmail(@Valid @RequestParam String email) {
-        Subscriber newSubscriber = new Subscriber();
-        newSubscriber.setEmail(email);
-        subscriberRepository.save(newSubscriber);
-        return "redirect:/";
-    }
-
-    @GetMapping("/sendEmail")
-    public String addEmail(Model model) {
-        Subscriber subsccriber = new Subscriber();
-        model.addAttribute("subscriber", subsccriber);
-        return "redirect:/";
     }
 
 }

@@ -46,6 +46,9 @@ public class User implements UserDetails {
     private String email;
 
     @Column
+    private String name;
+
+    @Column
     private String phone;
 
     @Column
@@ -54,8 +57,12 @@ public class User implements UserDetails {
     @Column
     private LocalDateTime tokenExpiryDate;
 
-    public User(String email, String username, String password, Set<Role> authorities) {
+    @Column
+    private Boolean isLocked = false;
+
+    public User(String email, String name, String username, String password, Set<Role> authorities) {
         this.email = email;
+        this.name = name;
         this.username = username;
         this.password = password;
         this.authorities = authorities;
@@ -94,6 +101,6 @@ public class User implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return !this.isLocked;
     }
 }

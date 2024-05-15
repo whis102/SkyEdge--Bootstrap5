@@ -14,25 +14,25 @@ import org.springframework.web.bind.annotation.RequestParam;
 import SkyEdge.model.CartOrderDTO;
 import SkyEdge.model.Order;
 import SkyEdge.model.ProductOrder;
-import SkyEdge.repository.OrderRepository;
-import SkyEdge.repository.ProductOrderRepository;
-import SkyEdge.repository.ProductRepository;
+import SkyEdge.service.OrderService;
+import SkyEdge.service.ProductOrderService;
+import SkyEdge.service.ProductService;
 
 @Controller
 @RequestMapping("/admin/order")
 public class OrderController {
     @Autowired
-    private OrderRepository orderRepository;
+    private OrderService orderService;
 
     @Autowired
-    private ProductRepository productRepository;
+    private ProductService productService;
 
     @Autowired
-    private ProductOrderRepository productOrderRepository;
+    private ProductOrderService productOrderService;
 
     @GetMapping
     public String order(Model model) {
-        List<Order> orders = orderRepository.findAll();
+        List<Order> orders = orderService.findAll();
 
         model.addAttribute("orders", orders);
         return "admin/order/admin-order";
@@ -40,13 +40,13 @@ public class OrderController {
 
     @GetMapping("/order-details")
     public String orderDetails(Model model, @RequestParam("id") int id) {
-        Optional<Order> order = orderRepository.findById(id);
+        Optional<Order> order = orderService.findById(id);
         List<Integer> productOrderIds = order.get().getProductOrderId();
         List<CartOrderDTO> cartOrders = new ArrayList<>();
         for (int productOrderId : productOrderIds) {
-            ProductOrder productOrder = productOrderRepository.findByProductOrderId(productOrderId).get();
+            ProductOrder productOrder = productOrderService.findByProductOrderId(productOrderId).get();
             CartOrderDTO cartOrder = new CartOrderDTO(
-                    productRepository.findById(productOrder.getProductId()).get(),
+                    productService.findById(productOrder.getProductId()).get(),
                     productOrder.getQuantity());
             cartOrders.add(cartOrder);
         }
@@ -57,17 +57,17 @@ public class OrderController {
 
     @GetMapping("/approve")
     public String approveOrder(Model model, @RequestParam("id") int id) {
-        Optional<Order> order = orderRepository.findById(id);
+        Optional<Order> order = orderService.findById(id);
         order.get().setStatus("APPROVED");
-        orderRepository.save(order.get());
+        orderService.save(order.get());
         return "redirect:/admin/order";
     }
 
     @GetMapping("/reject")
     public String rejectOrder(Model model, @RequestParam("id") int id) {
-        Optional<Order> order = orderRepository.findById(id);
+        Optional<Order> order = orderService.findById(id);
         order.get().setStatus("REJECTED");
-        orderRepository.save(order.get());
+        orderService.save(order.get());
         return "redirect:/admin/order";
     }
 }

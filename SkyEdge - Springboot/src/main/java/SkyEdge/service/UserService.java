@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import SkyEdge.model.Role;
 import SkyEdge.model.User;
 import SkyEdge.repository.UserRepository;
 
@@ -20,11 +21,6 @@ public class UserService implements UserDetailsService {
 
     @Autowired
     private PasswordEncoder encoder;
-
-    // public User save(User user) {
-    // // user.setPassword(passwordEncoder.encode(user.getPassword()));
-    // return userRepository.save(user);
-    // }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -42,12 +38,24 @@ public class UserService implements UserDetailsService {
         userRepository.deleteById(id);
     }
 
-    public Long countByAuthorities() {
-        return userRepository.count();
+    public Long countByAuthorities(Optional<Role> optional) {
+        return userRepository.countByAuthorities(optional);
+    }
+
+    public Optional<User> findById(int id) {
+        return userRepository.findById(id);
     }
 
     public Optional<User> findByToken(String token) {
         return userRepository.findByResetToken(token);
+    }
+
+    public Optional<User> findOneByEmail(String email) {
+        return userRepository.findOneByEmail(email);
+    }
+
+    public User saveExisting(User user) {
+        return userRepository.save(user);
     }
 
     public User save(User user) {
@@ -58,5 +66,25 @@ public class UserService implements UserDetailsService {
         // }
 
         return userRepository.save(user);
+    }
+
+    public Long countByAuthorities() {
+        return userRepository.count();
+    }
+
+    public List<User> findAll() {
+        return userRepository.findAll();
+    }
+
+    public User findOneByUserId(int userId) {
+        return userRepository.findOneByUserId(userId);
+    }
+
+    public List<User> findByUsernameContainingIgnoreCase(String query) {
+        return userRepository.findByUsernameContainingIgnoreCase(query);
+    }
+
+    public List<User> findValidUsers() {
+        return userRepository.findByIsLocked(false);
     }
 }

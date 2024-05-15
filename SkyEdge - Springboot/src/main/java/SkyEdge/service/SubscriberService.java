@@ -39,4 +39,16 @@ public class SubscriberService {
     public void deleteSubscriber(int id) {
         subscriberRepository.deleteById(id);
     }
+
+    public Optional<Subscriber> findById(int id) {
+        return subscriberRepository.findById(id);
+    }
+
+    public void delete(Subscriber subscriber) {
+        subscriberRepository.delete(subscriber);
+    }
+
+    public List<Subscriber> findByEmailContainingIgnoreCase(String query) {
+        return subscriberRepository.findByEmailContainingIgnoreCase(query);
+    }
 }
