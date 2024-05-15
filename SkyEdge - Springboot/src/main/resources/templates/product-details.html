@@ -30,35 +30,15 @@
 
     <!-- Main content-->
     <section class="bg-light">
-        <div class="container pb-5" th:object="${products}">
+        <div class="container p-5" th:object="${products}">
             <div class="row">
                 <!-- Glasses Image-->
-                <div class="col-lg-5 mt-5">
-                    <div class="card mb-3">
-                        <img class="card-img img-fluid" th:src="@{'/images/' + ${product.imageFileName}}"
-                            alt="Dark Glasses" id="product-detail">
-                    </div>
-                    <!-- <div class="row">
-                        <div id="multi-item-example" class="col-10 carousel slide carousel-multi-item"
-                            data-bs-ride="carousel">
-                            <div class="carousel-inner product-links-wap" role="listbox">
-                            </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#multi-item-example"
-                                data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#multi-item-example"
-                                data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
-                            </button>
-                        </div>
-                    </div> -->
+                <div class="col-5">
+                    <img class="card-img img-fluid h-100 rounded" th:src="@{'/images/' + ${product.imageFileName}}" alt="Product Image" id="product-detail">
                 </div>
 
                 <!-- Start Glasses Information-->
-                <div class="col-lg-7 mt-5">
+                <div class="col-7">
                     <div class="card">
                         <div class="card-body">
                             <p class="h2" th:text="${product.name}"></p>
@@ -69,34 +49,41 @@
                                 <i class="fa fa-star text-warning"></i>
                                 <i class="fa fa-star text-warning"></i>
                                 <i class="fa fa-star text-secondary"></i>
-                                <span class="list-inline-item text-dark">Rating 4.8 | 36 Comments</span>
+                                <!-- <span class="list-inline-item text-dark">Rating 4.8 | 36 Comments</span> -->
                             </p>
-                            <ul class="list-inline">
-                                <li class="list-inline-item">
-                                    <h6><b>Category:</b></h6>
-                                </li>
-                                <li class="list-inline-item">
-                                    <p class="text-muted" th:text="${product.category}"></p>
-                                </li>
-                            </ul>
+                            <div class="d-flex gap-2 align-items-center">
+                                <p class="fs-6 fw-bold">Category:</p>
+                                <p class="text-muted" th:text="${product.category}"></p>
+                            </div>
+                            <div class="d-flex gap-2 align-items-center">
+                                <p class="fs-6 fw-bold">Description:</p>
+                                <p class="text-secondary" th:text="${product.description}"></p>
+                            </div>
+                            <div class="d-flex gap-2 align-items-center">
+                                <p class="fs-6 fw-bold">Remaining products:</p>
+                                <p class="text-muted" th:text="${product.stock}"></p>
+                            </div>
 
-                            <h6><b>Description:</b></h6>
-                            <p class="text-secondary" th:text="${product.description}"></p>
-                            <ul class="list-inline">
-                                <li class="list-inline-item">
-                                    <h6><b>Remaining products:</b></h6>
-                                </li>
-                                <li class="list-inline-item">
-                                    <p class="text-muted" th:text="${product.stock}"><strong></strong></p>
-                                </li>
-                            </ul>
+                            <p class="fs-6 fw-bold">Component details:</p>
+                            <div class="d-flex align-items-center gap-3">
+                                <div>
+                                    <p class="fs-6" th:text="'Frame Front : ' + ${product.front} + 'mm'"></p>
+                                    <p class="fs-6" th:text="'Frame Side: ' + ${product.side} + 'mm'"></p>
+                                </div>
+                                <div>
+                                    <p class="fs-6" th:text="'Lens Width: ' + ${product.width} + 'mm'"></p>
+                                    <p class="fs-6" th:text="'Lens Height: ' + ${product.height} + 'mm'"></p>
+                                </div>
+                            </div>
+                            <div class="d-flex gap-2 align-items-center">
+                                <p class="fs-6 fw-bold">Manufacturer&Importer:</p>
+                                <p class="text-muted" th:text="${product.manufacturer}"></p>
+                            </div>
+                            <div class="d-flex gap-2 align-items-center">
+                                <p class="fs-6 fw-bold">Country of Manufacturer:</p>
+                                <p class="text-muted" th:text="${product.country}"></p>
+                            </div>
 
-                            <h6><b>Component details:</b></h6>
-                            <ul class="list-unstyled pb-3">
-                                <li>Convenient frame</li>
-                                <li>Transparent glass surface - easy to use</li>
-                                <li>Dark color - not too dazzle</li>
-                            </ul>
 
                             <form action="/product-details/add" method="GET">
                                 <input type="hidden" name="product-id" th:value="${product.id}">
@@ -113,10 +100,10 @@
                                     </div>
                                 </div>
                                 <div class="row pb-3">
-                                    <div class="col d-grid">
+                                    <!-- <div class="col d-grid">
                                         <button id="buy-button" class="btn btn-success btn-lg" name="submit"
                                             value="buy">Buy</button>
-                                    </div>
+                                    </div> -->
                                     <div class="col d-grid">
                                         <button type="submit" class="btn btn-success btn-lg" name="submit"
                                             value="addtocard">Add To Cart</button>
