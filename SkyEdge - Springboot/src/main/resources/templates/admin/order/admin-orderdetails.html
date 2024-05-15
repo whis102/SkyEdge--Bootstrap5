@@ -13,73 +13,42 @@
             <div class="order-popup-content">
 
                 <div class="col d-flex rounded-3">
-                    <div class="col-8 d-flex flex-column left-content p-4">
-                        <span class="fw-bold fs-4 text-start mb-4">Order Details</span>
+                    <div class="col-7 d-flex flex-column left-content p-4">
+                        <span class="fw-bold fs-4 text-start mb-4 text-primary" th:text="'Order Details #' + ${order.orderId}"></span>
                         <div class="item"></div>
-                        <div class="d-flex flex-row border border-2 p-2 rounded justify-content-between align-items-center"
+                        <div class="d-flex flex-row p-2 rounded justify-content-between align-items-center"
                             th:each="product: ${products}">
-                            <div class="d-flex flex-row align-items-center gap-2">
-                                <div class=" d-inline-block">
-                                    <img loading="lazy" th:src="@{'/images/' + ${product.product.imageFileName}}"
-                                        class=" item-img rounded-3" width="100" height="100">
-                                </div>
-                                <div class="item-info  text-start">
+                            <div class="d-flex w-100 align-items-center justify-content-between">
+                                <div class="item-info text-start d-flex gap-2">
+                                    <div class=" d-inline-block">
+                                        <img loading="lazy" th:src="@{'/images/' + ${product.product.imageFileName}}"
+                                            class=" item-img rounded-3" width="100" height="100">
+                                    </div>
                                     <div class="d-flex flex-column">
-                                        <p class="item-name" th:text="${product.product.name}"></p>
-                                        <p class="text-success" th:text="'$' + ${product.product.price}"></p>
+                                        <p class="item-name fw-bold" th:text="${product.product.name}"></p>
+                                        <p  id="var-value" th:text="'Quantity: ' + ${product.quantity}"></p>
                                     </div>
                                 </div>
-                            </div>
-
-                            <li class="list-inline-item px-3"><span class="text-secondary" id="var-value"
-                                    th:text="${product.quantity}"></span></li>
-
-
-                            <!-- <div class="d-flex justify-content-between">
-                                <span>Product ID</span>
-                                <span class="fw-bold fs-6" th:text="${product.product.getId()}">CurrencyAmount</span>
-                            </div>
-                            <div class="d-flex justify-content-between">
-                                <span>Product Name</span>
-                                <span class="fw-bold fs-6" th:text="${product.product.getName()}">CurrencyAmount</span>
-                            </div>
-                            <div class="d-flex justify-content-between">
-                                <span>Cost</span>
-                                <span th:text="${product.product.getPrice()}" class="fw-bold fs-6">CurrencyAmount</span>
-                            </div>
-                            <div class="d-flex justify-content-between">
-                                <span>Cost</span>
-                                <span th:text="${product.quantity}" class="fw-bold fs-6">CurrencyAmount</span>
+                                <div class="h-100">
+                                    <p class="fw-bold fs-5" th:text="'$' + ${product.product.price}"></p>
+                                </div>
                             </div>
                         </div>
-                        <div class="d-flex flex-column">
-                            <div class="d-flex justify-content-between">
-                                <span>Subtotal</span>
-                                <span class="fw-bold fs-6">CurrencyAmount</span>
-                            </div>
-                            <div class="d-flex justify-content-between">
-                                <span>Shipping</span>
-                                <span class="fw-bold fs-6">CurrencyAmount</span>
-                            </div>
-                            <div class="d-flex justify-content-between">
-                                <span>Discount</span>
-                                <span class="fw-bold fs-6">CurrencyAmount</span>
-                            </div>
-                            <div class="d-flex justify-content-between">
-                                <span class="fw-bold">Total</span>
-                                <span class="fw-bold fs-6">CurrencyAmount</span>
-                            </div> -->
+                        
+                        <div class="d-flex flex-row p-2 rounded justify-content-between align-items-center">
+                            <p class="flex-grow-1">Total cost</p>
+                            <p th:text="'$' + ${order.cost}"></p>
                         </div>
+                        <p th:text="'Voucher: ' + ${order.voucher}"></p>
                     </div>
-                    <div class="col-4 right-content p-4 d-flex flex-column gap-4">
-                        <div class="d-flex flex-column">
+                    <div class="col-5 right-content p-4 d-flex flex-column gap-4">
+                        <div class="d-flex flex-column mt-5">
                             <span class="fw-bold fs-4 text-start mb-3">Customer Info</span>
                             <div class="d-flex gap-3 mb-2 align-items-center">
-                                <img class="rounded-circle" height="60" width="60" src="" alt="User Avatar">
+                                <!-- <img class="rounded-circle" height="60" width="60" src="" alt="User Avatar"> -->
                                 <div class="d-flex flex-column h-100">
-                                    <span class="text-start fw-bold" th:text="${order.customerName}">UserName</span>
-                                    <span class="text-start" th:text="'Email: ' +${order.email} ">Email:
-                                        UserEmail</span>
+                                    <span class="text-start" th:text="'User name: ' + ${order.customerName}"></span>
+                                    <span class="text-start" th:text="'Email: ' +${order.email} "></span>
                                 </div>
                             </div>
                         </div>
@@ -94,8 +63,8 @@
                         <div class="d-flex flex-column">
                             <span class="fw-bold fs-4 text-start mb-3">Payment Info</span>
                             <div class="d-flex flex-column h-100">
-                                <span class="text-start">Payment Method: PaymentMethod</span>
-                                <span class="text-start">Transaction No: TransactionNo</span>
+                                <span class="text-start">Payment Method: Cast</span>
+                                <span class="text-start" th:text="'Transaction No: '+ ${order.orderId}"></span>
                             </div>
                         </div>
                         <buttonGrp class="buttonGrp">

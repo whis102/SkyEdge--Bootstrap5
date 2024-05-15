@@ -39,13 +39,11 @@
                     <div></div>
                 </div>
                 <div class="nav d-flex justify-content-between">
-                    <div class="nav-item nav-item-active d-flex justify-content-center w-50">
-                        <a onclick="toggleNav(this)" th:href="@{/cart/payment-info}" class="text-decoration-none">1.
-                            Information</a>
+                    <div class="nav-item nav-item-active d-flex justify-content-center w-50">1. Information
+                        <a onclick="toggleNav(this)" th:href="@{/cart/payment-info}" class="text-decoration-none"></a>
                     </div>
-                    <div class="nav-item d-flex justify-content-center w-50">
-                        <a onclick="toggleNav(this)" th:href="@{/cart/payment}" class="text-decoration-none">2.
-                            Payment</a>
+                    <div class="nav-item d-flex justify-content-center w-50">2. Payment
+                        <a onclick="toggleNav(this)" th:href="@{/cart/payment}" class="text-decoration-none"></a>
                     </div>
                 </div>
                 <div class="view-list">
@@ -73,7 +71,7 @@
                                                 th:text="${order.quantity}"></span></li>
                                         <li id="btn-plus" class="list-inline-item btn btn-sm btn-outline-secondary ">
                                             <span>+</span>
-                                        </li>
+                                        </li> 
                                     </ul>
                                 </div>
                             </div>
@@ -114,7 +112,7 @@
                 <div class="p-3 mt-2 d-flex flex-column rounded-3">
                     <div class="total-box d-flex justify-content-between">
                         <p class="title-temp">Temporary Total:</p>
-                        <span class="total text-success fw-bold" th:text="${productInCart.cost}">$48</span>
+                        <span class="total text-success fw-bold" th:text="'$' +${productInCart.cost}"></span>
                     </div>
 
                     <div class="btn-submit mt-0 d-grid">

@@ -252,6 +252,11 @@ body {
     width: calc(100% - 250px);
     transition: var(--tran-05);
 }
+
+#purchase .t-body {
+    height: 200px;
+    overflow-y: scroll;
+}
 /* ====== End Content ====== */
 
 body {

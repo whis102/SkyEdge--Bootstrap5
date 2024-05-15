@@ -20,36 +20,4 @@ public class UserController {
 
     @Autowired
     UserService userService;
-
-    // @Autowired
-    // UserRepository userRepository;
-
-    // // @GetMapping("/login")
-    // // public String login(Model model) {
-    // // return "/login";
-    // // }
-
-    // @GetMapping("/register")
-    // public String register(Model model) {
-    // model.addAttribute("user", new User());
-    // return "register";
-    // }
-
-    // // Sau khi ng dùng submit form bằng method POST, lưu user data được nhập vào
-    // // User model
-    // @PostMapping("/register")
-    // public String registerHandle(Model model, PasswordEncoder encoder,
-    // @Valid User user, BindingResult result) {
-    // if (result.hasErrors()) {
-    // model.addAttribute("user", user);
-    // return "register";
-    // } else {
-    // userService.save(user);
-    // model.addAttribute("user", new User());
-    // model.addAttribute("success", true);
-
-    // return "register";
-    // }
-    // }
-
 }

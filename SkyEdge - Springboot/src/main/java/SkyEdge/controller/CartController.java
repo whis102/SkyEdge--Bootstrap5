@@ -114,6 +114,7 @@ public class CartController {
         List<CartOrderDTO> cartOrderDTOs = new ArrayList<>();
         List<Voucher> vouchers = voucherRepository.findAll();
         List<ProductOrder> productOrders = productOrderRepository.findAllByUserId(user.getUserId());
+
         int total = 0;
         for (CartOrder cartOrder : cartOrders) {
             Product product = productRepository.findOneById(cartOrder.getProductId());
@@ -127,6 +128,7 @@ public class CartController {
             productOrderRepository.save(productOrder);
             productOrderIds.add(productOrder.getProductOrderId());
         }
+        
         Order productInCart = new Order();
         productInCart.setProductOrderId(productOrderIds);
         productInCart.setCost(total);
@@ -139,7 +141,16 @@ public class CartController {
         model.addAttribute("vouchers", vouchers);
         return "payment";
     }
-
+    // @PostMapping("/cart/payment/applyVoucher")
+    // public String applyVoucher(@RequestParam("voucherCode") String voucherCode, Model model, @AuthenticationPrincipal User user) {
+    //     Voucher voucher = voucherRepository.findByCode(voucherCode);
+    //     if (voucher != null) {
+    //         Order currentOrder = orderRepository.findCurrentOrder(user.getUserId());
+    //         currentOrder.applyVoucher(voucher);
+    //         orderRepository.save(currentOrder);
+    //     }
+    //     return "redirect:/cart/payment";
+    // }
     @PostMapping("/cart/payment/add")
     public String sendOrder(@ModelAttribute Order productInCart) {
         Order order = new Order();

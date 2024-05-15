@@ -13,12 +13,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import SkyEdge.model.Order;
-import SkyEdge.model.ProductOrder;
 import SkyEdge.model.Role;
 import SkyEdge.model.User;
-import SkyEdge.repository.OrderRepository;
-import SkyEdge.repository.ProductOrderRepository;
 import SkyEdge.repository.RoleRepository;
 import SkyEdge.repository.UserRepository;
 import SkyEdge.service.UserService;
@@ -35,11 +31,6 @@ public class UsersController {
     @Autowired
     private RoleRepository roleRepository;
 
-    @Autowired
-    private OrderRepository orderRepository;
-
-    @Autowired
-    private ProductOrderRepository productOrderRepository;
 
     @GetMapping("admin/users")
     public String manageUsers(Model model) {

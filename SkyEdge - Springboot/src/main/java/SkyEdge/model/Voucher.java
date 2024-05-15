@@ -26,7 +26,7 @@ private String code;
 private String name;
 
 @Column(name = "discount", length = 10)
-private String discount;
+private int discount;
 
 @Column(name = "type", length = 50)
 private String type;
