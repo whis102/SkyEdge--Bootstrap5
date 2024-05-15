@@ -69,16 +69,46 @@
                                     </div>
                                 </div>
                             </div> -->
-                            <!-- <div>
-                                <label for="voucher">Voucher:</label>
-                                <select class="form-select mt-2" id="voucher" >
-                                    <option th:value="${voucher.code}" th:text="${voucher.name}" th:each="voucher : ${vouchers}"></option>
-                                </select>
+
+                            <!-- Existing inputs -->
+                            <div class="w-100 d-flex">
+                                <div class="popup-overlay" onclick="hidePopup()"></div>
+                                <div class="input-wrapper flex-grow-1">
+
+                                    <input type="text" id="voucher-input" class="form-control"
+                                        placeholder="Choose Voucher" onclick="showPopup()">
+                                    <div id="popup" class="popup">
+                                        <ul class="d-flex" th:each="a_voucher : ${vouchers}">
+                                            <li class="d-flex align-items-center w-100">
+                                                <a th:href="@{/cart/payment(customerName=${productInCart.customerName}, email=${productInCart.email}, phone=${productInCart.phone}, address=${productInCart.address}, voucherCode=${a_voucher.getCode()})}"
+                                                    class="btn btn-light text-secondary badge mx-1">Apply</a>
+                                                <div class="w-100">
+                                                    <i th:classappend="${a_voucher.icon}"></i>
+                                                    <span th:text="${a_voucher.name}"
+                                                        th:attr="data-voucher=${a_voucher.name}, data-discount=${a_voucher.discount}"
+                                                        class="voucher-item flex-grow-1"></span>
+                                                </div>
+                                                <div class="p-1">
+                                                    <span class="badge text-success"
+                                                        th:text="${a_voucher.discount + '%'}"></span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="input-wrapper flex-grow-1" th:each="a_voucher : ${vouchers} ">
+
+                                <a th:href="@{/cart/payment(customerName=${productInCart.customerName}, email=${productInCart.email}, phone=${productInCart.phone}, address=${productInCart.address}, voucherCode=${a_voucher.getCode()})}"
+                                    class="btn btn-light text-secondary badge mx-1">Apply</a>
                             </div> -->
+                            <!-- Other form elements -->
+
+
                             <div class="d-flex flex-column">
                                 <div class="d-flex mt-2">
                                     <p class="flex-grow-1 text-secondary">Products money (Temporary)</p>
-                                    <p id="product-cost" th:text="'$' +${productInCart.cost}"></p>
+                                    <p id="product-cost" th:text="'$' +${totalBefore}"></p>
                                 </div>
                                 <div class="d-flex">
                                     <p class="flex-grow-1 text-secondary">Transport fee</p>
@@ -123,6 +153,7 @@
                                     <input type="hidden" th:field="${productInCart.address}"></input>
                                     <input type="hidden" th:field="${productInCart.cost}"></input>
                                     <input type="hidden" th:field="${productInCart.productOrderId}"></input>
+                                    <input type="hidden" th:field="${productInCart.discount}"></input>
                                     <div class="d-flex">
                                         <p class="flex-grow-1 text-secondary">Customer</p>
                                         <p><span class="badge border border-success text-success">S-MEM</span>
@@ -141,6 +172,14 @@
                                         <p class="flex-grow-1 text-secondary">Delivery Address</p>
                                         <p th:text="${productInCart.address}"></p>
                                     </div>
+                                    <div class="d-flex">
+                                        <p class="flex-grow-1 text-secondary">Voucher</p>
+                                        <p th:if="${currentVoucherName}" th:text="${currentVoucherName}"></p>
+                                    </div>
+                                    <div class="d-flex">
+                                        <p class="flex-grow-1 text-secondary">Discount</p>
+                                        <p th:if="${currentVoucherName}" th:text="${currentVoucherDiscount} + '%'"></p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -149,7 +188,10 @@
                 <div class="p-3 mt-2 d-flex flex-column rounded-3">
                     <div class="total-box d-flex justify-content-between">
                         <p class="title-temp">Total money</p>
-                        <p id="total-money" class="total text-success fw-bold" th:text="'$' + ${productInCart.cost}"></p>
+                        <p id="total-money" class="total text-success fw-bold" th:text="'$' + ${productInCart.cost}">
+                        </p>
+
+
                     </div>
                     <div class="btn-submit mt-0 d-grid">
                         <button type="submit"

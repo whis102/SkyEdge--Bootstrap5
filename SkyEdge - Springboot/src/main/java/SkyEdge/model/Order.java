@@ -32,22 +32,24 @@ public class Order {
     private double cost;
     private String customerName;
     private String email;
+    private double discount;
     // private Voucher voucher;
     // private double total;
     // public void applyVoucher(Voucher voucher) {
-    //     this.voucher = voucher;
+    // this.voucher = voucher;
     // }
     // public void applyVoucher(Voucher voucher) {
-    //     // TODO Auto-generated method stub
-    //     throw new UnsupportedOperationException("Unimplemented method 'applyVoucher'");
+    // // TODO Auto-generated method stub
+    // throw new UnsupportedOperationException("Unimplemented method
+    // 'applyVoucher'");
     // }
 
     // public double calculateTotalAfterDiscount() {
-    //     if (voucher != null) {
-    //         double discount = total * voucher.getDiscount() / 100;
-    //         return total - discount;
-    //     } else {
-    //         return total;
-    //     }
+    // if (voucher != null) {
+    // double discount = total * voucher.getDiscount() / 100;
+    // return total - discount;
+    // } else {
+    // return total;
+    // }
     // }
 }
