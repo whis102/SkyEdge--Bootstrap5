@@ -26,7 +26,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import SkyEdge.model.Product;
 import SkyEdge.model.Subscriber;
 import SkyEdge.model.User;
-import SkyEdge.repository.ProductDAO;
 import SkyEdge.repository.ProductRepository;
 import SkyEdge.repository.SubscriberRepository;
 import SkyEdge.repository.UserRepository;
@@ -54,9 +53,6 @@ public class AuthController {
 
     @Autowired
     private UserRepository userRepository;
-
-    @Autowired
-    private ProductDAO productDAO;
 
     @Autowired
     private UserService userService;
@@ -89,7 +85,7 @@ public class AuthController {
             @RequestParam(value = "category", required = false, defaultValue = "default") String category,
             @RequestParam(value = "sortMode", required = false, defaultValue = "0") int sortMode,
             @RequestParam(value = "page", required = false, defaultValue = "0") int page,
-            @RequestParam(value = "size", required = false, defaultValue = "10") int size,
+            @RequestParam(value = "size", required = false, defaultValue = "9") int size,
             @RequestParam(value = "direction", required = false, defaultValue = "asc") String direction,
             @RequestParam(value = "query", required = false) String query,
             Model model) {
@@ -273,7 +269,7 @@ public class AuthController {
     }
 
     @GetMapping("/sendEmail")
-    public String addVoucher(Model model) {
+    public String addEmail(Model model) {
         Subscriber subsccriber = new Subscriber();
         model.addAttribute("subscriber", subsccriber);
         return "redirect:/";

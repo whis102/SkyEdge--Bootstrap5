@@ -2,6 +2,7 @@ package SkyEdge.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -25,6 +26,7 @@ import SkyEdge.repository.ProductOrderRepository;
 import SkyEdge.repository.ProductRepository;
 import SkyEdge.repository.VoucherRepository;
 import SkyEdge.service.OrderService;
+import SkyEdge.service.VoucherService;
 
 @Controller
 public class CartController {
@@ -40,6 +42,10 @@ public class CartController {
 
     @Autowired
     private VoucherRepository voucherRepository;
+
+    @Autowired
+    private VoucherService voucherService;
+
     private final OrderService orderService;
 
     @Autowired
@@ -108,13 +114,15 @@ public class CartController {
     @GetMapping("/cart/payment")
     public String shopPayment(Model model, @AuthenticationPrincipal User user,
             @RequestParam("customerName") String customerName, @RequestParam("email") String email,
-            @RequestParam("phone") String phone, @RequestParam("address") String address) {
+            @RequestParam("phone") String phone, @RequestParam("address") String address,
+            @RequestParam(value = "voucherCode", required = false, defaultValue = "") String voucherCode) {
         List<CartOrder> cartOrders = cartOrderRepository.findAllByUserId(user.getUserId());
         List<Integer> productOrderIds = new ArrayList<>();
         List<CartOrderDTO> cartOrderDTOs = new ArrayList<>();
         List<Voucher> vouchers = voucherRepository.findAll();
         List<ProductOrder> productOrders = productOrderRepository.findAllByUserId(user.getUserId());
-        int total = 0;
+        String newVoucherCode = voucherCode;
+        double total = 0.0;
         for (CartOrder cartOrder : cartOrders) {
             Product product = productRepository.findOneById(cartOrder.getProductId());
             CartOrderDTO cartOrderDTO = new CartOrderDTO(product, cartOrder.getQuantity());
@@ -128,18 +136,45 @@ public class CartController {
             productOrderIds.add(productOrder.getProductOrderId());
         }
         Order productInCart = new Order();
-        productInCart.setProductOrderId(productOrderIds);
+        double skyMemberDiscount = 20;
+        double discount = 0;
+        String currentVoucherName = "";
+        Optional<Voucher> voucher = voucherService.findVoucherByVoucherCode(newVoucherCode);
+        if (voucher.isPresent()) {
+            currentVoucherName = voucher.get().getName();
+            discount = voucher.get().getDiscount();
+        }
+
+        discount = discount + skyMemberDiscount;
+        model.addAttribute("currentVoucherName", currentVoucherName);
+        model.addAttribute("currentVoucherDiscount", discount);
+        model.addAttribute("totalBefore", total);
+        total = total - total * discount / 100;
         productInCart.setCost(total);
+        productInCart.setProductOrderId(productOrderIds);
         productInCart.setCustomerName(customerName);
         productInCart.setAddress(address);
         productInCart.setEmail(email);
         productInCart.setPhone(phone);
+        productInCart.setDiscount(discount);
+        model.addAttribute("voucherCode", newVoucherCode);
         model.addAttribute("productInCart", productInCart);
         model.addAttribute("orders", cartOrderDTOs);
         model.addAttribute("vouchers", vouchers);
         return "payment";
     }
 
+    // @PostMapping("/cart/payment/applyVoucher")
+    // public String applyVoucher(@RequestParam("voucherCode") String voucherCode,
+    // Model model, @AuthenticationPrincipal User user) {
+    // Voucher voucher = voucherRepository.findByCode(voucherCode);
+    // if (voucher != null) {
+    // Order currentOrder = orderRepository.findCurrentOrder(user.getUserId());
+    // currentOrder.applyVoucher(voucher);
+    // orderRepository.save(currentOrder);
+    // }
+    // return "redirect:/cart/payment";
+    // }
     @PostMapping("/cart/payment/add")
     public String sendOrder(@ModelAttribute Order productInCart) {
         Order order = new Order();
@@ -150,6 +185,7 @@ public class CartController {
         order.setPhone(productInCart.getPhone());
         order.setStatus("PENDING");
         order.setProductOrderId(productInCart.getProductOrderId());
+        order.setDiscount(productInCart.getDiscount());
         orderRepository.save(order);
         cartOrderRepository.deleteAll();
         return "redirect:/cart";

@@ -82,7 +82,7 @@
         <!-- Recent Purchase -->
         <div id="purchase" class="col bg-white p-3 rounded-3 mb-4">
           <h3>Recent Purchases</h3>
-          <table class="table table-hover table-striped">
+          <table class="table table-hover ">
             <thead>
               <tr>
                 <th scope="col">Order No.</th>
@@ -114,24 +114,23 @@
         <!-- Recent activity -->
         <div id="activity" class="col bg-white p-3 rounded-3  mb-4">
           <h3>Recent Admin Activities</h3>
-          <table class="table table-hover table-striped">
+          <table class="table table-hover">
             <thead>
               <tr>
                 <th scope="col">Activity</th>
-                <th scope="col">Date</th>
+                <!-- <th scope="col">Date</th> -->
               </tr>
             </thead>
             <tbody th:each="history : ${productHistory}">
               <tr class="acticity-container">
                 <td class="d-flex align-items-center">
-                  <div class="admin-logo d-flex align-items-center">
-                    <img class="avt" width="30px" height="30px" th:src="@{'/images/' + ${history[2]}}"
-                      alt="Product Image">
-                    <p class="admin-name text-success mb-0" th:text="${history[0]}">Cong</p>
-                  </div>
+                  <!-- <div class="admin-logo d-flex align-items-center">
+                    <img class="avt" width="30px" height="30px" th:src="@{'/images/' + ${history[2]}}"  alt="Product Image">
+                  </div> -->
+                  <p class="admin-name text-success mb-0" th:text="${history[0]}">Cong</p>
                   <p class="activity mb-0" th:text="${history[1]}"> has deleted a voucher from List Voucher</p>
                 </td>
-                <td>Mar 26, 2024</td>
+                <!-- <td>Mar 26, 2024</td> -->
               </tr>
             </tbody>
           </table>

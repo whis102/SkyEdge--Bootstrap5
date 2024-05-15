@@ -32,38 +32,24 @@ public class Order {
     private double cost;
     private String customerName;
     private String email;
-    // @Embedded
-    // private Money shippingFee;
-
-    // @Embedded
-    // private Money discount;
-
-    // @Embedded
-    // private Payment payment;
-
-    // @ElementCollection
-    // private List<OrderItem> items;
+    private double discount;
+    // private Voucher voucher;
+    // private double total;
+    // public void applyVoucher(Voucher voucher) {
+    // this.voucher = voucher;
+    // }
+    // public void applyVoucher(Voucher voucher) {
+    // // TODO Auto-generated method stub
+    // throw new UnsupportedOperationException("Unimplemented method
+    // 'applyVoucher'");
     // }
 
-    // @Embeddable
-    // class Money {
-    // private BigDecimal amount;
-    // private String currency;
+    // public double calculateTotalAfterDiscount() {
+    // if (voucher != null) {
+    // double discount = total * voucher.getDiscount() / 100;
+    // return total - discount;
+    // } else {
+    // return total;
     // }
-
-    // @Embeddable
-    // class Payment {
-    // private String method;
-    // private String transactionNo;
     // }
-
-    // @Embeddable
-    // class OrderItem {
-    // private String itemImg;
-    // private String itemName;
-    // private String sku;
-    // private int quantity;
-
-    // @Embedded
-    // private Money priceItem;
 }

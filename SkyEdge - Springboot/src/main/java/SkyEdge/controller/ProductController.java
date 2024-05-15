@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,6 @@ import SkyEdge.model.Product;
 import SkyEdge.model.ProductDto;
 import SkyEdge.model.User;
 import SkyEdge.repository.CartOrderRepository;
-import SkyEdge.repository.ProductOrderRepository;
 import SkyEdge.repository.ProductRepository;
 import SkyEdge.service.ProductService;
 import jakarta.validation.Valid;
@@ -35,9 +35,6 @@ public class ProductController {
 
     @Autowired
     private ProductRepository productRepository;
-
-    @Autowired
-    private ProductOrderRepository productOrderRepository;
 
     @Autowired
     private CartOrderRepository cartOrderRepository;

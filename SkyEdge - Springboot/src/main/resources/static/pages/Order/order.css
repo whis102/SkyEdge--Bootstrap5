@@ -2,14 +2,15 @@
     position: fixed;
     top: 15%;
     left: 22%;
-    background-color: #fff;
     padding: 20px;
     z-index: 1000;
     width: 70%;
-    border-radius: 6px;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    /* box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2); */
 }
-
+/* .cart-list{
+    max-height: 400px;
+    overflow-y: scroll;
+} */
 .order-popup-content {
     text-align: center;
 }
@@ -51,4 +52,9 @@
 .filter_buttons .delivered-btn.active{
     border-radius: 0px;
     border-bottom: 3px solid #9747FF;
+}
+*/
+.order-list-box {
+    max-height: 600px;
+    overflow-y: scroll;
 }

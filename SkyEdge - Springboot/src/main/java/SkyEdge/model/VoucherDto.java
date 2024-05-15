@@ -13,7 +13,7 @@ public class VoucherDto {
 
     private String name;
 
-    private String discount;
+    private int discount;
 
     private String type;
 
