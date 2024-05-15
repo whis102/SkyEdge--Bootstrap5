@@ -1,11 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head>
+<head th:replace="~{main/fragments/head :: head}">
     <title>SkyEdge</title>
-    <th:block th:insert="~{main/fragments/head :: head}"></th:block>
-    <link rel="stylesheet" th:href="@{/pages/Cart/cart.css}">
-
 </head>
 
 <body>
@@ -24,6 +21,7 @@
                 <div class="cart-header d-flex justify-content-center align-items-center p-2">
                     <p class="title fs-2 fw-bold mb-0 ms-2">Your cart</p>
                 </div>
+
                 <div class="view-list ">
                     <div class="view-list-wrapper mb-2" th:each="order: ${orders}">
                         <div class="item">
@@ -54,6 +52,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="p-3 mt-2 d-flex flex-column rounded-3">
                     <div class="total-box d-flex justify-content-between">
                         <p class="title-temp">Temporary Total:</p>
