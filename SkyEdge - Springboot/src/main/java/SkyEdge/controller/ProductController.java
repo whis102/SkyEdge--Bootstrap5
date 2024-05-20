@@ -90,7 +90,8 @@ public class ProductController {
         if (result.hasErrors()) {
             return "admin/product/admin-addproduct";
         }
-        String storageFileName = product.getId() + "_" + image.getOriginalFilename();
+        Date date;
+        String storageFileName = product.getCreatedAt() + "_" + image.getOriginalFilename();
         try {
             String uploadDir = "public/images/";
             Path uploadPath = Paths.get(uploadDir);
