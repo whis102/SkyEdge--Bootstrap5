@@ -50,6 +50,7 @@ public class WebSecurityConfig {
                                                 .requestMatchers(WHITELIST).permitAll()
                                                 .requestMatchers("/cart/**").authenticated()
                                                 .requestMatchers("/profile/**").authenticated()
+                                                .requestMatchers("/product-details/add").authenticated()
                                                 .requestMatchers("/admin/users/**").hasAuthority("SUPERADMIN")
                                                 .requestMatchers("/admin/**").hasAnyAuthority("ADMIN", "SUPERADMIN")
                                                 .anyRequest().permitAll())
